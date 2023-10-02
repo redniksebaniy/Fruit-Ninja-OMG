@@ -14,9 +14,10 @@ public class Block : MonoBehaviour
         transform.position += currentVelocity * Time.fixedDeltaTime;
     }
 
-    public void SetForce(Vector3 velocity)
+    public void SetForce(float angle, float strength = 1f)
     {
-        currentVelocity = velocity;
+        Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.right;
+        currentVelocity = direction * strength;
     }
 
     private void OnBecameInvisible()

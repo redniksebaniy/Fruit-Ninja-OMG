@@ -17,7 +17,7 @@ public class SimpleBlockSpawner : MonoBehaviour
     {
         Block newBlock = Instantiate(block, transform.position, Quaternion.identity);
 
-        Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(-90, 90));
-        newBlock.SetForce(rotation * Vector2.up * Random.Range(5, 10));
+        float randomAngle = Random.Range(0, 180);
+        newBlock.SetForce(randomAngle, 5);
     }
 }
