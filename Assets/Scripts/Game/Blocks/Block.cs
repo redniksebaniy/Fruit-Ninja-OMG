@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Block : MonoBehaviour
+public abstract class Block : MonoBehaviour, ICuttable
 {
     [SerializeField]
     float gravityCoefficient = 9.81f;
@@ -20,8 +20,5 @@ public class Block : MonoBehaviour
         currentVelocity = direction * strength;
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
+    public abstract void Cut();
 }
