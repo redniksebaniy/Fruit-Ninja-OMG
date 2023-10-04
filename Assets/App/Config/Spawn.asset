@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ae40e1a704f2e4e9661eaa4ea7a736, type: 3}
+  m_Name: Spawn
+  m_EditorClassIdentifier: 
+  sides:
+  - type: 0
+    fields:
+    - spawnChanceWeight: 1
+      sizeWeight: 0.39686
+      minAngle: 10
+      maxAngle: 45
+    - spawnChanceWeight: 0
+      sizeWeight: 0.60314006
+      minAngle: 0
+      maxAngle: 0
+    spawnChanceWeight: 0.2
+    offsetLength: 0.1
+    isEnabled: 1
+  - type: 1
+    fields:
+    - spawnChanceWeight: 0.2
+      sizeWeight: 0.2
+      minAngle: 45
+      maxAngle: 90
+    - spawnChanceWeight: 0.6
+      sizeWeight: 0.6
+      minAngle: 120
+      maxAngle: 60
+    - spawnChanceWeight: 0.2
+      sizeWeight: 0.2
+      minAngle: 45
+      maxAngle: 90
+    spawnChanceWeight: 0.6
+    offsetLength: 0.1
+    isEnabled: 1
+  - type: 2
+    fields:
+    - spawnChanceWeight: 1
+      sizeWeight: 0.3763946
+      minAngle: 135
+      maxAngle: 170
+    - spawnChanceWeight: 0
+      sizeWeight: 0.6236054
+      minAngle: 0
+      maxAngle: 0
+    spawnChanceWeight: 0.2
+    offsetLength: 0.1
+    isEnabled: 1
+  minBlockCount: 1
+  maxBlockCount: 1

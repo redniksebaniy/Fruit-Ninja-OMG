@@ -251,16 +251,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1011c8385b2f9c4d9b0de578643e86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomSpawnFieldsInfo:
-  - spawnChanceWeight: 10
-    sizeWeight: 10
-    minAngle: 90
-    maxAngle: 45
-  - spawnChanceWeight: 30
-    sizeWeight: 20
-    minAngle: 135
-    maxAngle: 45
-  - spawnChanceWeight: 10
-    sizeWeight: 10
-    minAngle: 90
-    maxAngle: 135
+  config: {fileID: 11400000, guid: 733d07bbdeb467342bd4234abbe9844f, type: 2}
