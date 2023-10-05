@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnFieldsManager : MonoBehaviour
 {
@@ -9,9 +11,26 @@ public class SpawnFieldsManager : MonoBehaviour
     {
         InitFields();
 
-        InvokeRepeating(nameof(SpawnUnit), 0, 1f);
+        InvokeRepeating(nameof(SpawnBlocks), 0, 3f);
     }
+        
+    private void OnDrawGizmos()
+    {
+        InitFields();
+    }
+    
+    private void SpawnBlocks()
+    {
+        int blockCount = Random.Range(config.minBlockCount, config.maxBlockCount);
+        
+        for (int i = 0; i < blockCount; i++)
+        {
+            SpawnField field = GetField();
 
+            Spawn(field, new FruitFactory());
+        }
+    }
+    
     private void Spawn(SpawnField field, BlockFactory factory)
     {
         Block block = factory.Create();
@@ -21,95 +40,65 @@ public class SpawnFieldsManager : MonoBehaviour
         block.SetForce(angle, 10);
     }
 
-    private void SpawnUnit()
+    private SpawnField GetField()
     {
-        SpawnField field = GetField(GetSide());
-        
-        Spawn(field, new FruitFactory());
+        int sideId = GetRandomIndex(config.sides, side => side.spawnChance);
+        int fieldId = GetRandomIndex(config.sides[sideId].fields, field => field.spawnChance);
+
+        return config.sides[sideId].fields[fieldId];
     }
     
-    private SpawnField GetField(SpawnSide side)
+    private int GetRandomIndex<T>(T[] variables, Func<T, float> chanceGetter)
     {
         float random = Random.value;
-        int fieldID = -1;
-        float chancesSum = 0;
+        int id = -1;
+        float chanceSum = 0;
     
-        while (chancesSum < random)
+        while (chanceSum < random)
         {
-            fieldID++;
-            chancesSum += side.fields[fieldID].spawnChanceWeight;
+            id++;
+            chanceSum += chanceGetter(variables[id]);
         }
         
-        return side.fields[fieldID];
-    }
-
-    private SpawnSide GetSide()
-    {
-        float random = Random.value;
-        int fieldID = -1;
-        float chancesSum = 0;
-    
-        while (chancesSum < random)
-        {
-            fieldID++;
-            chancesSum += config.sides[fieldID].spawnChanceWeight;
-        }
-
-        return config.sides[fieldID];
+        return id;
     }
 
     private void InitFields()
     {
+        ConvertToPercent(config.sides, (side) => side.spawnChance, (side, f) => side.spawnChance = f);
+
         foreach (var side in config.sides)
         {
-            if (!side.isEnabled) continue;
-                
-            ConvertFieldSpawnChance(side);
-            ConvertFieldSize(side);
+            ConvertToPercent(side.fields, (field) => field.spawnChance, (field, f) => field.spawnChance = f);
+            ConvertToPercent(side.fields, (field) => field.sizeWeight, (field, f) => field.sizeWeight = f);
+
             InitFieldPosition(side);
         }
     }
-
-    private void ConvertFieldSpawnChance(SpawnSide side)
+    
+    private void ConvertToPercent<T>(T[] variables, Func<T, float> getter, Action<T, float> setter)
     {
-        float[] chances = new float[side.fields.Length];
+        float[] chances = new float[variables.Length];
         float chanceSum = 0;
-        for (int i = 0; i < side.fields.Length; i++)
+        
+        for (int i = 0; i < variables.Length; i++)
         {
-            chances[i] = side.fields[i].spawnChanceWeight;
+            chances[i] = getter(variables[i]);
             chanceSum += chances[i];
         }
 
-        for (int i = 0; i < side.fields.Length; i++)
+        for (int i = 0; i < variables.Length; i++)
         {
             chances[i] /= chanceSum;
-            side.fields[i].spawnChanceWeight = chances[i];
+            setter(variables[i], chances[i]);
         }
     }
     
-    private void ConvertFieldSize(SpawnSide side)
-    {
-        float[] chances = new float[side.fields.Length];
-        float chanceSum = 0;
-        for (int i = 0; i < side.fields.Length; i++)
-        {
-            chances[i] = side.fields[i].sizeWeight;
-            chanceSum += chances[i];
-        }
-
-        for (int i = 0; i < side.fields.Length; i++)
-        {
-            chances[i] /= chanceSum;
-            side.fields[i].sizeWeight = chances[i];
-        }
-    }
-
     private void InitFieldPosition(SpawnSide side)
     {
         Camera camera = Camera.main;
         Vector3 startPosition = Vector3.zero;
         Vector3 endPosition = Vector3.zero;
-        Vector2 offset = Vector2.zero;
 
         switch (side.type)
         {
@@ -127,9 +116,11 @@ public class SpawnFieldsManager : MonoBehaviour
                 startPosition = camera.ScreenToWorldPoint(new (camera.pixelWidth, 0));
                 endPosition = camera.ScreenToWorldPoint(new (camera.pixelWidth, camera.pixelHeight));
                 break;
-
         }
-
+        
+        startPosition *= 1 + config.offsetPercent;
+        endPosition *= 1 + config.offsetPercent;
+        
         Vector3 left = startPosition;
         Vector3 right;
         
@@ -137,20 +128,14 @@ public class SpawnFieldsManager : MonoBehaviour
         for (int i = 0; i < side.fields.Length; i++)
         {
             currentPercent += side.fields[i].sizeWeight;
-            
             right =  Vector3.Lerp(startPosition, endPosition, currentPercent);
             
             side.fields[i].SetSidePositions(left, right);
             
-            Debug.DrawLine(left, right, GetChanceColor(side.fields[i].spawnChanceWeight));
+            Debug.DrawLine(left, right, GetChanceColor(side.fields[i].spawnChance));
             
             left = right;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        InitFields();
     }
 
     private Color GetChanceColor(float chancePercent)

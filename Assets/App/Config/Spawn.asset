@@ -15,46 +15,41 @@ MonoBehaviour:
   sides:
   - type: 0
     fields:
-    - spawnChanceWeight: 1
-      sizeWeight: 0.39686
+    - spawnChance: 1
+      sizeWeight: 0.4
       minAngle: 10
       maxAngle: 45
-    - spawnChanceWeight: 0
-      sizeWeight: 0.60314006
+    - spawnChance: 0
+      sizeWeight: 0.6
       minAngle: 0
       maxAngle: 0
-    spawnChanceWeight: 0.2
-    offsetLength: 0.1
-    isEnabled: 1
+    spawnChance: 0.2
   - type: 1
     fields:
-    - spawnChanceWeight: 0.2
+    - spawnChance: 0.2
       sizeWeight: 0.2
       minAngle: 45
       maxAngle: 90
-    - spawnChanceWeight: 0.6
+    - spawnChance: 0.6
       sizeWeight: 0.6
       minAngle: 120
       maxAngle: 60
-    - spawnChanceWeight: 0.2
+    - spawnChance: 0.2
       sizeWeight: 0.2
-      minAngle: 45
-      maxAngle: 90
-    spawnChanceWeight: 0.6
-    offsetLength: 0.1
-    isEnabled: 1
+      minAngle: 90
+      maxAngle: 135
+    spawnChance: 0.6
   - type: 2
     fields:
-    - spawnChanceWeight: 1
-      sizeWeight: 0.3763946
+    - spawnChance: 1
+      sizeWeight: 0.4
       minAngle: 135
       maxAngle: 170
-    - spawnChanceWeight: 0
-      sizeWeight: 0.6236054
+    - spawnChance: 0
+      sizeWeight: 0.6
       minAngle: 0
       maxAngle: 0
-    spawnChanceWeight: 0.2
-    offsetLength: 0.1
-    isEnabled: 1
+    spawnChance: 0.2
+  offsetPercent: 0.2
   minBlockCount: 1
-  maxBlockCount: 1
+  maxBlockCount: 3

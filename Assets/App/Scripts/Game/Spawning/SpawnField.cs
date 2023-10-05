@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class SpawnField
 {
-    [Min(0)] public float spawnChanceWeight;
+    [Min(0)] public float spawnChance;
 
     [Min(0)] public float sizeWeight;
 
@@ -27,6 +27,6 @@ public class SpawnField
     {
         return Vector3.Lerp(LeftSidePosition, RightSidePosition, Random.value);
     }
-    
-    //gizmos??
+
+    public float SpawnChance => spawnChance;
 }

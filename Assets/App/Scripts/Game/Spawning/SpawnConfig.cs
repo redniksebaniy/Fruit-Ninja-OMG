@@ -6,7 +6,10 @@ public class SpawnConfig : ScriptableObject
 {
     public SpawnSide[] sides;
     
+    [Range(0, 1)] public float offsetPercent;
+    
     [Min(0)] public int minBlockCount;
+    
     [Min(0)] public int maxBlockCount;
 }
 
@@ -17,11 +20,7 @@ public class SpawnSide
     
     public SpawnField[] fields;
     
-    [Range(0, 1)] public float spawnChanceWeight;
-
-    [Min(0)] public float offsetLength;
-    
-    public bool isEnabled;
+    [Range(0, 1)] public float spawnChance;
 }
 
 public enum SideType
