@@ -9,7 +9,7 @@ namespace App.Scripts.Game.Blocks.Shared.Abstract
         [SerializeField] private float gravityCoefficient = 9.81f;
 
         private Vector3 _currentVelocity;
-
+        
         private void FixedUpdate()
         {
             _currentVelocity.y -= gravityCoefficient * Time.fixedDeltaTime / 2;
@@ -20,6 +20,11 @@ namespace App.Scripts.Game.Blocks.Shared.Abstract
         {
             Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
             _currentVelocity = direction * strength;
+        }
+
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
         }
     }
 }
