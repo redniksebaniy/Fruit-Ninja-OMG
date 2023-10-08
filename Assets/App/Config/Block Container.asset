@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks:
   - prefab: {fileID: 4679149280868600347, guid: ac09cbe22be389345b720b099b4e0f88, type: 3}
+    spawnWeight: 3
+  - prefab: {fileID: 4679149280868600347, guid: 5d20aa875f6634949b92a4aed99073f6, type: 3}
     spawnWeight: 1

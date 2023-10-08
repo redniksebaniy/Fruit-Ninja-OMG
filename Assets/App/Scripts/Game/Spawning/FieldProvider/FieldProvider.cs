@@ -1,4 +1,5 @@
-using App.Scripts.Game.CameraAdapter;
+using System;
+using App.Scripts.Utilities.CameraAdapter;
 using App.Scripts.Game.Spawning.FieldProvider.Scriptable;
 using App.Scripts.Utilities.WeightHandler;
 using UnityEngine;
@@ -55,8 +56,15 @@ namespace App.Scripts.Game.Spawning.FieldProvider
 
                 CountPosition(info, out Vector3 leftSide, out Vector3 rightSide);
 
-                _fields[i] = new SpawnField(leftSide, rightSide, info.minAngle, info.maxAngle, info.minStrength, info.maxStrength);
-                Debug.DrawLine(leftSide, rightSide, info.fieldColor);
+                _fields[i] = new SpawnField(
+                    leftSide, 
+                    rightSide, 
+                    info.minAngle, 
+                    info.maxAngle, 
+                    info.minStrength, 
+                    info.maxStrength);
+                
+                DebugDrawField(_fields[i], info.fieldColor);
             }
         }
 
@@ -68,6 +76,20 @@ namespace App.Scripts.Game.Spawning.FieldProvider
             left = adapter.GetAdaptedPositionByPercent(info.position - fieldRight * info.length);
         }
 
+        private void DebugDrawField(SpawnField field, Color color)
+        {
+            Debug.DrawLine(field.LeftEdge, field.RightEdge, color);
+
+            Vector3 maxAngleDirection = Quaternion.Euler(0, 0, field.MaxAngle) * Vector3.right;
+            Vector3 minAngleDirection = Quaternion.Euler(0, 0, field.MinAngle) * Vector3.right;
+            
+            Debug.DrawLine(field.LeftEdge, field.LeftEdge + minAngleDirection, color);
+            Debug.DrawLine(field.LeftEdge, field.LeftEdge + maxAngleDirection, color);
+            
+            Debug.DrawLine(field.RightEdge, field.RightEdge + minAngleDirection, color);
+            Debug.DrawLine(field.RightEdge, field.RightEdge + maxAngleDirection, color);
+        }
+        
         public SpawnField GetWeightedField()
         {
             int index = _weightHandler.GetWeightedIndex(_selectWeights);

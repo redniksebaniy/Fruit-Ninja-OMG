@@ -7,7 +7,7 @@ namespace App.Scripts.Utilities.WeightHandler
         public int GetWeightedIndex(float[] weights)
         {
             float weightSum = 0;
-            foreach (var weight in weights) weightSum += weight;
+            foreach (float weight in weights) weightSum += weight;
             
             float randomValue = weightSum * Random.value;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Abstract
@@ -19,11 +20,6 @@ namespace App.Scripts.Game.Blocks.Shared.Abstract
         {
             Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
             _currentVelocity = direction * strength;
-        }
-
-        private void OnBecameInvisible()
-        {
-            Destroy(gameObject);
         }
     }
 }

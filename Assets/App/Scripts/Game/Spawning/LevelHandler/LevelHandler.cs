@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using App.Scripts.Game.Blocks.Shared.Abstract;
 using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
-using App.Scripts.Game.Spawning.BlockProvider;
-using App.Scripts.Game.Spawning.FieldProvider;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace App.Scripts.Game.Spawning.LevelHandler
 {
@@ -14,25 +12,46 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         [SerializeField] private BlockProvider.BlockProvider blockProvider;
         
         [SerializeField] private FieldProvider.FieldProvider fieldProvider;
+
+        private LevelOptionsScriptable _currentOptions;
         
         private void Start()
         {
+            Init();
             StartCoroutine(nameof(SpawnPacks));
         }
 
+        private void Init()
+        {
+            _currentOptions = Instantiate(optionsScriptable);
+        }
+        
         private IEnumerator SpawnPacks()
         {
+            int packCount = 0;
             while (true)
             {
-                yield return new WaitForSeconds(optionsScriptable.timeBetweenSpawn);
+                yield return new WaitForSeconds(_currentOptions.timeBetweenSpawn);
 
-                int blockCount = Random.Range(optionsScriptable.minBlockCount, optionsScriptable.maxBlockCount);
-                while (blockCount > 0)
+                int blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
+                while (blockCount-- > 0)
                 {
                     SpawnBlock();
-                    blockCount--;
+                }
+                
+                if (++packCount % _currentOptions.spawnsBeforeIncrease == 0)
+                {
+                    IncreaseDifficulty();
                 }
             }
+        }
+
+        private void IncreaseDifficulty()
+        {
+            _currentOptions.minBlockCount += _currentOptions.blockCountIncrease;
+            _currentOptions.maxBlockCount += _currentOptions.blockCountIncrease;
+
+            _currentOptions.timeBetweenSpawn *= 1 - _currentOptions.timeDecreasePercent;
         }
 
         private void SpawnBlock()
