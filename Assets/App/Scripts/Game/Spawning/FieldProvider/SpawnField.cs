@@ -4,41 +4,41 @@ namespace App.Scripts.Game.Spawning.FieldProvider
 {
     public class SpawnField
     {
-        private Vector3 leftEdge;
+        public readonly Vector3 LeftEdge;
 
-        private Vector3 rightEdge;
+        public readonly Vector3 RightEdge;
 
-        private float minAngle;
+        public readonly float MinAngle;
         
-        private float maxAngle;
+        public readonly float MaxAngle;
 
-        private float minStrength;
+        public readonly float MinStrength;
         
-        private float maxStrength;
+        public readonly float MaxStrength;
 
         public SpawnField(Vector3 leftEdge, Vector3 rightEdge, float minAngle, float maxAngle, float minStrength, float maxStrength)
         {
-            this.leftEdge = leftEdge;
-            this.rightEdge = rightEdge;
-            this.minAngle = minAngle;
-            this.maxAngle = maxAngle;
-            this.minStrength = minStrength;
-            this.maxStrength = maxStrength;
+            LeftEdge = leftEdge;
+            RightEdge = rightEdge;
+            MinAngle = minAngle;
+            MaxAngle = maxAngle;
+            MinStrength = minStrength;
+            MaxStrength = maxStrength;
         }
 
         public Vector3 GetRandomPosition()
         {
-            return Vector3.Lerp(leftEdge, rightEdge, Random.value);
+            return Vector3.Lerp(LeftEdge, RightEdge, Random.value);
         }
 
         public float GetRandomAngle()
         {
-            return Mathf.Lerp(minAngle, maxAngle, Random.value);
+            return Mathf.Lerp(MinAngle, MaxAngle, Random.value);
         }
 
         public float GetRandomStrength()
         {
-            return Mathf.Lerp(minStrength, maxStrength, Random.value);
+            return Mathf.Lerp(MinStrength, MaxStrength, Random.value);
         }
     }
 }

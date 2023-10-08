@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.CameraAdapter
+namespace App.Scripts.Utilities.CameraAdapter
 {
     public class OrthographicCameraAdapter : MonoBehaviour
     {

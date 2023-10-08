@@ -13,8 +13,9 @@ namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
         [Min(0)] public int maxBlockCount;
         
         [Header("Increase Difficulty Options")] 
+        [Space(10)]
         [Min(0)] public int spawnsBeforeIncrease;
-        
+        [Space(10)]
         [Range(0, 1)] public float timeDecreasePercent;
 
         [Min(0)] public int blockCountIncrease;
