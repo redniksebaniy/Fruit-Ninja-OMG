@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4679149280868600347}
   - component: {fileID: 7476447842305415454}
   - component: {fileID: -1387334212048313083}
+  - component: {fileID: 3017339321856876192}
   m_Layer: 8
   m_Name: Score
   m_TagString: Untagged
@@ -129,5 +130,22 @@ MonoBehaviour:
   originalRenderer: {fileID: 4679149280868600346}
   shadowObjectName: Shadow_GFX
   shadowLayerID: 7
-  shadowOffset: {x: 0.25, y: -0.1, z: 1}
+  shadowOffset: {x: 0.33, y: -0.15, z: 1}
   shadowIntensity: 0.5
+--- !u!114 &3017339321856876192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4679149280868600344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d3c057f65c4d379e1af5c6626bfe4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationsPath: App.Scripts.Game.Blocks.Shared.Animator.Animations.
+  animations:
+  - RotationAnimation
+  - ScaleAnimation
+  maxSpeed: 0.2

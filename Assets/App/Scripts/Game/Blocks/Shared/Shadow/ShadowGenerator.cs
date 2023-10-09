@@ -46,12 +46,8 @@ namespace App.Scripts.Game.Blocks.Shared.Shadow
 
         private void UpdateShadow()
         {
-            Transform shadowTransform = _shadowRenderer.transform;
-            
             float scale = transform.lossyScale.z;
-            shadowTransform.localPosition = shadowOffset * scale;
-            
-            shadowTransform.rotation = transform.rotation;
+            _shadowRenderer.transform.position = transform.position + shadowOffset * scale * 2;
         }
     }
 }

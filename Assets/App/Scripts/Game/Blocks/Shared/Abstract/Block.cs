@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Abstract
