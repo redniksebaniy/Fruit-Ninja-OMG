@@ -1,19 +1,20 @@
-﻿using App.Scripts.Game.Blocks.Shared.Abstract;
+﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Game.Blocks.Shared.Abstract;
 using App.Scripts.Game.Spawning.BlockProvider.Scriptable;
-using App.Scripts.Utilities.WeightHandler;
+using App.Scripts.Utilities.WeightConverter;
 using UnityEngine;
 
 namespace App.Scripts.Game.Spawning.BlockProvider
 {
-    public class BlockProvider : MonoBehaviour
+    public class BlockProvider : MonoInitializable
     {
         [SerializeField] private BlockProviderScriptable providerScriptable;
         
-        private readonly WeightHandler _weightHandler = new();
+        private readonly WeightConverter _weightConverter = new();
 
         private float[] _spawnWeights;
 
-        private void Start()
+        public override void Init()
         {
             CollectWeights();
         }
@@ -31,7 +32,7 @@ namespace App.Scripts.Game.Spawning.BlockProvider
         
         public Block GetWeightedBlock()
         {
-            int index = _weightHandler.GetWeightedIndex(_spawnWeights);
+            int index = _weightConverter.GetWeightedIndex(_spawnWeights);
             return providerScriptable.blocks[index].prefab;
         }
         

@@ -1,11 +1,10 @@
-﻿using System.Collections;
+﻿using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace App.Scripts.Game.Spawning.LevelHandler
 {
-    public class LevelHandler : MonoBehaviour
+    public class LevelHandler : MonoInitializable
     {
         [SerializeField] private LevelOptionsScriptable optionsScriptable;
 
@@ -14,38 +13,42 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         [SerializeField] private FieldProvider.FieldProvider fieldProvider;
 
         private LevelOptionsScriptable _currentOptions;
-        
-        private void Start()
-        {
-            Init();
-            StartCoroutine(nameof(SpawnPacks));
-        }
 
-        private void Init()
+        private int _packCount;
+        
+        private float _time;
+        
+        public override void Init()
         {
             _currentOptions = Instantiate(optionsScriptable);
         }
         
-        private IEnumerator SpawnPacks()
+        public void Update()
         {
-            int packCount = 0;
-            while (true)
-            {
-                yield return new WaitForSeconds(_currentOptions.timeBetweenSpawn);
+            _time += Time.deltaTime;
 
+            CheckForSpawn();
+        }
+
+        private void CheckForSpawn()
+        {
+            if (_time > _currentOptions.timeBetweenSpawn)
+            {
+                _time -= _currentOptions.timeBetweenSpawn;
+                
                 int blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
                 while (blockCount-- > 0)
                 {
                     SpawnBlock();
                 }
-                
-                if (++packCount % _currentOptions.spawnsBeforeIncrease == 0)
+
+                if (++_packCount % _currentOptions.spawnsBeforeIncrease == 0)
                 {
                     IncreaseDifficulty();
                 }
             }
         }
-
+        
         private void IncreaseDifficulty()
         {
             _currentOptions.minBlockCount += _currentOptions.blockCountIncrease;

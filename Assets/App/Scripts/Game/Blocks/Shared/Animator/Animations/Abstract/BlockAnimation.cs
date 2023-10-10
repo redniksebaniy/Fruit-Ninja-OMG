@@ -1,20 +1,19 @@
 ﻿using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace App.Scripts.Game.Blocks.Shared.Animator.Animations.Abstract
 {
     [Serializable]
-    public abstract class BlockAnimation : MonoBehaviour
+    public abstract class BlockAnimation<T> : MonoBehaviour
     {
         protected float AnimationSpeed;
 
-        protected Transform CurrentState;
+        protected T CurrentState;
 
-        public void Init(Transform state, float minSpeed,  float maxSpeed)
+        public void Init(T state, float speed)
         {
             CurrentState = state;
-            AnimationSpeed = Mathf.Lerp(minSpeed, maxSpeed, Random.value);
+            AnimationSpeed = speed;
         }
         
         public abstract void UpdateAnimation(float dt);

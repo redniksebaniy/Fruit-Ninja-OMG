@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenSpawn: 4
   minBlockCount: 1
-  maxBlockCount: 1
+  maxBlockCount: 3
   spawnsBeforeIncrease: 3
   timeDecreasePercent: 0.05
   blockCountIncrease: 1

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Animator.Animations
 {
-    public class RotationAnimation : BlockAnimation
+    public class RotationTransformAnimation : BlockAnimation<Transform>
     {
         public override void UpdateAnimation(float dt)
         {

@@ -1,23 +1,23 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Architecture.MonoInitializable;
+using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.SpriteLoader
 {
-    public class RandomSpriteLoader : MonoBehaviour
+    public class RandomSpriteLoader : MonoInitializable
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
         
-        [SerializeField] private string path;
+        [SerializeField] private Sprite[] sprites;
         
-        private void Start()
+        public override void Init()
         {
             LoadSprite();
         }
 
         private void LoadSprite()
         {
-            var sprites = Resources.LoadAll<Sprite>(path);
-
             int randomID = Random.Range(0, sprites.Length);
+
             spriteRenderer.sprite = sprites[randomID];
         }
     }

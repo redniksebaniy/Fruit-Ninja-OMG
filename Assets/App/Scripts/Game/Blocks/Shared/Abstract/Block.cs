@@ -8,16 +8,27 @@ namespace App.Scripts.Game.Blocks.Shared.Abstract
 
         private Vector3 _currentVelocity;
         
-        private void FixedUpdate()
+        private void Update()
         {
-            _currentVelocity.y -= gravityCoefficient * Time.fixedDeltaTime / 2;
-            transform.position += _currentVelocity * Time.fixedDeltaTime;
+            UpdatePosition();
         }
 
+        private void UpdatePosition()
+        {
+            _currentVelocity.y -= gravityCoefficient * Time.deltaTime / 2;
+            transform.position += _currentVelocity * Time.deltaTime;
+        }
+        
         public void SetForce(float angle, float strength)
         {
             Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
             _currentVelocity = direction * strength;
+        }
+
+
+        private void OnMouseOver()
+        {
+            Destroy(gameObject);
         }
 
         private void OnBecameInvisible()

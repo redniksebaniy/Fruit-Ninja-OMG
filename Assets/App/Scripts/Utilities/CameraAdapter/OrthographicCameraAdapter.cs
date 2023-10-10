@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Architecture.MonoInitializable;
+using UnityEngine;
 
 namespace App.Scripts.Utilities.CameraAdapter
 {
-    public class OrthographicCameraAdapter : MonoBehaviour
+    public class OrthographicCameraAdapter : MonoInitializable
     {
         [SerializeField] private Camera currentCamera;
         
@@ -10,7 +11,7 @@ namespace App.Scripts.Utilities.CameraAdapter
 
         private float _screenAspect;
         
-        private void Start()
+        public override void Init()
         {
             _verticalSize = currentCamera.orthographicSize;
             _screenAspect = currentCamera.aspect;
@@ -23,9 +24,9 @@ namespace App.Scripts.Utilities.CameraAdapter
             return percentPosition;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmos() 
         {
-            Start();
+            Init();
         }
     }
 }
