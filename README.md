@@ -1,7 +1,7 @@
 # Creating Fruit Ninja Clone Progress:
 Stage 1 - ✔️
 
-Stage 2 - ❌
+Stage 2 - ✔️
 
 Stage 3 - ❌
 
