@@ -16,7 +16,9 @@ namespace App.Scripts.Game.Spawning.FieldProvider
         
         public readonly float MaxStrength;
 
-        public SpawnField(Vector3 leftEdge, Vector3 rightEdge, float minAngle, float maxAngle, float minStrength, float maxStrength)
+        public readonly Color Color;
+        
+        public SpawnField(Vector3 leftEdge, Vector3 rightEdge, float minAngle, float maxAngle, float minStrength, float maxStrength, Color color)
         {
             LeftEdge = leftEdge;
             RightEdge = rightEdge;
@@ -24,6 +26,7 @@ namespace App.Scripts.Game.Spawning.FieldProvider
             MaxAngle = maxAngle;
             MinStrength = minStrength;
             MaxStrength = maxStrength;
+            Color = color;
         }
 
         public Vector3 GetRandomPosition()

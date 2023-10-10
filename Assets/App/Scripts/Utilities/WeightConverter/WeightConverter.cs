@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace App.Scripts.Utilities.WeightHandler
+namespace App.Scripts.Utilities.WeightConverter
 {
-    public class WeightHandler
+    public class WeightConverter
     {
         public int GetWeightedIndex(float[] weights)
         {

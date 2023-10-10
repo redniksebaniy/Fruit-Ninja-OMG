@@ -1,7 +1,6 @@
-﻿using System;
-using App.Scripts.Game.Blocks.Shared.Abstract;
+﻿using App.Scripts.Game.Blocks.Shared.Abstract;
 
-namespace App.Scripts.Game.Blocks.ScoreBlock
+namespace App.Scripts.Game.Blocks.Score
 {
     public class ScoreBlock : Block
     {

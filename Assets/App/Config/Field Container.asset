@@ -23,7 +23,7 @@ MonoBehaviour:
     minStrength: 7
     maxStrength: 10
   - fieldColor: {r: 0, g: 1, b: 0, a: 1}
-    position: {x: 1.05, y: -1.1, z: 0}
+    position: {x: 1.025, y: -1.1, z: 0}
     zRotation: 45
     length: 0.141
     selectWeight: 1
@@ -32,7 +32,7 @@ MonoBehaviour:
     minStrength: 8
     maxStrength: 10
   - fieldColor: {r: 1, g: 1, b: 0, a: 1}
-    position: {x: -1.05, y: -1.1, z: 0}
+    position: {x: -1.025, y: -1.1, z: 0}
     zRotation: -45
     length: 0.141
     selectWeight: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
     minStrength: 8
     maxStrength: 10
   - fieldColor: {r: 1, g: 0, b: 1, a: 1}
-    position: {x: -1.15, y: -0.3, z: 0}
+    position: {x: -1.125, y: -0.3, z: 0}
     zRotation: -90
     length: 0.3
     selectWeight: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
     minStrength: 7
     maxStrength: 10
   - fieldColor: {r: 0, g: 1, b: 1, a: 1}
-    position: {x: 1.15, y: -0.3, z: 0}
+    position: {x: 1.125, y: -0.3, z: 0}
     zRotation: 90
     length: 0.3
     selectWeight: 1
