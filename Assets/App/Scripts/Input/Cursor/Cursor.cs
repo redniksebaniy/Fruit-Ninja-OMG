@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Input.Trail
+namespace App.Scripts.Input.Cursor
 {
     public class Cursor : MonoBehaviour
     {

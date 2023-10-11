@@ -1,6 +1,4 @@
-﻿using System;
-using App.Scripts.Architecture.MonoInitializable;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Input.SwipeInputObserver
 {
@@ -24,8 +22,7 @@ namespace App.Scripts.Input.SwipeInputObserver
                 _isPressed = true;
                 InitSwipeInfo();
             }
-            
-            if (UnityEngine.Input.GetMouseButtonUp(0))
+            else if (UnityEngine.Input.GetMouseButtonUp(0))
             {
                 _isPressed = false;
             }

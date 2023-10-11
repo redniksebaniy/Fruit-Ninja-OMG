@@ -1,5 +1,5 @@
 ﻿using App.Scripts.Game.Blocks.Shared.Abstract;
-using App.Scripts.Game.Blocks.Shared.BlockHalf.HalvesProvider;
+using App.Scripts.Game.Blocks.Score.BlockHalf.HalvesProvider;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Score
@@ -8,14 +8,18 @@ namespace App.Scripts.Game.Blocks.Score
     {
         [SerializeField] private HalvesProvider halvesProvider;
         
+        [SerializeField] private Shared.ParticleProvider.ParticleProvider particleProvider;
+        
         public override void Init()
         {
-            
+            particleProvider.Init();
         }
 
         public override void Chop()
         {
-            halvesProvider.Init();
+            halvesProvider.CreateHalves();
+            particleProvider.PlayParticles();
+            
             Destroy(gameObject);
         }
     }

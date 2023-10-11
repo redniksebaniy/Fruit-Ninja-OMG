@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Game.Blocks.Shared.Abstract.MovableObject;
 using UnityEngine;
 
-namespace App.Scripts.Game.Blocks.Shared.BlockHalf
+namespace App.Scripts.Game.Blocks.Score.BlockHalf
 {
     public class BlockHalf : MovableObject
     {
@@ -20,6 +20,7 @@ namespace App.Scripts.Game.Blocks.Shared.BlockHalf
         public override void Init()
         {
             transform.rotation = originalRenderer.transform.rotation;
+            
             SetSprite();
             SetRandomForce();
         }
@@ -41,6 +42,11 @@ namespace App.Scripts.Game.Blocks.Shared.BlockHalf
             float strength = Mathf.Lerp(minStrength, maxStrength, Random.value);
             
             SetForce(angle, strength);
+        }
+
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
         }
     }
 }

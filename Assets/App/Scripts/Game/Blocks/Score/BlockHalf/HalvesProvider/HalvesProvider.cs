@@ -1,13 +1,12 @@
-﻿using App.Scripts.Architecture.MonoInitializable;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace App.Scripts.Game.Blocks.Shared.BlockHalf.HalvesProvider
+namespace App.Scripts.Game.Blocks.Score.BlockHalf.HalvesProvider
 {
-    public class HalvesProvider : MonoInitializable
+    public class HalvesProvider : MonoBehaviour
     {
         [SerializeField] private BlockHalf[] halves;
 
-        public override void Init()
+        public void CreateHalves()
         {
             foreach (var half in halves)
             {

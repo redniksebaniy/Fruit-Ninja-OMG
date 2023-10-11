@@ -2,7 +2,7 @@
 
 namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
 {
-    [CreateAssetMenu(fileName = "Level Options", menuName = "Scriptable Objects/Level Config", order = 0)]
+    [CreateAssetMenu(fileName = "Level Options", menuName = "Scriptable Object/Level Config", order = 0)]
     public class LevelOptionsScriptable : ScriptableObject
     {
         [Header("Spawn Options")]

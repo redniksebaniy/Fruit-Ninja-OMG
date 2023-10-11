@@ -11,11 +11,11 @@ namespace App.Scripts.Game.Spawning.BlockProvider
     {
         [SerializeField] private BlockProviderScriptable providerScriptable;
         
+        public readonly List<Block> SpawnedBlocks = new();
+        
         private readonly WeightConverter _weightConverter = new();
 
         private float[] _spawnWeights;
-
-        public readonly List<Block> SpawnedBlocks = new();
         
         public override void Init()
         {
@@ -45,6 +45,11 @@ namespace App.Scripts.Game.Spawning.BlockProvider
             SpawnedBlocks.Add(newBlock);
 
             return newBlock;
+        }
+
+        public void CleanDeletedBlocks()
+        {
+            SpawnedBlocks.RemoveAll(block => block == null);
         }
     }
 }

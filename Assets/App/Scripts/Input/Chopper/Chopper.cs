@@ -1,5 +1,4 @@
-﻿using System;
-using App.Scripts.Game.Spawning.BlockProvider;
+﻿using App.Scripts.Game.Spawning.BlockProvider;
 using UnityEngine;
 
 namespace App.Scripts.Input.Chopper
@@ -16,15 +15,10 @@ namespace App.Scripts.Input.Chopper
             
             Vector3 chopperPosition = transform.position;
 
+            blockProvider.CleanDeletedBlocks();
             foreach (var block in blockProvider.SpawnedBlocks)
             {
-                if (block == null)
-                {
-                    //blockProvider.SpawnedBlocks.Remove(block);
-                    continue;
-                }
-
-                if (Vector3.Distance(chopperPosition, block.transform.position) < block.size)
+                if (Vector3.Distance(chopperPosition, block.transform.position) < block.Size)
                 {
                     block.Chop();
                 }

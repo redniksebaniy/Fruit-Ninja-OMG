@@ -11,7 +11,7 @@ namespace App.Scripts.Game.Blocks.Bomb
 
         public override void Chop()
         {
-            
+            Destroy(gameObject);
         }
     }
 }
