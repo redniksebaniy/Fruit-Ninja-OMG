@@ -60,9 +60,9 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         private void SpawnBlock()
         {
             var field = fieldProvider.GetWeightedField();
-            var block = blockProvider.GetWeightedBlock();
+            var newBlock = blockProvider.SpawnWeightedBlock();
 
-            var newBlock = Instantiate(block, field.GetRandomPosition(), Quaternion.identity);
+            newBlock.transform.SetPositionAndRotation(field.GetRandomPosition(), Quaternion.identity);
             newBlock.SetForce(field.GetRandomAngle(), field.GetRandomStrength());
         }
         
