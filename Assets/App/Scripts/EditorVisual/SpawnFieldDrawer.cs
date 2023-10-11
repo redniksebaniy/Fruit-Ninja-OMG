@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Game.Spawning.FieldProvider;
 using UnityEngine;
 
-namespace App.Scripts.Gizmos
+namespace App.Scripts.EditorVisual
 {
     public class SpawnFieldDrawer : MonoBehaviour
     {

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d66dbbd22643fbbf937e342c6cfcd4, type: 3}
+  m_Name: Score Block Sprite Color
+  m_EditorClassIdentifier: 
+  spriteColorsInfos:
+  - sprite: {fileID: 21300000, guid: 3d756f07119c33049a49031dd115ac6c, type: 3}
+    color: {r: 1, g: 1, b: 0.9, a: 1}
+  - sprite: {fileID: 21300000, guid: a2ea0589b4f34b34ab0cfd54c2eba7c2, type: 3}
+    color: {r: 0.2, g: 0.7, b: 0, a: 1}
+  - sprite: {fileID: 21300000, guid: 4e0cea7a023e4074dae874625a480de4, type: 3}
+    color: {r: 0.85, g: 0.45, b: 0.45, a: 1}
+  - sprite: {fileID: 21300000, guid: 6bcb4e11c19cd834e998968ebdc7a63f, type: 3}
+    color: {r: 1, g: 1, b: 0.75, a: 1}
+  - sprite: {fileID: 21300000, guid: 4e8ce917c6512334f85c5cf1173eaf9f, type: 3}
+    color: {r: 1, g: 0.5, b: 0, a: 1}
+  - sprite: {fileID: 21300000, guid: 286b1de6653be3943a4ad15929a686b7, type: 3}
+    color: {r: 1, g: 0.8, b: 0, a: 1}
+  - sprite: {fileID: 21300000, guid: cd1c424a992b6b04ca89348506df36ff, type: 3}
+    color: {r: 0.65, g: 0, b: 0, a: 1}
+  - sprite: {fileID: 21300000, guid: a964f6679b0ea494db32511f1a1b6999, type: 3}
+    color: {r: 0.85, g: 0, b: 0, a: 1}

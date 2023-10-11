@@ -32,20 +32,19 @@ namespace App.Scripts.Game.Spawning.LevelHandler
 
         private void CheckForSpawn()
         {
-            if (_time > _currentOptions.timeBetweenSpawn)
+            if (_time <= _currentOptions.timeBetweenSpawn) return;
+            
+            _time -= _currentOptions.timeBetweenSpawn;
+            
+            int blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
+            while (blockCount-- > 0)
             {
-                _time -= _currentOptions.timeBetweenSpawn;
-                
-                int blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
-                while (blockCount-- > 0)
-                {
-                    SpawnBlock();
-                }
+                SpawnBlock();
+            }
 
-                if (++_packCount % _currentOptions.spawnsBeforeIncrease == 0)
-                {
-                    IncreaseDifficulty();
-                }
+            if (++_packCount % _currentOptions.spawnsBeforeIncrease == 0)
+            {
+                IncreaseDifficulty();
             }
         }
         
@@ -60,9 +59,9 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         private void SpawnBlock()
         {
             var field = fieldProvider.GetWeightedField();
-            var block = blockProvider.GetWeightedBlock();
+            var newBlock = blockProvider.SpawnWeightedBlock();
 
-            var newBlock = Instantiate(block, field.GetRandomPosition(), Quaternion.identity);
+            newBlock.transform.SetPositionAndRotation(field.GetRandomPosition(), Quaternion.identity);
             newBlock.SetForce(field.GetRandomAngle(), field.GetRandomStrength());
         }
         

@@ -4,9 +4,14 @@ namespace App.Scripts.Game.Blocks.Bomb
 {
     public class BombBlock : Block
     {
-        // private void OnDisable()
-        // {
-        //     Affect block nearby
-        // }
+        public override void Init()
+        {
+            
+        }
+
+        public override void Chop()
+        {
+            Destroy(gameObject);
+        }
     }
 }
