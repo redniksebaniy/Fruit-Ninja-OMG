@@ -13,12 +13,12 @@ namespace App.Scripts.Input.Chopper
         {
             if (!observer.IsValidSwipe()) return;
             
-            Vector3 chopperPosition = transform.position;
-
+            Vector2 chopperPosition = transform.position;
+            
             blockProvider.CleanDeletedBlocks();
             foreach (var block in blockProvider.SpawnedBlocks)
             {
-                if (Vector3.Distance(chopperPosition, block.transform.position) < block.Size)
+                if (Vector2.Distance(chopperPosition, block.transform.position) < block.Size)
                 {
                     block.Chop();
                 }

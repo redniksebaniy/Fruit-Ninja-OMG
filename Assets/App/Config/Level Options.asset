@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a41835f8234e7cb03aca9b5242c511, type: 3}
   m_Name: Level Options
   m_EditorClassIdentifier: 
-  timeBetweenSpawn: 4
-  minBlockCount: 1
-  maxBlockCount: 3
-  spawnsBeforeIncrease: 3
-  timeDecreasePercent: 0.05
-  blockCountIncrease: 1
+  targetFrameRate: 60
+  options:
+    timeBetweenPackSpawn: 3
+    minBlockCount: 1
+    maxBlockCount: 2
+    timeBetweenBlockSpawn: 0.4
+    spawnsBeforeIncrease: 3
+    timeDecreasePercent: 0.05
+    blockCountIncrease: 1

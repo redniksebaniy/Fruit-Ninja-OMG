@@ -1,13 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.Architecture.EntryPoint
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private List<MonoInitializable.MonoInitializable> monoInitializables;
+        [SerializeField] private MonoInitializable.MonoInitializable[] monoInitializables;
         
-        private void Start()
+        private void Awake()
         {
             foreach (var monoInitializable in  monoInitializables)
             {

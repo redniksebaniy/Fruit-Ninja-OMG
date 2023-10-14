@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
 using UnityEngine;
 
-namespace App.Scripts.Game.Blocks.Shared.SpriteLoader
+namespace App.Scripts.Game.Blocks.Score.SpriteLoader
 {
     public class RandomSpriteLoader : MonoInitializable
     {

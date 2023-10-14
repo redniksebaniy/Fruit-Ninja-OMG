@@ -17,11 +17,11 @@ MonoBehaviour:
     position: {x: 0, y: -1.2, z: 0}
     zRotation: 0
     length: 0.6
-    selectWeight: 5
+    selectWeight: 1000
     minAngle: 85
     maxAngle: 95
-    minStrength: 7
-    maxStrength: 10
+    minStrength: 11
+    maxStrength: 14
   - fieldColor: {r: 0, g: 1, b: 0, a: 1}
     position: {x: 1.025, y: -1.1, z: 0}
     zRotation: 45
@@ -29,8 +29,8 @@ MonoBehaviour:
     selectWeight: 1
     minAngle: 100
     maxAngle: 130
-    minStrength: 8
-    maxStrength: 10
+    minStrength: 13
+    maxStrength: 15
   - fieldColor: {r: 1, g: 1, b: 0, a: 1}
     position: {x: -1.025, y: -1.1, z: 0}
     zRotation: -45
@@ -38,23 +38,23 @@ MonoBehaviour:
     selectWeight: 1
     minAngle: 50
     maxAngle: 80
-    minStrength: 8
-    maxStrength: 10
+    minStrength: 13
+    maxStrength: 15
   - fieldColor: {r: 1, g: 0, b: 1, a: 1}
-    position: {x: -1.125, y: -0.3, z: 0}
+    position: {x: -1.125, y: -0.4, z: 0}
     zRotation: -90
-    length: 0.3
+    length: 0.2
     selectWeight: 1
-    minAngle: 45
-    maxAngle: 30
-    minStrength: 7
-    maxStrength: 10
+    minAngle: 35
+    maxAngle: 55
+    minStrength: 12
+    maxStrength: 13
   - fieldColor: {r: 0, g: 1, b: 1, a: 1}
-    position: {x: 1.125, y: -0.3, z: 0}
+    position: {x: 1.125, y: -0.4, z: 0}
     zRotation: 90
-    length: 0.3
+    length: 0.2
     selectWeight: 1
-    minAngle: 135
-    maxAngle: 150
-    minStrength: 7
-    maxStrength: 10
+    minAngle: 125
+    maxAngle: 145
+    minStrength: 12
+    maxStrength: 13

@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Utilities.CameraAdapter;
 using App.Scripts.Game.Spawning.FieldProvider.Scriptable;
@@ -18,11 +19,6 @@ namespace App.Scripts.Game.Spawning.FieldProvider
 
         private float[] _selectWeights;
 
-        private void OnDrawGizmos()
-        {
-            Init();
-        }
-
         public override void Init()
         {
             CollectWeights();
@@ -40,7 +36,7 @@ namespace App.Scripts.Game.Spawning.FieldProvider
             }
         }
 
-        private void InitializeFields()
+        public void InitializeFields()
         {
             int count = providerScriptable.fields.Length;
             Fields = new SpawnField[count];
@@ -65,9 +61,10 @@ namespace App.Scripts.Game.Spawning.FieldProvider
         private void CountPosition(FieldInfo info, out Vector3 left, out Vector3 right)
         {
             Vector3 fieldRight = Quaternion.Euler(0, 0, info.zRotation) * Vector3.right;
-
-            right = adapter.GetAdaptedPositionByPercent(info.position + fieldRight * info.length);
-            left = adapter.GetAdaptedPositionByPercent(info.position - fieldRight * info.length);
+            left = info.position + fieldRight * info.length;
+            right = info.position - fieldRight * info.length;
+            adapter.GetAdaptedPositionByPercent(ref left);
+            adapter.GetAdaptedPositionByPercent(ref right);
         }
         
         public SpawnField GetWeightedField()

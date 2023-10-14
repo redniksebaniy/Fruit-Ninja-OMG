@@ -12,24 +12,21 @@ namespace App.Scripts.Game.Blocks.Shared.Animator
         [SerializeField] [Min(0)] private float minSpeed;
         [SerializeField] [Min(0)] private float maxSpeed;
         
-        private BlockAnimation<Transform>[] _currentAnimations;
 
         public override void Init()
         {
             animations.Sort((block1, block2) => Random.Range(0, animations.Count));
             
-            var animationsCount = Random.Range(1, animations.Count);
-            _currentAnimations = new BlockAnimation<Transform>[animationsCount];
+            int animationsCount = Random.Range(1, animations.Count);
             
             for (int i = 0; i < animationsCount; i++)
             {
-                _currentAnimations[i] = animations[i];
-                _currentAnimations[i].Init(transform, GetRandomSpeed());
+                animations[i].Init(transform, GetRandomSpeed());
             }
 
             for (int i = animationsCount; i < animations.Count; i++)
             {
-                Destroy(animations[i]);
+                //Destroy(animations[i]);
                 animations.RemoveAt(i);
             }
         }
@@ -42,7 +39,7 @@ namespace App.Scripts.Game.Blocks.Shared.Animator
         
         private void Update()
         {
-            foreach (var _animation in _currentAnimations)
+            foreach (var _animation in animations)
             {
                 _animation.UpdateAnimation(Time.deltaTime);
             }

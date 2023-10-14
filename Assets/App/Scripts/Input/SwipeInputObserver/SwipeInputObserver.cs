@@ -4,47 +4,36 @@ namespace App.Scripts.Input.SwipeInputObserver
 {
     public class SwipeInputObserver : MonoBehaviour
     {
+        [SerializeField] private Cursor.Cursor cursor;
+        
+        [SerializeField] private Camera usingCamera;
+
         [SerializeField] [Min(0)] private float minSpeed;
         [SerializeField] [Min(0)] private float minDistance;
-        
-        private Vector3 _previousPosition;
-        private Vector3 _currentPosition;
+
+        private Vector2 _previousPosition;
+        private Vector2 _currentPosition;
 
         private float _currentSpeed;
         private float _currentDistance;
 
-        private bool _isPressed;
-
         public void Update()
         {
-            if (UnityEngine.Input.GetMouseButtonDown(0))
-            {
-                _isPressed = true;
-                InitSwipeInfo();
-            }
-            else if (UnityEngine.Input.GetMouseButtonUp(0))
-            {
-                _isPressed = false;
-            }
-            
-            if (_isPressed)
-            {
-                UpdateSwipeInfo();
-            }
+            if (cursor.IsPressed) UpdateSwipeInfo();
+            else ResetSwipeInfo();
         }
 
-        private void InitSwipeInfo()
+        private void ResetSwipeInfo()
         {
             _currentSpeed = 0;
             _currentDistance = 0;
-            _currentPosition = UnityEngine.Input.mousePosition;
+            _currentPosition = usingCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
         }
         
         private void UpdateSwipeInfo()
         {
             _previousPosition = _currentPosition;
-            _currentPosition = UnityEngine.Input.mousePosition;
-            
+            _currentPosition = usingCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
             _currentSpeed = (_currentPosition - _previousPosition).magnitude;
             _currentDistance += _currentSpeed;
         }

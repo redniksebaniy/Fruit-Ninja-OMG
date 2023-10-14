@@ -8,7 +8,6 @@ namespace App.Scripts.Game.Blocks.Shared.Animator.Animations
         public override void UpdateAnimation(float dt)
         {
             CurrentState.localScale += Vector3.one * dt * AnimationSpeed;
-            CurrentState.position -= Vector3.forward * dt * AnimationSpeed;
         }
     }
 }

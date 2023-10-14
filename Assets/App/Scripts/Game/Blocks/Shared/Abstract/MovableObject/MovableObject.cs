@@ -16,14 +16,13 @@ namespace App.Scripts.Game.Blocks.Shared.Abstract.MovableObject
 
         private void UpdatePosition()
         {
-            _currentVelocity.y -= gravityCoefficient * Time.deltaTime / 2;
+            _currentVelocity.y -= gravityCoefficient * Time.deltaTime;
             transform.position += _currentVelocity * Time.deltaTime;
         }
         
         public void SetForce(float angle, float strength)
         {
-            Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
-            _currentVelocity = direction * strength;
+            _currentVelocity = Quaternion.Euler(0, 0, angle) * Vector3.right * strength;
         }
     }
 }

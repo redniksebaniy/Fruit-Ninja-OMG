@@ -17,16 +17,17 @@ namespace App.Scripts.Utilities.CameraAdapter
             _screenAspect = currentCamera.aspect;
         }
 
-        public Vector3 GetAdaptedPositionByPercent(Vector3 percentPosition)
+        public void GetAdaptedPositionByPercent(ref Vector3 percentPosition)
         {
             percentPosition *= _verticalSize;
             percentPosition.x *= _screenAspect;
-            return percentPosition;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos() 
         {
             Init();
         }
+#endif
     }
 }

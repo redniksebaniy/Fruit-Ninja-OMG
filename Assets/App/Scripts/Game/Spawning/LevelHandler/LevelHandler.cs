@@ -12,40 +12,56 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         
         [SerializeField] private FieldProvider.FieldProvider fieldProvider;
 
-        private LevelOptionsScriptable _currentOptions;
+        private LevelOptions _currentOptions;
 
-        private int _packCount;
-        
         private float _time;
+        private bool _isSpawning;
+        
+        private int _packCount = 1;
+        private int _blockCount;
+        
         
         public override void Init()
         {
-            _currentOptions = Instantiate(optionsScriptable);
+            Application.targetFrameRate = optionsScriptable.targetFrameRate;
+            _currentOptions = optionsScriptable.options;
+            
+            _isSpawning = false;
         }
         
         public void Update()
         {
             _time += Time.deltaTime;
 
-            CheckForSpawn();
+            if (_isSpawning) CheckForBlocksSpawn();
+            else CheckForPackSpawn();
         }
 
-        private void CheckForSpawn()
+        private void CheckForPackSpawn()
         {
-            if (_time <= _currentOptions.timeBetweenSpawn) return;
+            if (_time <= _currentOptions.timeBetweenPackSpawn) return;
             
-            _time -= _currentOptions.timeBetweenSpawn;
+            _time -= _currentOptions.timeBetweenPackSpawn;
             
-            int blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
-            while (blockCount-- > 0)
-            {
-                SpawnBlock();
-            }
+            _blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
 
-            if (++_packCount % _currentOptions.spawnsBeforeIncrease == 0)
+            _isSpawning = true;
+            
+            if (_packCount++ % _currentOptions.spawnsBeforeIncrease == 0)
             {
                 IncreaseDifficulty();
             }
+        }
+
+        private void CheckForBlocksSpawn()
+        {
+            if (_time <= _currentOptions.timeBetweenBlockSpawn) return;
+            
+            _time -= _currentOptions.timeBetweenBlockSpawn;
+            
+            SpawnBlock();
+
+            if (--_blockCount == 0) _isSpawning = false;
         }
         
         private void IncreaseDifficulty()
@@ -53,7 +69,8 @@ namespace App.Scripts.Game.Spawning.LevelHandler
             _currentOptions.minBlockCount += _currentOptions.blockCountIncrease;
             _currentOptions.maxBlockCount += _currentOptions.blockCountIncrease;
 
-            _currentOptions.timeBetweenSpawn *= 1 - _currentOptions.timeDecreasePercent;
+            _currentOptions.timeBetweenPackSpawn *= 1 - _currentOptions.timeDecreasePercent;
+            _currentOptions.timeBetweenBlockSpawn *= 1 - _currentOptions.timeDecreasePercent;
         }
 
         private void SpawnBlock()

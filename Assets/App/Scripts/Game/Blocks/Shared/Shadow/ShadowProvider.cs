@@ -23,7 +23,7 @@ namespace App.Scripts.Game.Blocks.Shared.Shadow
         {
             shadowRenderer.sprite = originalRenderer.sprite;
             
-            Color shadowColor = Color.black;
+            var shadowColor = Color.black;
             shadowColor.a = shadowIntensity;
             shadowRenderer.color = shadowColor;
 
@@ -37,8 +37,9 @@ namespace App.Scripts.Game.Blocks.Shared.Shadow
 
         private void UpdateShadow()
         {
-            float scale = _origTransform.lossyScale.z;
-            float currentOffsetMultiplier = Mathf.Max(0.01f, 1 + (scale - 1) * offsetMultiplier);
+            var currentOffsetMultiplier = 1 + (_origTransform.lossyScale.z - 1) * offsetMultiplier;
+            if (currentOffsetMultiplier < 0) currentOffsetMultiplier = 0;
+            
             shadowRenderer.transform.position = _origTransform.position + shadowOffset * currentOffsetMultiplier;
         }
     }
