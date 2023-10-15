@@ -4,10 +4,10 @@ namespace App.Scripts.Utilities.WeightConverter
 {
     public class WeightConverter
     {
-        public int GetWeightedIndex(float[] weights)
+        public int GetWeightedIndex(int[] weights)
         {
-            float weightSum = 0;
-            foreach (float weight in weights) weightSum += weight;
+            int weightSum = 0;
+            foreach (int weight in weights) weightSum += weight;
             
             float randomValue = weightSum * Random.value;
 

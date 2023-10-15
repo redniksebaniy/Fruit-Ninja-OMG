@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Game.Blocks.Factories.Abstract;
 using App.Scripts.Game.Blocks.Shared.Abstract;
 using App.Scripts.Game.Spawning.BlockProvider.Scriptable;
 using App.Scripts.Utilities.WeightConverter;
@@ -9,13 +10,13 @@ namespace App.Scripts.Game.Spawning.BlockProvider
 {
     public class BlockProvider : MonoInitializable
     {
-        [SerializeField] private BlockProviderScriptable providerScriptable;
+        [SerializeField] private BlockInfo[] spawnBlockInfos;
         
         public readonly List<Block> SpawnedBlocks = new();
         
         private readonly WeightConverter _weightConverter = new();
 
-        private float[] _spawnWeights;
+        private int[] _spawnWeights;
         
         public override void Init()
         {
@@ -24,24 +25,24 @@ namespace App.Scripts.Game.Spawning.BlockProvider
         
         private void CollectWeights()
         {
-            int count = providerScriptable.blocks.Length;
-            _spawnWeights = new float[count];
+            int count = spawnBlockInfos.Length;
+            _spawnWeights = new int[count];
 
             for (int i = 0; i < count; i++)
             {
-                _spawnWeights[i] = providerScriptable.blocks[i].spawnWeight;
+                _spawnWeights[i] = spawnBlockInfos[i].spawnWeight;
             }
         }
         
-        private Block GetWeightedBlock()
+        private BlockFactory GetWeightedBlockFactory()
         {
             int index = _weightConverter.GetWeightedIndex(_spawnWeights);
-            return providerScriptable.blocks[index].prefab;
+            return spawnBlockInfos[index].factory;
         }
 
         public Block SpawnWeightedBlock()
         {
-            Block newBlock = Instantiate(GetWeightedBlock());
+            var newBlock = GetWeightedBlockFactory().Create();
             SpawnedBlocks.Add(newBlock);
 
             return newBlock;
