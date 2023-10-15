@@ -14,7 +14,7 @@ namespace App.Scripts.Game.Spawning.FieldProvider.Scriptable
 
         [Range(0, 1.415f)] public float length;
 
-        [Header("Spawn Options")] [Min(0)] public float selectWeight;
+        [Header("Spawn Options")] [Min(0)] public int selectWeight;
 
         [Range(-180, 180)] public int minAngle;
 

@@ -11,7 +11,7 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         [SerializeField] private BlockProvider.BlockProvider blockProvider;
         
         [SerializeField] private FieldProvider.FieldProvider fieldProvider;
-
+        
         private LevelOptions _currentOptions;
 
         private float _time;
@@ -19,7 +19,6 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         
         private int _packCount = 1;
         private int _blockCount;
-        
         
         public override void Init()
         {
@@ -77,7 +76,7 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         {
             var field = fieldProvider.GetWeightedField();
             var newBlock = blockProvider.SpawnWeightedBlock();
-
+            
             newBlock.transform.SetPositionAndRotation(field.GetRandomPosition(), Quaternion.identity);
             newBlock.SetForce(field.GetRandomAngle(), field.GetRandomStrength());
         }

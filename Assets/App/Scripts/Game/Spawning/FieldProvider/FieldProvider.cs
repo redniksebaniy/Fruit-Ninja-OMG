@@ -17,7 +17,7 @@ namespace App.Scripts.Game.Spawning.FieldProvider
 
         public SpawnField[] Fields { get; private set; }
 
-        private float[] _selectWeights;
+        private int[] _selectWeights;
 
         public override void Init()
         {
@@ -28,7 +28,7 @@ namespace App.Scripts.Game.Spawning.FieldProvider
         private void CollectWeights()
         {
             int count = providerScriptable.fields.Length;
-            _selectWeights = new float[count];
+            _selectWeights = new int[count];
 
             for (int i = 0; i < count; i++)
             {

@@ -13,14 +13,12 @@ namespace App.Scripts.Game.Blocks.Score
         public override void Init()
         {
             particleProvider.Init();
-        }
 
-        public override void Chop()
-        {
-            halvesProvider.CreateHalves();
-            particleProvider.PlayParticles();
-            
-            Destroy(gameObject);
+            OnChop += () =>
+            {
+                halvesProvider.CreateHalves();
+                particleProvider.PlayParticles();
+            }; 
         }
     }
 }

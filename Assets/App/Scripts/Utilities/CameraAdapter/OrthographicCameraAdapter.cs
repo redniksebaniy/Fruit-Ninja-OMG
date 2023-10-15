@@ -23,6 +23,12 @@ namespace App.Scripts.Utilities.CameraAdapter
             percentPosition.x *= _screenAspect;
         }
 
+        public Vector3 AdaptVector(Vector3 vector)
+        {
+            vector.x *= _screenAspect;
+            return vector;
+        }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos() 
         {
