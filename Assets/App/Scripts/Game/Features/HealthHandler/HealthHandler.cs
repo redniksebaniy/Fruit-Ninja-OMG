@@ -1,38 +1,43 @@
-﻿using System;
-using App.Scripts.Architecture.MonoInitializable;
-using App.Scripts.Game.Spawning.LevelHandler;
-using App.Scripts.UI.Game.HealthBarView;
+﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
+using App.Scripts.UI.AnimatedViews.Game.HealthBarView;
+using App.Scripts.UI.Installers.Game;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace App.Scripts.Game.Features.HealthHandler
 {
     public class HealthHandler : MonoInitializable
     {
+        [SerializeField] private LevelOptionsScriptable scriptable;
+        
         [SerializeField] private HealthBarView healthBarView;
         
-        [SerializeField] [Min(1)] private int heartCount;
+        [SerializeField] private LosePanelInstaller loseInstaller;
 
-        [SerializeField] private UnityEvent OnZeroHealth;
+        private HealthOptions _options;
+        private int _currentHealthCount;
         
         public override void Init()
         {
-            healthBarView.SetHearts(heartCount);
+            _options = scriptable.health;
+            _currentHealthCount = _options.startHealthCount;
+            healthBarView.SetHearts(_options.startHealthCount, scriptable.level.timeBetweenPackSpawn);
         }
         
         public void RemoveHeart()
         {
             healthBarView.RemoveHeart();
-            if (--heartCount == 0)
+            if (--_currentHealthCount == 0)
             {
-                OnZeroHealth?.Invoke();
+                StartCoroutine(loseInstaller.WaitAndShow());
             }
         }
         
         public void AddHeart()
         {
-            healthBarView.AddHeart();
-            heartCount++;
+            if (_currentHealthCount == _options.maxHealthCount) return;
+            healthBarView.AddHeart(_options.startHealthCount / scriptable.level.timeBetweenPackSpawn);
+            _currentHealthCount++;
         }
     }
 }

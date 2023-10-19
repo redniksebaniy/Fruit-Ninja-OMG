@@ -14,9 +14,9 @@ namespace App.Scripts.Game.Blocks.Score
         {
             particleProvider.Init();
 
-            OnChop += () =>
+            OnChop += (x) =>
             {
-                halvesProvider.CreateHalves();
+                halvesProvider.CreateHalves(x);
                 particleProvider.PlayParticles();
             }; 
         }

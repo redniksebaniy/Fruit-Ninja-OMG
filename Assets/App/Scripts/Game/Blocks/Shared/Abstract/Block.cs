@@ -5,36 +5,39 @@ namespace App.Scripts.Game.Blocks.Shared.Abstract
 {
     public abstract class Block : MovableObject.MovableObject, IChopable
     {
-        [SerializeField] [Min(0)] private float size = 1f;
+        [SerializeField] 
+        [Min(0)] 
+        private float size = 1f;
         public float Size
         {
             get
             {
-                return size * transform.lossyScale.z;
+                return size * transform.localScale.z;
             }
             private set
             {
                 size = value;
             }
         }
+        
+        public event Action<Vector2> OnChop;
+        public event Action OnMiss;
 
         private bool _isChopped;
         
-        public event Action OnChop;
-        public event Action OnMiss;
-
         private void OnBecameInvisible()
         {
-            if (_isChopped) return;
+            if (_isChopped || gameObject == null) return;
             
             OnMiss?.Invoke();
             Destroy(gameObject);
         }
 
-        public void Chop()
+        public void Chop(Vector2 direction)
         {
             _isChopped = true;
-            OnChop?.Invoke();
+            
+            OnChop?.Invoke(direction);
             Destroy(gameObject);
         }
     }

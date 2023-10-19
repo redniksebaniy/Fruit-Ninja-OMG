@@ -8,21 +8,14 @@ namespace App.Scripts.Game.Blocks.Score.BlockHalf
         [SerializeField] private SpriteRenderer originalRenderer;
         
         [SerializeField] private SpriteRenderer halfRenderer;
-
-        [SerializeField] private bool isTopHalf;
-
-        [SerializeField] [Range(-180, 180)] private int minAngle;
-        [SerializeField] [Range(-180, 180)] private int maxAngle;
-
-        [SerializeField] [Min(0)] private int minStrength;
-        [SerializeField] [Min(0)] private int maxStrength;
         
+        public bool isTopHalf;
+
         public override void Init()
         {
             transform.rotation = originalRenderer.transform.rotation;
             
             SetSprite();
-            SetRandomForce();
         }
 
         private void SetSprite()
@@ -36,14 +29,6 @@ namespace App.Scripts.Game.Blocks.Score.BlockHalf
             halfRenderer.sprite = Sprite.Create(sprite.texture, halfRect, Vector2.zero);
         }
         
-        private void SetRandomForce()
-        {
-            float angle = Mathf.Lerp(minAngle, maxAngle, Random.value);
-            float strength = Mathf.Lerp(minStrength, maxStrength, Random.value);
-            
-            SetForce(angle, strength);
-        }
-
         private void OnBecameInvisible()
         {
             Destroy(gameObject);

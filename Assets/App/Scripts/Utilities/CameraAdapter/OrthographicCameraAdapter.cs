@@ -23,10 +23,15 @@ namespace App.Scripts.Utilities.CameraAdapter
             percentPosition.x *= _screenAspect;
         }
 
-        public Vector3 AdaptVector(Vector3 vector)
+        public Vector3 AdaptUnitPosition(Vector3 position)
         {
-            vector.x *= _screenAspect;
-            return vector;
+            position.x *= _screenAspect;
+            return position;
+        }
+
+        public Vector3 AdaptPixelPosition(Vector3 position)
+        {
+            return currentCamera.ScreenToWorldPoint(position);
         }
 
 #if UNITY_EDITOR

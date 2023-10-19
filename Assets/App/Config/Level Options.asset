@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Level Options
   m_EditorClassIdentifier: 
   targetFrameRate: 60
-  options:
+  level:
     timeBetweenPackSpawn: 3
     minBlockCount: 1
     maxBlockCount: 2
-    timeBetweenBlockSpawn: 0.4
+    timeBetweenBlockSpawn: 0.5
     spawnsBeforeIncrease: 3
     timeDecreasePercent: 0.05
     blockCountIncrease: 1
+  health:
+    startHealthCount: 3
+    maxHealthCount: 5
