@@ -3,6 +3,7 @@ using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Game.Features.ScoreHandler;
 using App.Scripts.Game.Spawning.BlockProvider;
 using App.Scripts.UI.AnimatedViews.Base.Button;
+using App.Scripts.UI.AnimatedViews.Base.CanvasGroup;
 using App.Scripts.UI.AnimatedViews.Base.Int;
 using App.Scripts.UI.AnimatedViews.Base.Panel;
 using App.Scripts.UI.Commands.LoadScene;
@@ -12,7 +13,8 @@ namespace App.Scripts.UI.Installers.Game
 {
     public class LosePanelInstaller : MonoInitializable
     {
-        [SerializeField] private AnimatedPanelView losePanel;
+        [SerializeField] private AnimatedCanvasGroupView losePanel;
+        [SerializeField] private AnimatedPanelView loseContent;
         
         [Header("Panel Components")]
         [SerializeField] private AnimatedIntView scoreView;
@@ -32,6 +34,9 @@ namespace App.Scripts.UI.Installers.Game
         
         public override void Init()
         {
+            losePanel.Init();
+            loseContent.Init();
+            
             highscoreView.Init();
             scoreView.Init();
             
@@ -58,7 +63,8 @@ namespace App.Scripts.UI.Installers.Game
             scoreView.SetValueAnimated(scoreHandler.CurrentScore);
             highscoreView.SetValueAnimated(scoreHandler.CurrentHighscore);
             
-            losePanel.ShowPanel();
+            losePanel.ShowCanvasGroup();
+            loseContent.ShowPanel();
         }
     }
 }
