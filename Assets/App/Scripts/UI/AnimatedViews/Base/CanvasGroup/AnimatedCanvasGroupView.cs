@@ -9,7 +9,11 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
         [SerializeField] private UnityEngine.CanvasGroup canvasGroup;
         
         [SerializeField] [Min(0)] private float animationTime = 0.25f;
-
+    
+        [SerializeField] [Min(0)] private float showDelay;
+        
+        [SerializeField] [Min(0)] private float hideDelay;
+        
         private float _currentAlpha;
         
         public override void Init()
@@ -25,6 +29,7 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
             canvasGroup.DOFade(_currentAlpha, animationTime)
                 .SetUpdate(true)
                 .SetEase(Ease.OutFlash)
+                .SetDelay(showDelay)
                 .OnStart(() => canvasGroup.gameObject.SetActive(true));
         }
 
@@ -35,6 +40,7 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
             canvasGroup.DOFade(0, animationTime)
                 .SetUpdate(true)
                 .SetEase(Ease.OutFlash)
+                .SetDelay(hideDelay)
                 .OnComplete(() =>
                 {
                     canvasGroup.gameObject.SetActive(false);
