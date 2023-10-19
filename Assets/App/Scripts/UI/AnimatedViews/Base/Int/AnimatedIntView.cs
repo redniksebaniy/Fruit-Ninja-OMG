@@ -9,7 +9,9 @@ namespace App.Scripts.UI.AnimatedViews.Base.Int
     public class AnimatedIntView : MonoInitializable
     {
         [SerializeField] private TextMeshProUGUI label;
-        [SerializeField] private string prefix;   
+        [SerializeField] private string prefix;
+        [SerializeField] private string postfix;
+        
         [SerializeField] [Min(0)] private float animationTime = 0.5f;
 
         private StringBuilder _builder;
@@ -19,6 +21,7 @@ namespace App.Scripts.UI.AnimatedViews.Base.Int
         {
             _builder = new(prefix);
             _builder.Append(0);
+            _builder.Append(postfix);
         }
         
         public void SetValue(int value)

@@ -20,7 +20,7 @@ namespace App.Scripts.Game.Blocks.Factories.ScoreBlockFactory
         {
             var newPrefab = Instantiate(prefab, transform);
             
-            newPrefab.OnChop += (x) => scoreHandler.AddScore(transform.position);
+            newPrefab.OnChop += (x) => scoreHandler.AddScore(newPrefab.transform.position);
             newPrefab.OnMiss += healthHandler.RemoveHeart;
 
             return newPrefab;
