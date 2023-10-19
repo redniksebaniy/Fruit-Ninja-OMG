@@ -11,11 +11,11 @@ Stage 5 - ❌
 
 Stage 6 - ❌
 
-Stage 7 - ❌
+Stage 7 - ✔️
 
-Stage 8 - ❌
+Stage 8 - ✔️
 
-Stage 9 - ❌
+Stage 9 - ✔️
 
 Stage 10 - ❌
 
