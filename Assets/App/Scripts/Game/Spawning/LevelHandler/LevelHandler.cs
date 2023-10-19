@@ -23,7 +23,7 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         public override void Init()
         {
             Application.targetFrameRate = optionsScriptable.targetFrameRate;
-            _currentOptions = optionsScriptable.options;
+            _currentOptions = optionsScriptable.level;
             
             _isSpawning = false;
         }

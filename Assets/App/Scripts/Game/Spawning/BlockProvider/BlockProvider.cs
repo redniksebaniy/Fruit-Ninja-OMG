@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Architecture.MonoInitializable;
-using App.Scripts.Game.Blocks.Factories.Abstract;
+using App.Scripts.Game.Blocks.Factories.Base;
 using App.Scripts.Game.Blocks.Shared.Abstract;
-using App.Scripts.Game.Spawning.BlockProvider.Scriptable;
 using App.Scripts.Utilities.WeightConverter;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace App.Scripts.Game.Spawning.BlockProvider
 {
     public class BlockProvider : MonoInitializable
     {
-        [SerializeField] private BlockInfo[] spawnBlockInfos;
+        [SerializeField] private BlockInfo.BlockInfo[] spawnBlockInfos;
         
         public readonly List<Block> SpawnedBlocks = new();
         
@@ -44,13 +43,16 @@ namespace App.Scripts.Game.Spawning.BlockProvider
         {
             var newBlock = GetWeightedBlockFactory().Create();
             SpawnedBlocks.Add(newBlock);
-
+            
+            newBlock.OnChop += (x) => Remove(newBlock);
+            newBlock.OnMiss += () => Remove(newBlock);
+            
             return newBlock;
         }
 
-        public void CleanDeletedBlocks()
+        public void Remove(Block block)
         {
-            SpawnedBlocks.RemoveAll(block => block == null);
+            SpawnedBlocks.Remove(block);
         }
     }
 }

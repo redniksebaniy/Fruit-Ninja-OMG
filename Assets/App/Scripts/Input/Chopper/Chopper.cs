@@ -1,4 +1,5 @@
-﻿using App.Scripts.Game.Spawning.BlockProvider;
+﻿using App.Scripts.Game.Blocks.Shared.Abstract;
+using App.Scripts.Game.Spawning.BlockProvider;
 using UnityEngine;
 
 namespace App.Scripts.Input.Chopper
@@ -8,21 +9,25 @@ namespace App.Scripts.Input.Chopper
         [SerializeField] private SwipeInputObserver.SwipeInputObserver observer;
 
         [SerializeField] private BlockProvider blockProvider;
-        
+
+        private Vector2 _previousPosition;
+        private Vector2 _currentPosition;
+
         private void Update()
         {
             if (!observer.IsValidSwipe()) return;
+
+            _previousPosition = _currentPosition;
+            _currentPosition = transform.position;
             
-            Vector2 chopperPosition = transform.position;
-            
-            blockProvider.CleanDeletedBlocks();
-            foreach (var block in blockProvider.SpawnedBlocks)
-            {
-                if (Vector2.Distance(chopperPosition, block.transform.position) < block.Size)
-                {
-                    block.Chop();
-                }
-            }
+            blockProvider.SpawnedBlocks.FindAll(IsTouching).ForEach(Chop);
         }
+        
+        private bool IsTouching(Block block)
+        {
+            return Vector2.Distance(block.transform.position, _currentPosition) < block.Size;
+        }
+
+        private void Chop(Block block) => block.Chop(_currentPosition - _previousPosition);
     }
 }

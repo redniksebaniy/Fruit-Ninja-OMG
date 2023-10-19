@@ -1,15 +1,17 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
-using App.Scripts.UI.Game.HighscoreView;
-using App.Scripts.UI.Game.ScoreView;
+using App.Scripts.UI.AnimatedViews.Base.Int;
+using App.Scripts.UI.Commands.Data.Load;
+using App.Scripts.UI.Commands.Data.Save;
+using App.Scripts.UI.Commands.Data.Types;
 using UnityEngine;
 
 namespace App.Scripts.Game.Features.ScoreHandler
 {
-    public class ScoreHandler : MonoBehaviour
+    public class ScoreHandler : MonoInitializable
     {
-        [SerializeField] private ScoreView scoreView;
+        [SerializeField] private AnimatedIntView scoreView;
         
-        [SerializeField] private HighscoreView highscoreView;
+        [SerializeField] private AnimatedIntView highscoreView;
         
         [SerializeField] [Min(0)] private int scoreAmount;
 
@@ -19,31 +21,52 @@ namespace App.Scripts.Game.Features.ScoreHandler
         
         private int _comboCounter = 1;
 
-        private float _previousChopTime;
+        private float _timeFromlastChop;
+        
+        private Vector2 _labelPosition;
+        
+        public int CurrentScore { get; private set; }
+        public int CurrentHighscore { get; private set; }
 
-        private int _currentScore;
-        private int CurrentScore
+        public override void Init()
         {
-            get { return _currentScore; }
-            set
+            var command = new LoadDataCommand<PlayerRecords>( "App/Data", "Records.json");
+            command.Execute();
+            
+            CurrentHighscore = command.Data.Highscore;
+            CurrentScore = 0;
+            
+            scoreView.SetValue(CurrentScore);
+            highscoreView.SetValue(CurrentHighscore);
+        }
+
+        private void Update()
+        {
+            _timeFromlastChop += Time.deltaTime;
+        }
+        
+        public void AddScore(Vector2 labelPosition)
+        {
+            UpdateComboCounter();
+            _timeFromlastChop = 0;
+
+            _labelPosition = labelPosition;
+            
+            AddValue(scoreAmount);
+        }
+
+        private void AddValue(int amount)
+        {
+            CurrentScore += amount;
+            scoreView.SetValueAnimated(CurrentScore);
+            
+            if (CurrentHighscore < CurrentScore)
             {
-                _currentScore = value;
-                scoreView.SetScore(value);
-                if (highscoreView.CurrentScore < value)
-                {
-                    highscoreView.SetScore(value);
-                }
+                CurrentHighscore = CurrentScore;
+                highscoreView.SetValueAnimated(CurrentHighscore);
             }
         }
         
-        public void AddScore()
-        {
-            UpdateComboCounter();
-            _previousChopTime = Time.time;
-            
-            CurrentScore += scoreAmount * _comboCounter; 
-        }
-
         private void UpdateComboCounter()
         {
             _comboCounter = IsCombo() ? _comboCounter + 1 : 1;
@@ -52,7 +75,23 @@ namespace App.Scripts.Game.Features.ScoreHandler
         
         private bool IsCombo()
         {
-            return Time.time - _previousChopTime < comboMaxTime;
+            return _timeFromlastChop < comboMaxTime;
+        }
+
+        private void OnApplicationPause(bool pauseStatus)
+        {
+            if (pauseStatus)
+            {
+                SaveHighscore();
+            }
+        }
+
+        public void SaveHighscore()
+        {
+            PlayerRecords data = new();
+            data.Highscore = CurrentHighscore;
+
+            new SaveDataCommand<PlayerRecords>(data, "App/Data", "Records.json").Execute();
         }
     }
 }

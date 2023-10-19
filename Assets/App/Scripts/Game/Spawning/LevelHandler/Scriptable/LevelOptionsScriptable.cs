@@ -8,7 +8,10 @@ namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
         [Header("Base Options")] [Min(0)]
         public int targetFrameRate;
         
-        public LevelOptions options;
+        [Space(10)]
+        public LevelOptions level;
 
+        [Space(10)] 
+        public HealthOptions health;
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
-using App.Scripts.Game.Blocks.Factories.Abstract;
+using App.Scripts.Game.Blocks.Factories.Base;
 using UnityEngine;
 
-namespace App.Scripts.Game.Spawning.BlockProvider.Scriptable
+namespace App.Scripts.Game.Spawning.BlockProvider.BlockInfo
 {
     [Serializable]
     public class BlockInfo

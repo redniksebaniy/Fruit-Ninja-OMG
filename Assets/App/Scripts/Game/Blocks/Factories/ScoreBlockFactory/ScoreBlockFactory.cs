@@ -1,23 +1,27 @@
-﻿using App.Scripts.Game.Blocks.Factories.Abstract;
+﻿using App.Scripts.Architecture.Factory;
+using App.Scripts.Game.Blocks.Factories.Base;
 using App.Scripts.Game.Blocks.Score;
 using App.Scripts.Game.Blocks.Shared.Abstract;
 using App.Scripts.Game.Features.HealthHandler;
 using App.Scripts.Game.Features.ScoreHandler;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace App.Scripts.Game.Blocks.Factories.ScoreBlockFactory
 {
     public class ScoreBlockFactory : BlockFactory
     {
-        [SerializeField] private ScoreBlock prefab;
+        [Header("Add Score Component")] [SerializeField]
+        private ScoreHandler scoreHandler;
+
+        [Header("Remove Heart Component")] [SerializeField]
+        private HealthHandler healthHandler;
         
         public override Block Create()
         {
             var newPrefab = Instantiate(prefab, transform);
             
-            newPrefab.OnChop += () => OnBlockChop?.Invoke();
-            newPrefab.OnMiss += () => OnBlockMiss?.Invoke();
+            newPrefab.OnChop += (x) => scoreHandler.AddScore(transform.position);
+            newPrefab.OnMiss += healthHandler.RemoveHeart;
 
             return newPrefab;
         }
