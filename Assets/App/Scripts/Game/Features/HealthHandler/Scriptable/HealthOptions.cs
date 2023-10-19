@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
+namespace App.Scripts.Game.Features.HealthHandler.Scriptable
 {
     [Serializable]
     public struct HealthOptions

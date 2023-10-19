@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Game.Features.HealthHandler.Scriptable;
+using UnityEngine;
 
 namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
 {
@@ -10,8 +11,5 @@ namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
         
         [Space(10)]
         public LevelOptions level;
-
-        [Space(10)] 
-        public HealthOptions health;
     }
 }

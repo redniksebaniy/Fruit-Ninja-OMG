@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Game.Features.HealthHandler.Scriptable;
 using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
 using App.Scripts.UI.AnimatedViews.Game.HealthBarView;
 using App.Scripts.UI.Installers.Game;
@@ -8,7 +9,9 @@ namespace App.Scripts.Game.Features.HealthHandler
 {
     public class HealthHandler : MonoInitializable
     {
-        [SerializeField] private LevelOptionsScriptable scriptable;
+        [SerializeField] private HealthOptionsScriptable scriptable;
+
+        [SerializeField] private LevelOptionsScriptable levelScriptable;
         
         [SerializeField] private HealthBarView healthBarView;
         
@@ -19,9 +22,9 @@ namespace App.Scripts.Game.Features.HealthHandler
         
         public override void Init()
         {
-            _options = scriptable.health;
+            _options = scriptable.options;
             _currentHealthCount = _options.startHealthCount;
-            healthBarView.SetHearts(_options.startHealthCount, scriptable.level.timeBetweenPackSpawn);
+            healthBarView.SetHearts(_options.startHealthCount, levelScriptable.level.timeBetweenPackSpawn);
         }
         
         public void RemoveHeart()
@@ -36,7 +39,7 @@ namespace App.Scripts.Game.Features.HealthHandler
         public void AddHeart()
         {
             if (_currentHealthCount == _options.maxHealthCount) return;
-            healthBarView.AddHeart(_options.startHealthCount / scriptable.level.timeBetweenPackSpawn);
+            healthBarView.AddHeart(_options.startHealthCount /  levelScriptable.level.timeBetweenPackSpawn);
             _currentHealthCount++;
         }
     }
