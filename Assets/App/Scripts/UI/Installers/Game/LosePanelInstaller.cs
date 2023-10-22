@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Commands.LoadScene;
 using App.Scripts.Game.Features.ScoreHandler;
 using App.Scripts.Game.Spawning.BlockProvider;
 using App.Scripts.UI.AnimatedViews.Base.Button;
 using App.Scripts.UI.AnimatedViews.Base.CanvasGroup;
 using App.Scripts.UI.AnimatedViews.Base.Int;
 using App.Scripts.UI.AnimatedViews.Base.Panel;
-using App.Scripts.UI.Commands.LoadScene;
 using UnityEngine;
 
 namespace App.Scripts.UI.Installers.Game
@@ -32,6 +32,9 @@ namespace App.Scripts.UI.Installers.Game
 
         [SerializeField] private GamePanelInstaller gameInstaller;
         
+        [Header("Button Work Components")]
+        [SerializeField] private AnimatedPanelView transitionPanel;
+        
         public override void Init()
         {
             losePanel.Init();
@@ -42,11 +45,11 @@ namespace App.Scripts.UI.Installers.Game
             
             restartButton.onClick.AddListener(() =>
             {
-                new LoadSceneCommand("Game").Execute();
+                transitionPanel.ShowPanel(() => new LoadSceneCommand("Game").Execute());
             });
             menuButton.onClick.AddListener(() =>
             {
-                new LoadSceneCommand("Menu").Execute();
+                transitionPanel.ShowPanel(() => new LoadSceneCommand("Menu").Execute());
             });
         }
 
@@ -60,11 +63,13 @@ namespace App.Scripts.UI.Installers.Game
 
         public void ShowPanel()
         {
-            scoreView.SetValueAnimated(scoreHandler.CurrentScore);
-            highscoreView.SetValueAnimated(scoreHandler.CurrentHighscore);
-            
-            losePanel.ShowCanvasGroup();
-            loseContent.ShowPanel();
+            losePanel.ShowCanvasGroup(() =>
+            {
+                loseContent.ShowPanel();
+                scoreView.SetValue(0);
+                highscoreView.SetValue(scoreHandler.CurrentHighscore);
+                scoreView.SetValueAnimated(scoreHandler.CurrentScore);
+            });
         }
     }
 }

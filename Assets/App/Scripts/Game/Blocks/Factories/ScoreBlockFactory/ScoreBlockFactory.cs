@@ -1,7 +1,5 @@
-﻿using App.Scripts.Architecture.Factory;
-using App.Scripts.Game.Blocks.Factories.Base;
-using App.Scripts.Game.Blocks.Score;
-using App.Scripts.Game.Blocks.Shared.Abstract;
+﻿using App.Scripts.Game.Blocks.Factories.Base;
+using App.Scripts.Game.Blocks.Shared.Base;
 using App.Scripts.Game.Features.HealthHandler;
 using App.Scripts.Game.Features.ScoreHandler;
 using UnityEngine;

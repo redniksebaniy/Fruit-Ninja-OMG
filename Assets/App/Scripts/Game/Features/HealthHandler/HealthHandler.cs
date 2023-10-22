@@ -36,11 +36,14 @@ namespace App.Scripts.Game.Features.HealthHandler
             }
         }
         
-        public void AddHeart()
+        public void AddHeart(Vector3 position, float animationTime)
         {
             if (_currentHealthCount == _options.maxHealthCount) return;
-            healthBarView.AddHeart(_options.startHealthCount /  levelScriptable.level.timeBetweenPackSpawn);
+
+            healthBarView.AddHeart(position, animationTime);
             _currentHealthCount++;
         }
+        
+        public bool IsFull() => _currentHealthCount == _options.maxHealthCount;
     }
 }

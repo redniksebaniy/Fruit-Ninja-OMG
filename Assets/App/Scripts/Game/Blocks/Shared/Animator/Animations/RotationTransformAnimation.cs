@@ -1,4 +1,4 @@
-﻿using App.Scripts.Game.Blocks.Shared.Animator.Animations.Abstract;
+﻿using App.Scripts.Game.Blocks.Shared.Animator.Animations.Base;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Animator.Animations

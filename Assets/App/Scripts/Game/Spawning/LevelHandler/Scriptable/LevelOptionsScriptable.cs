@@ -1,5 +1,4 @@
-﻿using App.Scripts.Game.Features.HealthHandler.Scriptable;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
 {

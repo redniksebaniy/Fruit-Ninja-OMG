@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   options:
     scoreAmount: 50
-    comboMaxTime: 2
+    comboMaxTime: 0.1
     comboMaxCount: 5
