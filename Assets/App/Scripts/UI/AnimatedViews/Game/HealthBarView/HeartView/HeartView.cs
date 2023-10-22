@@ -5,30 +5,26 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView.HeartView
 {
     public class HeartView : MonoBehaviour
     {
-        [SerializeField] private Vector3 showDirection;
-        
-        public void Show(float showTime, float delay = 0)
+        public void Show(Vector2 endPosition, float showTime, float delay = 0)
         {
-            transform.position -= showDirection;
-            transform.DOMove(transform.position + showDirection, showTime)
-                .SetEase(Ease.OutBounce)
-                .SetDelay(delay);
+            transform.DOMoveX(endPosition.x, showTime).SetEase(Ease.OutSine).SetDelay(delay);
+            transform.DOMoveY(endPosition.y, showTime).SetEase(Ease.InOutBack).SetDelay(delay);
         }
 
-        public void Hide(float showTime, float delay = 0, bool destroyOnComplete = false)
+        public void Hide(float showTime, float delay = 0)
         {
-            transform.DOMove(transform.position - showDirection, showTime)
+            transform.DOScale(Vector3.zero, showTime)
                 .SetEase(Ease.OutExpo)
                 .SetDelay(delay)
                 .OnComplete(() =>
                 {
-                    if (destroyOnComplete) Destroy(gameObject);
+                    Destroy(gameObject);
                 });
         }
 
         private void OnDestroy()
         {
-            transform.DOKill(true);
+            transform.DOKill();
         }
     }
 }

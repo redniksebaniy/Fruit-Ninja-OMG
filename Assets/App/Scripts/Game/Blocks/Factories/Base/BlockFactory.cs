@@ -1,5 +1,5 @@
 ﻿using App.Scripts.Architecture.Factory;
-using App.Scripts.Game.Blocks.Shared.Abstract;
+using App.Scripts.Game.Blocks.Shared.Base;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Factories.Base

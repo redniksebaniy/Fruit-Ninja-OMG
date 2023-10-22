@@ -1,10 +1,11 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Commands.Data.Load;
+using App.Scripts.Commands.Data.Types;
+using App.Scripts.Commands.ExitGame;
+using App.Scripts.Commands.LoadScene;
 using App.Scripts.UI.AnimatedViews.Base.Button;
 using App.Scripts.UI.AnimatedViews.Base.Int;
-using App.Scripts.UI.Commands.Data.Load;
-using App.Scripts.UI.Commands.Data.Types;
-using App.Scripts.UI.Commands.ExitGame;
-using App.Scripts.UI.Commands.LoadScene;
+using App.Scripts.UI.AnimatedViews.Base.Panel;
 using UnityEngine;
 
 namespace App.Scripts.UI.Installers.Menu
@@ -20,6 +21,9 @@ namespace App.Scripts.UI.Installers.Menu
         
         [SerializeField] private AnimatedButtonView exitButton;
         
+        [Header("On Enable Work")]
+        [SerializeField] private AnimatedPanelView transitionPanel;
+        
         public override void Init()
         {
             var command = new LoadDataCommand<PlayerRecords>( "App/Data", "Records.json");
@@ -29,14 +33,22 @@ namespace App.Scripts.UI.Installers.Menu
             
             playButton.onClick.AddListener(() =>
             {
-                new LoadSceneCommand("Game").Execute();
+                transitionPanel.ShowPanel(() => new LoadSceneCommand("Game").Execute());
+                
             });
             
             exitButton.onClick.AddListener(() =>
             {
-                new ExitGameCommand().Execute();
+                transitionPanel.ShowPanel(() => new ExitGameCommand().Execute());
             });
-            
+
+            transitionPanel.Init();
+            ShowPanel();
+            transitionPanel.HidePanel();
+        }
+
+        public void ShowPanel()
+        {
             menuPanel.SetActive(true);
         }
     }

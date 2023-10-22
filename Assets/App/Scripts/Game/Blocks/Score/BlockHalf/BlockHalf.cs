@@ -1,4 +1,4 @@
-﻿using App.Scripts.Game.Blocks.Shared.Abstract.MovableObject;
+﻿using App.Scripts.Game.Blocks.Shared.Base.MovableObject;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Score.BlockHalf

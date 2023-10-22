@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TEXT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e11b9975af3170c498a99663935c5361, type: 2}
-  m_sharedMaterial: {fileID: -9201326977355803202, guid: e11b9975af3170c498a99663935c5361, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 37b91bff930c2d34ca88be64be95b4c0, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 54979780724df7e438a36672be041cc2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33
+  m_fontSize: 35
   m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -173,8 +173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: -226.99998}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -280, y: -265}
+  m_SizeDelta: {x: 330, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7320516481306754235
 CanvasRenderer:
@@ -291,9 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 7320516481306754234}
+  animationTime: 0.1
   pressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   pressedScale: 0.9
-  animationTime: 0.1
   onClick:
     m_PersistentCalls:
       m_Calls:

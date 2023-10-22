@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Architecture.MonoInitializable;
-using App.Scripts.Game.Blocks.Shared.Animator.Animations.Abstract;
+using App.Scripts.Game.Blocks.Shared.Animator.Animations.Base;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Animator
@@ -26,7 +26,6 @@ namespace App.Scripts.Game.Blocks.Shared.Animator
 
             for (int i = animationsCount; i < animations.Count; i++)
             {
-                //Destroy(animations[i]);
                 animations.RemoveAt(i);
             }
         }

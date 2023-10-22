@@ -477,7 +477,7 @@ MonoBehaviour:
   gravityCoefficient: 9.81
   size: 1
   halvesProvider: {fileID: 7321473934164605713}
-  particleProvider: {fileID: 2287950803050495843}
+  particleProvider: {fileID: 5055737763975682497}
 --- !u!114 &4951590172320879989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   angleMaxOffset: 30
   strengthMultiplier: 7.5
   minStrength: 2
-  maxStrength: 5
+  maxStrength: 4
 --- !u!1 &6054717712495478548
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6768828229363903942}
-  - component: {fileID: 2287950803050495843}
+  - component: {fileID: 5055737763975682497}
   m_Layer: 8
   m_Name: Particles
   m_TagString: Untagged
@@ -713,7 +713,7 @@ Transform:
   m_Father: {fileID: 4679149280868600325}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2287950803050495843
+--- !u!114 &5055737763975682497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -722,14 +722,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6083406989470536450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54aeba8a055047219c73eac844d87654, type: 3}
+  m_Script: {fileID: 11500000, guid: 622e7050261149df9e7b8d4e8119067b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootObject: {fileID: 4679149280868600325}
+  particles:
+  - {fileID: 8072607375182982707}
+  - {fileID: 115161482092269159}
   infos: {fileID: 11400000, guid: ac339c1273540d245a1e491919969813, type: 2}
   originalRenderer: {fileID: 4679149280868600346}
-  particles:
-  - {fileID: 115161482092269159}
-  - {fileID: 8072607375182982707}
 --- !u!1 &7069043877613831488
 GameObject:
   m_ObjectHideFlags: 0

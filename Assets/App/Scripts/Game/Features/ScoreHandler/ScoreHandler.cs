@@ -1,9 +1,11 @@
-﻿using App.Scripts.Architecture.MonoInitializable;
+﻿using System;
+using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Commands.Data.Load;
+using App.Scripts.Commands.Data.Save;
+using App.Scripts.Commands.Data.Types;
 using App.Scripts.Game.Features.ScoreHandler.Scriptable;
 using App.Scripts.UI.AnimatedViews.Base.Int;
-using App.Scripts.UI.Commands.Data.Load;
-using App.Scripts.UI.Commands.Data.Save;
-using App.Scripts.UI.Commands.Data.Types;
+using App.Scripts.UI.ScoreLabelProvider;
 using UnityEngine;
 
 namespace App.Scripts.Game.Features.ScoreHandler
@@ -16,11 +18,11 @@ namespace App.Scripts.Game.Features.ScoreHandler
         
         [SerializeField] private AnimatedIntView highscoreView;
 
-        [SerializeField] private ScoreLabelProvider.ScoreLabelProvider scoreLabelProvider;
+        [SerializeField] private ScoreLabelProvider scoreLabelProvider;
 
         private ScoreOptions _options;
         
-        private int _comboCounter = 0;
+        private int _comboCounter;
 
         private float _timeFromlastChop;
         
@@ -46,12 +48,15 @@ namespace App.Scripts.Game.Features.ScoreHandler
         {
             _timeFromlastChop += Time.deltaTime;
 
-            if (!IsCombo() && _comboCounter > 1)
+            if (IsCombo()) return;
+            
+            if (_comboCounter > 1)
             {
                 AddValue(_options.scoreAmount * _comboCounter);
                 scoreLabelProvider.CreateComboLabel(_labelPosition, _comboCounter);
-                _comboCounter = 0;
             }
+            
+            _comboCounter = 0;
         }
         
         public void AddScore(Vector2 labelPosition)
@@ -87,21 +92,18 @@ namespace App.Scripts.Game.Features.ScoreHandler
         {
             return _timeFromlastChop < _options.comboMaxTime;
         }
-
-        private void OnApplicationPause(bool pauseStatus)
-        {
-            if (pauseStatus)
-            {
-                SaveHighscore();
-            }
-        }
-
+        
         public void SaveHighscore()
         {
             PlayerRecords data = new();
             data.Highscore = CurrentHighscore;
 
             new SaveDataCommand<PlayerRecords>(data, "App/Data", "Records.json").Execute();
+        }
+        
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (!hasFocus) SaveHighscore();
         }
     }
 }

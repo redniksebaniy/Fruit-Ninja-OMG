@@ -1,10 +1,11 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Commands.LoadScene;
+using App.Scripts.Commands.SetTimeScale;
 using App.Scripts.Game.Features.ScoreHandler;
 using App.Scripts.Game.Spawning.LevelHandler;
 using App.Scripts.UI.AnimatedViews.Base.Button;
 using App.Scripts.UI.AnimatedViews.Base.CanvasGroup;
-using App.Scripts.UI.Commands.LoadScene;
-using App.Scripts.UI.Commands.SetTimeScale;
+using App.Scripts.UI.AnimatedViews.Base.Panel;
 using UnityEngine;
 
 namespace App.Scripts.UI.Installers.Game
@@ -25,6 +26,9 @@ namespace App.Scripts.UI.Installers.Game
         
         [SerializeField] private ScoreHandler scoreHandler;
         
+        [Header("Button Work Components")]
+        [SerializeField] private AnimatedPanelView transitionPanel;
+        
         public override void Init()
         {
             continueButton.onClick.AddListener(() =>
@@ -34,8 +38,11 @@ namespace App.Scripts.UI.Installers.Game
             
             menuButton.onClick.AddListener(() =>
             {
-                new SetTimeScaleCommand(1).Execute();
-                new LoadSceneCommand("Menu").Execute();
+                transitionPanel.ShowPanel(() =>
+                {
+                    new SetTimeScaleCommand(1).Execute();
+                    new LoadSceneCommand("Menu").Execute();
+                });
             });
             
             pausePanel.Init();

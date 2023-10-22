@@ -4,7 +4,7 @@ using App.Scripts.Game.Spawning.LevelHandler;
 using App.Scripts.UI.AnimatedViews.Base.Button;
 using App.Scripts.UI.AnimatedViews.Base.CanvasGroup;
 using App.Scripts.UI.AnimatedViews.Base.Int;
-using App.Scripts.UI.AnimatedViews.Game.HealthBarView;
+using App.Scripts.UI.AnimatedViews.Base.Panel;
 using UnityEngine;
 
 namespace App.Scripts.UI.Installers.Game
@@ -14,8 +14,6 @@ namespace App.Scripts.UI.Installers.Game
         [SerializeField] private AnimatedCanvasGroupView gamePanel;
         
         [Header("Panel Components")]
-        [SerializeField] private HealthBarView healthBarView;
-
         [SerializeField] private AnimatedIntView scoreView;
 
         [SerializeField] private AnimatedIntView highscoreView;
@@ -29,14 +27,14 @@ namespace App.Scripts.UI.Installers.Game
         
         [SerializeField] private ScoreHandler scoreHandler;
         
+        [SerializeField] private AnimatedPanelView transitionPanel;
+        
         [Header("Button Work Components")]
         [SerializeField] private PausePanelInstaller pauseInstaller;
-        
+
 
         public override void Init()
         {
-            //health bar
-            
             highscoreView.Init();
             scoreView.Init();
             
@@ -46,8 +44,9 @@ namespace App.Scripts.UI.Installers.Game
             });
 
             gamePanel.Init();
-
-            ShowPanel();
+            transitionPanel.Init();
+            
+            transitionPanel.HidePanel(() => ShowPanel());
         }
 
         public void ShowPanel()

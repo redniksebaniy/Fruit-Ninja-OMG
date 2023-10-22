@@ -10,5 +10,7 @@ namespace App.Scripts.Game.Spawning.BlockProvider.BlockInfo
         public BlockFactory factory;
         
         [Min(0)] public int spawnWeight;
+
+        [Range(0, 1)] public float maxPercentInPack;
     }
 }

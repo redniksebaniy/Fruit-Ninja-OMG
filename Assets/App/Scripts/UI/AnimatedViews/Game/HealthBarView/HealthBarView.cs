@@ -6,8 +6,10 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView
     public class HealthBarView : MonoBehaviour
     {
         [SerializeField] private HeartView.HeartView prefab;
+
+        [SerializeField] private Vector3 startOffsetPosition;
         
-        [SerializeField] private Vector3 offset;
+        [SerializeField] private Vector3 heartDelta;
         
         private readonly Stack<HeartView.HeartView> _hearts = new();
 
@@ -27,18 +29,22 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView
             if (_hearts.Count == 0) return;
             
             var heart = _hearts.Pop();
-            if (heart != null)
-            {
-                heart.Hide(_timeForSpawn, 0, true);
-            }
+            if (heart != null) heart.Hide(_timeForSpawn);
         }
 
         public void AddHeart(float showTime, float delay = 0)
         {
+            AddHeart(transform.position + startOffsetPosition, showTime, delay);
+        }
+
+        public void AddHeart(Vector3 position, float showTime, float delay = 0)
+        {
             var heart = Instantiate(prefab, transform);
-            heart.transform.position = transform.position + offset * _hearts.Count;
-            heart.Show(showTime, delay);
+            heart.transform.position = position;
             _hearts.Push(heart);
+            
+            Vector3 endPosition = transform.position + heartDelta * (_hearts.Count - 1);
+            heart.Show(endPosition, showTime, delay);
         }
     }
 }

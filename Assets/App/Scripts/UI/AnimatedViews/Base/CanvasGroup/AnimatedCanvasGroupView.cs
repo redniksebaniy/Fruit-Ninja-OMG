@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.Architecture.MonoInitializable;
 using DG.Tweening;
 using UnityEngine;
@@ -9,10 +10,10 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
         [SerializeField] private UnityEngine.CanvasGroup canvasGroup;
         
         [SerializeField] [Min(0)] private float animationTime = 0.25f;
-    
-        [SerializeField] [Min(0)] private float showDelay;
-        
-        [SerializeField] [Min(0)] private float hideDelay;
+
+        [SerializeField] private Ease showEase = Ease.OutSine;
+
+        [SerializeField] private Ease hideEase = Ease.InSine;
         
         private float _currentAlpha;
         
@@ -22,29 +23,31 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
             canvasGroup.blocksRaycasts = false;
         }
 
-        public void ShowCanvasGroup()
+        public void ShowCanvasGroup(Action onComplete = null)
         {
+            canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
             canvasGroup.alpha = 0;
             canvasGroup.DOFade(_currentAlpha, animationTime)
                 .SetUpdate(true)
-                .SetEase(Ease.OutFlash)
-                .SetDelay(showDelay)
-                .OnStart(() => canvasGroup.gameObject.SetActive(true));
+                .SetEase(showEase)
+                .OnStart(() => canvasGroup.gameObject.SetActive(true))
+                .OnComplete(() => onComplete?.Invoke());
         }
 
-        public void HideCanvasGroup()
+        public void HideCanvasGroup(Action onComplete = null)
         {
+            canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = _currentAlpha;
             canvasGroup.DOFade(0, animationTime)
                 .SetUpdate(true)
-                .SetEase(Ease.OutFlash)
-                .SetDelay(hideDelay)
+                .SetEase(hideEase)
                 .OnComplete(() =>
                 {
                     canvasGroup.gameObject.SetActive(false);
                     canvasGroup.alpha = _currentAlpha;
+                    onComplete?.Invoke();
                 });
         }
         

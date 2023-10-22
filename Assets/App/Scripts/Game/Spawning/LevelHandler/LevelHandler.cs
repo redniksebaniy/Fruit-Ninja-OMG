@@ -43,7 +43,8 @@ namespace App.Scripts.Game.Spawning.LevelHandler
             _time -= _currentOptions.timeBetweenPackSpawn;
             
             _blockCount = Random.Range(_currentOptions.minBlockCount, _currentOptions.maxBlockCount + 1);
-
+            blockProvider.SetBlockInPack(_blockCount);
+            
             _isSpawning = true;
             
             if (_packCount++ % _currentOptions.spawnsBeforeIncrease == 0)
