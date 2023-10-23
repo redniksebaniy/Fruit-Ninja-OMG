@@ -5,12 +5,19 @@ namespace App.Scripts.Game.Blocks.Shared.Base
 {
     public abstract class Block : MovableObject.MovableObject, IChopable
     {
-        [SerializeField] 
-        [Min(0)] 
-        private float size = 1f;
+        [SerializeField] [Min(0)] private float size = 1f;
+        
+        [SerializeField] private bool isPositive = true;
+        
+        [SerializeField] private bool isDestroyable = true;
+        
         public float Size => size * transform.localScale.z;
+        public bool IsPositive => isPositive;
 
-        public bool isPositive = true;
+        public bool IsDestroyable => isDestroyable;
+        
+        [HideInInspector]
+        public bool isActive = true;
         
         public event Action<Vector2> OnChop;
         public event Action OnMiss;
@@ -25,12 +32,14 @@ namespace App.Scripts.Game.Blocks.Shared.Base
             Destroy(gameObject);
         }
 
-        public void Chop(Vector2 direction)
+        public virtual void Chop(Vector2 direction)
         {
+            if (!isActive) return;
+            
             _isChopped = true;
             
             OnChop?.Invoke(direction);
-            Destroy(gameObject);
+            if (isDestroyable) Destroy(gameObject);
         }
     }
 }

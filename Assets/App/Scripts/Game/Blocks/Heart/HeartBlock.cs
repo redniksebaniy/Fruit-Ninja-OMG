@@ -16,5 +16,11 @@ namespace App.Scripts.Game.Blocks.Heart
                 particleProvider.PlayParticles();
             }; 
         }
+        
+        public override void Chop(Vector2 direction)
+        {
+            base.Chop(direction);
+            Destroy(gameObject);
+        }
     }
 }

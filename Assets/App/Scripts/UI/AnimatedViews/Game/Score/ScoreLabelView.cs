@@ -1,6 +1,7 @@
 ﻿using App.Scripts.UI.AnimatedViews.Base.Int;
 using DG.Tweening;
 using UnityEngine;
+using Sequence = DG.Tweening.Sequence;
 
 namespace App.Scripts.UI.AnimatedViews.Game.Score
 {
@@ -14,22 +15,29 @@ namespace App.Scripts.UI.AnimatedViews.Game.Score
 
         [SerializeField] [Min(0)] private float disappearTime;
         
+        private Sequence _sequence;
+        
         private void OnEnable()
         {
             transform.localScale = Vector3.zero;
-            Play();
+            
+            _sequence = DOTween.Sequence();
+            InitSequence();
+            _sequence.Play();
         }
 
-        private void Play()
+        private void InitSequence()
         {
-            Sequence sequence = DOTween.Sequence();
-
-            sequence.Append(transform.DOScale(Vector3.one, appearTime).SetEase(Ease.OutBack));
-            sequence.Insert(0, transform.DOMove(transform.position + moveDirection, moveTime));
-            sequence.Append(transform.DOScale(Vector3.zero, disappearTime).SetEase(Ease.InBack)
+            _sequence.Append(transform.DOScale(Vector3.one, appearTime).SetEase(Ease.OutBack));
+            _sequence.Insert(0, transform.DOMove(transform.position + moveDirection, moveTime));
+            _sequence.Append(transform.DOScale(Vector3.zero, disappearTime).SetEase(Ease.InBack)
                 .OnComplete(() => Destroy(gameObject)));
+        }
 
-            sequence.Play();
+        private void OnDestroy()
+        {
+            _sequence.Kill();
+            transform.DOKill();
         }
     }
 }

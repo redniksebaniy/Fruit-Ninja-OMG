@@ -21,5 +21,11 @@ namespace App.Scripts.Game.Blocks.Score
                 particleProvider.PlayParticles();
             }; 
         }
+        
+        public override void Chop(Vector2 direction)
+        {
+            base.Chop(direction);
+            Destroy(gameObject);
+        }
     }
 }

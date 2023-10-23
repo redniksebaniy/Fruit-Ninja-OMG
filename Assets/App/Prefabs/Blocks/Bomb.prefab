@@ -207,6 +207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityCoefficient: 9.81
   size: 1
+  isPositive: 0
+  isDestroyable: 1
+  isActive: 1
   particleProvider: {fileID: 7694710600094555637}
 --- !u!114 &-4845577782397553383
 MonoBehaviour:

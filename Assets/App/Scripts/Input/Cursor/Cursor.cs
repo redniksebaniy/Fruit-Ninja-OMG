@@ -14,17 +14,22 @@ namespace App.Scripts.Input.Cursor
         {
             if (UnityEngine.Input.GetMouseButtonDown(0))
             {
-                IsPressed = true;
-                trailRenderer.enabled = true;
+                SetCursorState(true);
             }
             else if (UnityEngine.Input.GetMouseButtonUp(0))
             {
-                IsPressed = false;
-                trailRenderer.enabled = false;
+                SetCursorState(false);
             }
 
             Vector2 mousePos = usingCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
             transform.position = mousePos;
         }
+
+        public void SetCursorState(bool activeState)
+        {
+            IsPressed = activeState;
+            trailRenderer.enabled = activeState;
+        }
+        
     }
 }

@@ -475,6 +475,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityCoefficient: 9.81
   size: 1
+  isPositive: 1
+  isDestroyable: 1
+  isActive: 1
   halvesProvider: {fileID: 7321473934164605713}
   particleProvider: {fileID: 6926351379036763554}
 --- !u!114 &4951590172320879989

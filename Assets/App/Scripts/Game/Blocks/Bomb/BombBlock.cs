@@ -16,8 +16,12 @@ namespace App.Scripts.Game.Blocks.Bomb
             {
                 particleProvider.PlayParticles();
             }; 
-            
-            isPositive = false;
+        }
+
+        public override void Chop(Vector2 direction)
+        {
+            base.Chop(direction);
+            Destroy(gameObject);
         }
     }
 }
