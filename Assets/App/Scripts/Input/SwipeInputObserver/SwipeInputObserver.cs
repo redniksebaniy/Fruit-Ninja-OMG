@@ -23,7 +23,7 @@ namespace App.Scripts.Input.SwipeInputObserver
             else ResetSwipeInfo();
         }
 
-        private void ResetSwipeInfo()
+        public void ResetSwipeInfo()
         {
             _currentSpeed = 0;
             _currentDistance = 0;

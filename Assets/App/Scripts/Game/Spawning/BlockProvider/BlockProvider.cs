@@ -56,10 +56,12 @@ namespace App.Scripts.Game.Spawning.BlockProvider
         public Block SpawnWeightedBlock()
         {
             var newBlock = GetWeightedBlockFactory().Create() ?? defaultBlockFactory.Create();
-            
             SpawnedBlocks.Add(newBlock);
             
-            newBlock.OnChop += (x) => Remove(newBlock);
+            newBlock.OnChop += (x) =>
+            {
+                if (newBlock.IsDestroyable) Remove(newBlock);
+            };
             newBlock.OnMiss += () => Remove(newBlock);
             
             return newBlock;

@@ -1,11 +1,11 @@
 ﻿using App.Scripts.Architecture.Command;
 using UnityEngine;
 
-namespace App.Scripts.Commands.SetTimeScale
+namespace App.Scripts.Commands.TimeScale
 {
     public class SetTimeScaleCommand : ICommand
     {
-        private float _timeScale;
+        private readonly float _timeScale;
 
         public SetTimeScaleCommand(float value)
         {

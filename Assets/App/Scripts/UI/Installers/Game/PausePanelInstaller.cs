@@ -1,6 +1,6 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Commands.LoadScene;
-using App.Scripts.Commands.SetTimeScale;
+using App.Scripts.Commands.TimeScale;
 using App.Scripts.Game.Features.ScoreHandler;
 using App.Scripts.Game.Spawning.LevelHandler;
 using App.Scripts.UI.AnimatedViews.Base.Button;
@@ -28,6 +28,8 @@ namespace App.Scripts.UI.Installers.Game
         
         [Header("Button Work Components")]
         [SerializeField] private AnimatedPanelView transitionPanel;
+
+        private float _currentTimeScale;
         
         public override void Init()
         {
@@ -53,6 +55,11 @@ namespace App.Scripts.UI.Installers.Game
             cursor.SetActive(false);
             levelHandler.enabled = false;
             scoreHandler.SaveHighscore();
+            
+            var command = new GetTimeScaleCommand();
+            command.Execute();
+            _currentTimeScale = command.TimeScale;
+            
             new SetTimeScaleCommand(0).Execute();
             
             pausePanel.ShowCanvasGroup();
@@ -62,7 +69,7 @@ namespace App.Scripts.UI.Installers.Game
         {
             cursor.SetActive(true);
             levelHandler.enabled = true;
-            new SetTimeScaleCommand(1).Execute();
+            new SetTimeScaleCommand(_currentTimeScale).Execute();
             
             pausePanel.HideCanvasGroup();
         }

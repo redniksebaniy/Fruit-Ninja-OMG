@@ -698,6 +698,7 @@ Transform:
   - {fileID: 698532820}
   - {fileID: 2010748096}
   - {fileID: 1678886801}
+  - {fileID: 447573663}
   m_Father: {fileID: 590170869}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1230,6 +1231,53 @@ MonoBehaviour:
   levelHandler: {fileID: 1812412206}
   scoreHandler: {fileID: 1683333094}
   transitionPanel: {fileID: 742156949}
+--- !u!1 &447573662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 447573663}
+  - component: {fileID: 447573664}
+  m_Layer: 0
+  m_Name: Bricks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &447573663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447573662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 208816051}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447573664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447573662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab8b699ca804d13af14d8349817c12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2270918322446572450, guid: 9ce1a486461aac44abc488becfb04e19, type: 3}
+  observer: {fileID: 389987558}
+  cursor: {fileID: 389987555}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,7 +1518,7 @@ GameObject:
   - component: {fileID: 698532820}
   - component: {fileID: 698532821}
   m_Layer: 0
-  m_Name: BombBlockFactory
+  m_Name: Bombs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2257,6 +2305,9 @@ MonoBehaviour:
     maxPercentInPack: 0.2
   - factory: {fileID: 1678886802}
     spawnWeight: 20
+    maxPercentInPack: 0.2
+  - factory: {fileID: 447573664}
+    spawnWeight: 5000
     maxPercentInPack: 0.2
 --- !u!1 &1268834369
 GameObject:
@@ -3150,7 +3201,7 @@ GameObject:
   - component: {fileID: 1678886801}
   - component: {fileID: 1678886802}
   m_Layer: 0
-  m_Name: MagnetBlockFactory
+  m_Name: Magnets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3751,7 +3802,7 @@ GameObject:
   - component: {fileID: 2010748096}
   - component: {fileID: 2010748097}
   m_Layer: 0
-  m_Name: HeartBlockFactory
+  m_Name: Hearts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3797,7 +3848,7 @@ GameObject:
   - component: {fileID: 2110988475}
   - component: {fileID: 2110988476}
   m_Layer: 0
-  m_Name: ScoreBlockFactory
+  m_Name: Score Blocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

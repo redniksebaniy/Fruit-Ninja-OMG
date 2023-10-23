@@ -32,7 +32,7 @@ namespace App.Scripts.Game.Blocks.Factories.MagnetBlockFactory
             var affectedBlocks = blockProvider.SpawnedBlocks.FindAll(block =>
             {
                 return Vector3.Distance(position, block.transform.position) < affectRadius &&
-                       block.isPositive;
+                       block.IsPositive;
             });
 
             foreach (var affectedBlock in affectedBlocks)
