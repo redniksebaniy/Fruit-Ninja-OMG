@@ -25,6 +25,8 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
 
         public void ShowCanvasGroup(Action onComplete = null)
         {
+            if (canvasGroup == null) return;
+            
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
             canvasGroup.alpha = 0;
@@ -37,6 +39,8 @@ namespace App.Scripts.UI.AnimatedViews.Base.CanvasGroup
 
         public void HideCanvasGroup(Action onComplete = null)
         {
+            if (canvasGroup == null) return;
+            
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = _currentAlpha;

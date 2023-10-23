@@ -33,6 +33,8 @@ namespace App.Scripts.UI.AnimatedViews.Base.Panel
 
         public void ShowPanel(Action onComplete = null)
         {
+            if (panel == null) return;
+            
             panel.position = _closedPos;
             panel.DOMove(_openedPos, animationTime)
                 .SetUpdate(true)
@@ -49,6 +51,8 @@ namespace App.Scripts.UI.AnimatedViews.Base.Panel
 
         public void HidePanel(Action onComplete = null)
         {
+            if (panel == null) return;
+            
             panel.position = _openedPos;
             panel.DOMove(_closedPos, animationTime)
                 .SetUpdate(true)

@@ -8,17 +8,9 @@ namespace App.Scripts.Game.Blocks.Shared.Base
         [SerializeField] 
         [Min(0)] 
         private float size = 1f;
-        public float Size
-        {
-            get
-            {
-                return size * transform.localScale.z;
-            }
-            private set
-            {
-                size = value;
-            }
-        }
+        public float Size => size * transform.localScale.z;
+
+        public bool isPositive = true;
         
         public event Action<Vector2> OnChop;
         public event Action OnMiss;

@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Architecture.Command;
 using DG.Tweening;
 using UnityEditor;
+using UnityEngine;
 
 namespace App.Scripts.Commands.ExitGame
 {

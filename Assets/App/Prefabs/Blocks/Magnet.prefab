@@ -377,9 +377,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4679149280868600325}
   - component: {fileID: 4679149280868600346}
-  - component: {fileID: 4679149280868600347}
+  - component: {fileID: 4018548265810287821}
   - component: {fileID: 4951590172320879989}
-  - component: {fileID: 7476447842305415454}
   - component: {fileID: 1108384715291470480}
   - component: {fileID: 6411205872890570613}
   - component: {fileID: 6139717422948833993}
@@ -462,7 +461,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4679149280868600347
+--- !u!114 &4018548265810287821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -471,7 +470,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4679149280868600344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3714dd10c1d7402eae01d8d562af7b48, type: 3}
+  m_Script: {fileID: 11500000, guid: 96015909515740e28d2dcfeafd675e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gravityCoefficient: 9.81
@@ -491,32 +490,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monoInitializables:
-  - {fileID: 7476447842305415454}
   - {fileID: 2108040129399941316}
-  - {fileID: 4679149280868600347}
+  - {fileID: 4018548265810287821}
   - {fileID: 1108384715291470480}
---- !u!114 &7476447842305415454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4679149280868600344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346345d7cfa641b1a97c71b99fbaa79b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 4679149280868600346}
-  sprites:
-  - {fileID: 21300000, guid: 3d756f07119c33049a49031dd115ac6c, type: 3}
-  - {fileID: 21300000, guid: a2ea0589b4f34b34ab0cfd54c2eba7c2, type: 3}
-  - {fileID: 21300000, guid: 4e0cea7a023e4074dae874625a480de4, type: 3}
-  - {fileID: 21300000, guid: 6bcb4e11c19cd834e998968ebdc7a63f, type: 3}
-  - {fileID: 21300000, guid: 4e8ce917c6512334f85c5cf1173eaf9f, type: 3}
-  - {fileID: 21300000, guid: 286b1de6653be3943a4ad15929a686b7, type: 3}
-  - {fileID: 21300000, guid: cd1c424a992b6b04ca89348506df36ff, type: 3}
-  - {fileID: 21300000, guid: a964f6679b0ea494db32511f1a1b6999, type: 3}
 --- !u!114 &1108384715291470480
 MonoBehaviour:
   m_ObjectHideFlags: 0

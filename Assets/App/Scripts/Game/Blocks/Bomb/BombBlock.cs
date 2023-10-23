@@ -16,6 +16,8 @@ namespace App.Scripts.Game.Blocks.Bomb
             {
                 particleProvider.PlayParticles();
             }; 
+            
+            isPositive = false;
         }
     }
 }

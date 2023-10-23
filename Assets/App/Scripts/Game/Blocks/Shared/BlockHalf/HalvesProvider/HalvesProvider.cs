@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.Blocks.Score.BlockHalf.HalvesProvider
+namespace App.Scripts.Game.Blocks.Shared.BlockHalf.HalvesProvider
 {
     public class HalvesProvider : MonoBehaviour
     {
