@@ -3,9 +3,9 @@ using App.Scripts.Game.Blocks.Shared.BlockHalf.HalvesProvider;
 using App.Scripts.Game.Blocks.Shared.ParticleProvider;
 using UnityEngine;
 
-namespace App.Scripts.Game.Blocks.Score
+namespace App.Scripts.Game.Blocks.Magnet
 {
-    public class ScoreBlock : Block
+    public class MagnetBlock : Block
     {
         [SerializeField] private HalvesProvider halvesProvider;
         

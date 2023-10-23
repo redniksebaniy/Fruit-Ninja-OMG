@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Game.Blocks.Shared.Base.MovableObject;
 using UnityEngine;
 
-namespace App.Scripts.Game.Blocks.Score.BlockHalf
+namespace App.Scripts.Game.Blocks.Shared.BlockHalf
 {
     public class BlockHalf : MovableObject
     {

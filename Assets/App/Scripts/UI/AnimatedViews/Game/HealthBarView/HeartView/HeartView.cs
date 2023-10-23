@@ -8,7 +8,7 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView.HeartView
         public void Show(Vector2 endPosition, float showTime, float delay = 0)
         {
             transform.DOMoveX(endPosition.x, showTime).SetEase(Ease.OutSine).SetDelay(delay);
-            transform.DOMoveY(endPosition.y, showTime).SetEase(Ease.InOutBack).SetDelay(delay);
+            transform.DOMoveY(endPosition.y, showTime).SetEase(Ease.InBack).SetDelay(delay);
         }
 
         public void Hide(float showTime, float delay = 0)
