@@ -1490,7 +1490,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -300, y: -300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666557522
 MonoBehaviour:
@@ -2307,7 +2307,7 @@ MonoBehaviour:
     spawnWeight: 20
     maxPercentInPack: 0.2
   - factory: {fileID: 447573664}
-    spawnWeight: 5000
+    spawnWeight: 20
     maxPercentInPack: 0.2
 --- !u!1 &1268834369
 GameObject:
