@@ -1,5 +1,5 @@
 ﻿using System;
-using App.Scripts.Game.Blocks.Factories.Base;
+using App.Scripts.Game.Blocks.Shared.Base.Base;
 using UnityEngine;
 
 namespace App.Scripts.Game.Spawning.BlockProvider.BlockInfo

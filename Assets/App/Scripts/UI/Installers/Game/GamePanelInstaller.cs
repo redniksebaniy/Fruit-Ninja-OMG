@@ -1,24 +1,24 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Game.Features.ScoreHandler;
 using App.Scripts.Game.Spawning.LevelHandler;
-using App.Scripts.UI.AnimatedViews.Base.Button;
-using App.Scripts.UI.AnimatedViews.Base.CanvasGroup;
-using App.Scripts.UI.AnimatedViews.Base.Int;
-using App.Scripts.UI.AnimatedViews.Base.Panel;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
+using App.Scripts.UI.AnimatedViews.Basic.Int;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.UI.Installers.Game
 {
     public class GamePanelInstaller : MonoInitializable
     {
-        [SerializeField] private AnimatedCanvasGroupView gamePanel;
+        [SerializeField] private AnimatedCanvasFadeView gamePanel;
         
         [Header("Panel Components")]
         [SerializeField] private AnimatedIntView scoreView;
 
         [SerializeField] private AnimatedIntView highscoreView;
 
-        [SerializeField] private AnimatedButtonView pauseButton;
+        [SerializeField] private Button pauseButton;
 
         [Header("On Enable Work")]
         [SerializeField] private GameObject cursor;
@@ -27,39 +27,40 @@ namespace App.Scripts.UI.Installers.Game
         
         [SerializeField] private ScoreHandler scoreHandler;
         
-        [SerializeField] private AnimatedPanelView transitionPanel;
+        [SerializeField] private AnimatedCanvasMoveView transitionCanvasMove;
         
         [Header("Button Work Components")]
         [SerializeField] private PausePanelInstaller pauseInstaller;
-
 
         public override void Init()
         {
             highscoreView.Init();
             scoreView.Init();
+            gamePanel.Init();
+            transitionCanvasMove.Init();
             
             pauseButton.onClick.AddListener(() =>
             {
+                scoreHandler.SaveHighscore();
                 pauseInstaller.ShowPanel();
             });
-
-            gamePanel.Init();
-            transitionPanel.Init();
             
-            transitionPanel.HidePanel(() => ShowPanel());
+            ShowPanel();
+            transitionCanvasMove.Hide();
         }
 
         public void ShowPanel()
         {
-            gamePanel.ShowCanvasGroup();
+            cursor.SetActive(true);
+            levelHandler.enabled = true;
+            gamePanel.Show();
         }
         
         public void HidePanel()
         {
             cursor.SetActive(false);
             levelHandler.enabled = false;
-            scoreHandler.SaveHighscore();
-            gamePanel.HideCanvasGroup();
+            gamePanel.Hide();
         }
     }
 }

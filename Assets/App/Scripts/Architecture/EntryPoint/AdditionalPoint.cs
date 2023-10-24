@@ -1,12 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Architecture.EntryPoint
 {
-    public class EntryPoint : MonoBehaviour
+    public class AdditionalPoint : MonoInitializable.MonoInitializable
     {
         [SerializeField] private MonoInitializable.MonoInitializable[] monoInitializables;
         
-        public void Awake()
+        public override void Init()
         {
             foreach (var monoInitializable in  monoInitializables)
             {

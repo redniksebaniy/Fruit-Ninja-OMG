@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Text;
 using App.Scripts.Architecture.Command;
 using App.Scripts.Commands.Data.Types.Base;
 using UnityEngine;
@@ -12,21 +11,13 @@ namespace App.Scripts.Commands.Data.Save
         
         private readonly T _data;
 
-        public SaveDataCommand(T data, string path, string name)
+        public SaveDataCommand(T data, string name, params string[] path)
         {
-            StringBuilder builder = new();
 #if UNITY_EDITOR
-            builder.Append(Application.dataPath);
-            builder.Append(Path.DirectorySeparatorChar);
-            builder.Append(path);
-            builder.Append(Path.DirectorySeparatorChar);
-            builder.Append(name);
+            _dataFullPath = Path.Combine(Application.dataPath, Path.Combine(path), name);
 #else
-            builder.Append(Application.persistentDataPath);
-            builder.Append(Path.DirectorySeparatorChar);
-            builder.Append(name);
+            _dataFullPath = Path.Combine(Application.persistentDataPath, name);
 #endif
-            _dataFullPath = builder.ToString();
             _data = data;
         }
         

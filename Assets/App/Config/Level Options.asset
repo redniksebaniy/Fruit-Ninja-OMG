@@ -15,8 +15,8 @@ MonoBehaviour:
   targetFrameRate: 60
   level:
     timeBetweenPackSpawn: 3
-    minBlockCount: 4
-    maxBlockCount: 6
+    minBlockCount: 2
+    maxBlockCount: 4
     timeBetweenBlockSpawn: 0.5
     spawnsBeforeIncrease: 3
     timeDecreasePercent: 0.05
