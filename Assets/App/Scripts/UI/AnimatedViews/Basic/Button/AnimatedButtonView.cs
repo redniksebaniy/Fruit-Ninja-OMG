@@ -23,14 +23,17 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
 
         private void Press()
         {
-            button.image.DOColor(pressedColor, animationTime).SetUpdate(true);
-            transform.DOScale(Vector3.one * pressedScale, animationTime).SetUpdate(true);
+            button.image.DOColor(pressedColor, animationTime).SetUpdate(true)
+                .SetLink(gameObject);
+            transform.DOScale(Vector3.one * pressedScale, animationTime).SetUpdate(true)
+                .SetLink(gameObject);
         }
 
         private void UnPress()
         {
-            button.image.DOColor(_unpressedColor, animationTime).SetUpdate(true);
-            transform.DOScale(Vector3.one, animationTime).SetUpdate(true).SetEase(Ease.OutBounce);
+            button.image.DOColor(_unpressedColor, animationTime).SetUpdate(true).SetLink(gameObject);
+            transform.DOScale(Vector3.one, animationTime).SetUpdate(true).SetEase(Ease.OutBounce)
+                .SetLink(gameObject);
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -49,11 +52,5 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
         }
 
         private void OnDisable() => UnPress();
-
-        private void OnDestroy()
-        {
-            button.image.DOKill();
-            transform.DOKill();
-        }
     }
 }
