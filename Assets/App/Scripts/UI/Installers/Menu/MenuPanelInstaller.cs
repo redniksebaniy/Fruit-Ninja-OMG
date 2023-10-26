@@ -30,6 +30,8 @@ namespace App.Scripts.UI.Installers.Menu
         
         public override void Init()
         {
+            Application.targetFrameRate = 60;
+            
             highscoreView.Init();
             transitionCanvasMove.Init();
             
