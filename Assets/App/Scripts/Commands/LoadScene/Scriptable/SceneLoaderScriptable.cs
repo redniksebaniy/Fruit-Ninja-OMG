@@ -1,0 +1,14 @@
+﻿using UnityEngine;
+
+namespace App.Scripts.Commands.LoadScene.Scriptable
+{
+    [CreateAssetMenu(fileName = "Scene List", menuName = "Scriptable Object/Scene Config", order = 0)]
+    public class SceneLoaderScriptable : ScriptableObject
+    {
+        [SerializeField] 
+        public string menuSceneName;
+        
+        [SerializeField] 
+        public string gameSceneName;
+    }
+}

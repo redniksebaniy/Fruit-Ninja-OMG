@@ -6,7 +6,7 @@ namespace App.Scripts.Architecture.EntryPoint
     {
         [SerializeField] private MonoInitializable.MonoInitializable[] monoInitializables;
         
-        private void Awake()
+        public void Awake()
         {
             foreach (var monoInitializable in  monoInitializables)
             {

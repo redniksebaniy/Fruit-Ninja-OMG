@@ -24,7 +24,7 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         {
             Application.targetFrameRate = optionsScriptable.targetFrameRate;
             _currentOptions = optionsScriptable.level;
-            
+            _time = 0;
             _isSpawning = false;
         }
         

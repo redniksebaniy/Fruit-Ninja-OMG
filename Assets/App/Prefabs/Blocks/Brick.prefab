@@ -207,8 +207,8 @@ MonoBehaviour:
   gravityCoefficient: 9.81
   size: 1
   isPositive: 0
-  observer: {fileID: 0}
-  cursor: {fileID: 0}
+  isDestroyableByChop: 0
+  isActive: 1
 --- !u!114 &-4845577782397553383
 MonoBehaviour:
   m_ObjectHideFlags: 0

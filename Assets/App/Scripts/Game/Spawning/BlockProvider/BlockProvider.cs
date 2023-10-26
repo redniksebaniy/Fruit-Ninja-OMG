@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Architecture.MonoInitializable;
-using App.Scripts.Game.Blocks.Factories.Base;
 using App.Scripts.Game.Blocks.Shared.Base;
+using App.Scripts.Game.Blocks.Shared.Base.Base;
 using App.Scripts.Utilities.WeightConverter;
 using UnityEngine;
 
@@ -58,11 +58,12 @@ namespace App.Scripts.Game.Spawning.BlockProvider
             var newBlock = GetWeightedBlockFactory().Create() ?? defaultBlockFactory.Create();
             SpawnedBlocks.Add(newBlock);
             
-            newBlock.OnChop += (x) =>
+            newBlock.OnChop += (x) => 
             {
-                if (newBlock.IsDestroyable) Remove(newBlock);
+                if (newBlock.IsDestroyableByChop) SpawnedBlocks.Remove(newBlock);
             };
-            newBlock.OnMiss += () => Remove(newBlock);
+            
+            newBlock.OnMiss += () => SpawnedBlocks.Remove(newBlock);
             
             return newBlock;
         }
@@ -72,12 +73,5 @@ namespace App.Scripts.Game.Spawning.BlockProvider
             _deltaBlockInPack = 1f / count;
             for (int i = 0; i < _percentInPack.Length; i++) _percentInPack[i] = 0;
         }
-        
-        
-        private void Remove(Block block)
-        {
-            SpawnedBlocks.Remove(block);
-        }
-
     }
 }

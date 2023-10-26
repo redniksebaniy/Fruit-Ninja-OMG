@@ -1,10 +1,9 @@
-﻿using System;
-using App.Scripts.Architecture.MonoInitializable;
+﻿using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Commands.Data.Load;
 using App.Scripts.Commands.Data.Save;
 using App.Scripts.Commands.Data.Types;
 using App.Scripts.Game.Features.ScoreHandler.Scriptable;
-using App.Scripts.UI.AnimatedViews.Base.Int;
+using App.Scripts.UI.AnimatedViews.Basic.Int;
 using App.Scripts.UI.ScoreLabelProvider;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ namespace App.Scripts.Game.Features.ScoreHandler
         
         private int _comboCounter;
 
-        private float _timeFromlastChop;
+        private float _timeFromLastChop;
         
         private Vector2 _labelPosition;
         
@@ -34,7 +33,7 @@ namespace App.Scripts.Game.Features.ScoreHandler
         public override void Init()
         {
             _options = scriptable.options;
-            var command = new LoadDataCommand<PlayerRecords>( "App/Data", "Records.json");
+            var command = new LoadDataCommand<PlayerRecords>("Records.json", "App", "Data");
             command.Execute();
             
             CurrentHighscore = command.Data.Highscore;
@@ -46,7 +45,7 @@ namespace App.Scripts.Game.Features.ScoreHandler
 
         private void Update()
         {
-            _timeFromlastChop += Time.deltaTime;
+            _timeFromLastChop += Time.deltaTime;
 
             if (IsCombo()) return;
             
@@ -61,7 +60,7 @@ namespace App.Scripts.Game.Features.ScoreHandler
         
         public void AddScore(Vector2 labelPosition)
         {
-            _timeFromlastChop = 0;
+            _timeFromLastChop = 0;
 
             _labelPosition = labelPosition;
             scoreLabelProvider.CreateScoreLabel(_labelPosition,_options.scoreAmount);
@@ -88,17 +87,13 @@ namespace App.Scripts.Game.Features.ScoreHandler
             _comboCounter = _comboCounter > _options.comboMaxCount ? _options.comboMaxCount : _comboCounter;
         }
         
-        private bool IsCombo()
-        {
-            return _timeFromlastChop < _options.comboMaxTime;
-        }
-        
+        private bool IsCombo() => _timeFromLastChop < _options.comboMaxTime;
+
         public void SaveHighscore()
         {
             PlayerRecords data = new();
             data.Highscore = CurrentHighscore;
-
-            new SaveDataCommand<PlayerRecords>(data, "App/Data", "Records.json").Execute();
+            new SaveDataCommand<PlayerRecords>(data,"Records.json", "App", "Data").Execute();
         }
         
         private void OnApplicationFocus(bool hasFocus)

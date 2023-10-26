@@ -1,4 +1,4 @@
-﻿using App.Scripts.UI.AnimatedViews.Base.Int;
+﻿using App.Scripts.UI.AnimatedViews.Basic.Int;
 using DG.Tweening;
 using UnityEngine;
 using Sequence = DG.Tweening.Sequence;

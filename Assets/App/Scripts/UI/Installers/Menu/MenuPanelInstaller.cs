@@ -3,10 +3,11 @@ using App.Scripts.Commands.Data.Load;
 using App.Scripts.Commands.Data.Types;
 using App.Scripts.Commands.ExitGame;
 using App.Scripts.Commands.LoadScene;
-using App.Scripts.UI.AnimatedViews.Base.Button;
-using App.Scripts.UI.AnimatedViews.Base.Int;
-using App.Scripts.UI.AnimatedViews.Base.Panel;
+using App.Scripts.Commands.LoadScene.Scriptable;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
+using App.Scripts.UI.AnimatedViews.Basic.Int;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.UI.Installers.Menu
 {
@@ -17,34 +18,37 @@ namespace App.Scripts.UI.Installers.Menu
         [Header("Panel Components")]
         [SerializeField] private AnimatedIntView highscoreView;
 
-        [SerializeField] private AnimatedButtonView playButton;
+        [SerializeField] private Button playButton;
         
-        [SerializeField] private AnimatedButtonView exitButton;
+        [SerializeField] private Button exitButton;
         
         [Header("On Enable Work")]
-        [SerializeField] private AnimatedPanelView transitionPanel;
+        [SerializeField] private AnimatedCanvasMoveView transitionCanvasMove;
+        
+        [Header("Button Work Components")]
+        [SerializeField] private SceneLoaderScriptable sceneScriptable;
         
         public override void Init()
         {
-            var command = new LoadDataCommand<PlayerRecords>( "App/Data", "Records.json");
-            command.Execute();
             highscoreView.Init();
-            highscoreView.SetValue(command.Data.Highscore);
+            transitionCanvasMove.Init();
             
             playButton.onClick.AddListener(() =>
             {
-                transitionPanel.ShowPanel(() => new LoadSceneCommand("Game").Execute());
-                
+                transitionCanvasMove.Show(() => new LoadSceneCommand(sceneScriptable.gameSceneName).Execute());
             });
             
             exitButton.onClick.AddListener(() =>
             {
-                transitionPanel.ShowPanel(() => new ExitGameCommand().Execute());
+                transitionCanvasMove.Show(() => new ExitGameCommand().Execute());
             });
 
-            transitionPanel.Init();
+            var command = new LoadDataCommand<PlayerRecords>("Records.json", "App", "Data");
+            command.Execute();
+            highscoreView.SetValue(command.Data.Highscore);
+            
             ShowPanel();
-            transitionPanel.HidePanel();
+            transitionCanvasMove.Hide();
         }
 
         public void ShowPanel()

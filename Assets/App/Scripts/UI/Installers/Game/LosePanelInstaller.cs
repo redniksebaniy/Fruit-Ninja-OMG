@@ -1,29 +1,32 @@
 ﻿using System.Collections;
+using App.Scripts.Architecture.EntryPoint;
 using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Commands.LoadScene;
+using App.Scripts.Commands.LoadScene.Scriptable;
 using App.Scripts.Game.Features.ScoreHandler;
 using App.Scripts.Game.Spawning.BlockProvider;
-using App.Scripts.UI.AnimatedViews.Base.Button;
-using App.Scripts.UI.AnimatedViews.Base.CanvasGroup;
-using App.Scripts.UI.AnimatedViews.Base.Int;
-using App.Scripts.UI.AnimatedViews.Base.Panel;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
+using App.Scripts.UI.AnimatedViews.Basic.Int;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.UI.Installers.Game
 {
     public class LosePanelInstaller : MonoInitializable
     {
-        [SerializeField] private AnimatedCanvasGroupView losePanel;
-        [SerializeField] private AnimatedPanelView loseContent;
+        [SerializeField] private AnimatedCanvasFadeView losePanel;
+        
+        [SerializeField] private AnimatedCanvasMoveView loseContent;
         
         [Header("Panel Components")]
         [SerializeField] private AnimatedIntView scoreView;
         
         [SerializeField] private AnimatedIntView highscoreView;
         
-        [SerializeField] private AnimatedButtonView restartButton;
+        [SerializeField] private Button restartButton;
 
-        [SerializeField] private AnimatedButtonView menuButton;
+        [SerializeField] private Button menuButton;
         
         [Header("On Enable Work")]
         [SerializeField] private ScoreHandler scoreHandler;
@@ -33,7 +36,11 @@ namespace App.Scripts.UI.Installers.Game
         [SerializeField] private GamePanelInstaller gameInstaller;
         
         [Header("Button Work Components")]
-        [SerializeField] private AnimatedPanelView transitionPanel;
+        [SerializeField] private SceneLoaderScriptable sceneScriptable;
+        
+        [SerializeField] private AnimatedCanvasMoveView transitionCanvasMove;
+
+        [SerializeField] private AdditionalPoint levelPoint;
         
         public override void Init()
         {
@@ -45,11 +52,22 @@ namespace App.Scripts.UI.Installers.Game
             
             restartButton.onClick.AddListener(() =>
             {
-                transitionPanel.ShowPanel(() => new LoadSceneCommand("Game").Execute());
+                loseContent.Hide(() => losePanel.Hide(() =>
+                    {
+                        levelPoint.Init();
+                        gameInstaller.ShowPanel();
+                    })
+                );
             });
+            
             menuButton.onClick.AddListener(() =>
             {
-                transitionPanel.ShowPanel(() => new LoadSceneCommand("Menu").Execute());
+                loseContent.Interactable = true;
+                
+                transitionCanvasMove.Show(() =>
+                {
+                    new LoadSceneCommand(sceneScriptable.menuSceneName).Execute();
+                });
             });
         }
 
@@ -63,12 +81,13 @@ namespace App.Scripts.UI.Installers.Game
 
         public void ShowPanel()
         {
-            losePanel.ShowCanvasGroup(() =>
+            losePanel.Show(() =>
             {
-                loseContent.ShowPanel();
+                loseContent.Show();
                 scoreView.SetValue(0);
-                highscoreView.SetValue(scoreHandler.CurrentHighscore);
                 scoreView.SetValueAnimated(scoreHandler.CurrentScore);
+                highscoreView.SetValue(scoreHandler.CurrentHighscore);
+                scoreHandler.SaveHighscore();
             });
         }
     }

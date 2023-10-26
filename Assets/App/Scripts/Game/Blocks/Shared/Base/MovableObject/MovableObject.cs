@@ -20,6 +20,11 @@ namespace App.Scripts.Game.Blocks.Shared.Base.MovableObject
             transform.position += _currentVelocity * Time.deltaTime;
         }
         
+        public void AddForce(float angle, float strength)
+        {
+            _currentVelocity += Quaternion.Euler(0, 0, angle) * Vector3.right * strength;
+        }
+        
         public void SetForce(float angle, float strength)
         {
             _currentVelocity = Quaternion.Euler(0, 0, angle) * Vector3.right * strength;

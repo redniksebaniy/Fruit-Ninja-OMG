@@ -323,7 +323,8 @@ MonoBehaviour:
   highscoreView: {fileID: 3862866}
   playButton: {fileID: 1310279209}
   exitButton: {fileID: 1624627872}
-  transitionPanel: {fileID: 923399339}
+  transitionCanvasMove: {fileID: 923399339}
+  sceneScriptable: {fileID: 11400000, guid: cea758497a6c64b479a30a5540aa6bb9, type: 2}
 --- !u!1 &183293198
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183293199}
   m_Layer: 5
-  m_Name: Menu Panel
+  m_Name: Menu Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,6 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923399336}
   - component: {fileID: 923399338}
+  - component: {fileID: 923399340}
   - component: {fileID: 923399337}
   - component: {fileID: 923399339}
   m_Layer: 5
@@ -691,13 +693,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8967da9328b2344ac7eae45d616655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 923399336}
+  canvasGroup: {fileID: 923399340}
   parentCanvas: {fileID: 1482035736}
   adapter: {fileID: 2033346658}
-  openDirection: {x: 0, y: 1}
+  showDirection: {x: 0, y: 1}
   animationTime: 0.5
   showEase: 3
   hideEase: 2
+--- !u!225 &923399340
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923399335}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1026968948
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,13 +972,13 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1310279209 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7320516481306739524, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1604974796365163053, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
   m_PrefabInstance: {fileID: 1310279207}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e330bb8cf46109c72e0b9c163671d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1372428023
@@ -1384,7 +1398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577527331}
   m_Layer: 5
-  m_Name: Images
+  m_Name: Decoration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1537,13 +1551,13 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1624627872 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7320516481306739524, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1604974796365163053, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
   m_PrefabInstance: {fileID: 1624627870}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688e330bb8cf46109c72e0b9c163671d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2033346656

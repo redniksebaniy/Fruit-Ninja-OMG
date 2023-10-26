@@ -9,12 +9,12 @@ namespace App.Scripts.Game.Blocks.Shared.Base
         
         [SerializeField] private bool isPositive = true;
         
-        [SerializeField] private bool isDestroyable = true;
+        [SerializeField] private bool isDestroyableByChop = true;
         
         public float Size => size * transform.localScale.z;
         public bool IsPositive => isPositive;
 
-        public bool IsDestroyable => isDestroyable;
+        public bool IsDestroyableByChop => isDestroyableByChop;
         
         [HideInInspector]
         public bool isActive = true;
@@ -36,10 +36,13 @@ namespace App.Scripts.Game.Blocks.Shared.Base
         {
             if (!isActive) return;
             
-            _isChopped = true;
-            
             OnChop?.Invoke(direction);
-            if (isDestroyable) Destroy(gameObject);
+            
+            if (isDestroyableByChop)
+            {
+                _isChopped = true;
+                Destroy(gameObject);
+            }
         }
     }
 }
