@@ -2520,7 +2520,7 @@ MonoBehaviour:
     spawnWeight: 50
     maxPercentInPack: 1
   - factory: {fileID: 698532821}
-    spawnWeight: 50
+    spawnWeight: 5
     maxPercentInPack: 0.25
   - factory: {fileID: 2010748097}
     spawnWeight: 1
