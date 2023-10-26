@@ -31,15 +31,14 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
             _canvasTransform = canvasGroup.transform;
             _openedPos = _closedPos = _canvasTransform.position;
             _closedPos -= showDirection.normalized * 2 * adapter.AdaptPixelPosition(parentCanvas.pixelRect.size);
-            canvasGroup.blocksRaycasts = false;
+            canvasGroup.interactable = false;
         }
 
         public override void Show(Action onComplete = null)
         {
             if (canvasGroup == null) return;
             
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
+            canvasGroup.interactable = false;
             _canvasTransform.position = _closedPos;
             _canvasTransform.DOMove(_openedPos, animationTime)
                 .SetUpdate(true)
@@ -47,6 +46,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
                 .OnStart(() => canvasGroup.gameObject.SetActive(true))
                 .OnComplete(() =>
                 {
+                    canvasGroup.interactable = true;
                     onComplete?.Invoke();
                 });
         }
@@ -55,8 +55,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
         {
             if (canvasGroup == null) return;
             
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
+            canvasGroup.interactable = false;
             _canvasTransform.position = _openedPos;
             _canvasTransform.DOMove(_closedPos, animationTime)
                 .SetUpdate(true)

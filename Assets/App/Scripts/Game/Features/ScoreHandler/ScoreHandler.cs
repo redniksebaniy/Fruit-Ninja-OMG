@@ -93,7 +93,6 @@ namespace App.Scripts.Game.Features.ScoreHandler
         {
             PlayerRecords data = new();
             data.Highscore = CurrentHighscore;
-
             new SaveDataCommand<PlayerRecords>(data,"Records.json", "App", "Data").Execute();
         }
         

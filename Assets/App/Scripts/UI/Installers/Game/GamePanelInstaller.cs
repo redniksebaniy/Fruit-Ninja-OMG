@@ -6,6 +6,7 @@ using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
 using App.Scripts.UI.AnimatedViews.Basic.Int;
 using UnityEngine;
 using UnityEngine.UI;
+using Cursor = App.Scripts.Input.Cursor.Cursor;
 
 namespace App.Scripts.UI.Installers.Game
 {
@@ -21,7 +22,7 @@ namespace App.Scripts.UI.Installers.Game
         [SerializeField] private Button pauseButton;
 
         [Header("On Enable Work")]
-        [SerializeField] private GameObject cursor;
+        [SerializeField] private Cursor cursor;
 
         [SerializeField] private LevelHandler levelHandler;
         
@@ -41,6 +42,8 @@ namespace App.Scripts.UI.Installers.Game
             
             pauseButton.onClick.AddListener(() =>
             {
+                cursor.SetCursorState(false);
+                cursor.gameObject.SetActive(false);
                 scoreHandler.SaveHighscore();
                 pauseInstaller.ShowPanel();
             });
@@ -51,14 +54,16 @@ namespace App.Scripts.UI.Installers.Game
 
         public void ShowPanel()
         {
-            cursor.SetActive(true);
+            cursor.SetCursorState(false);
+            cursor.gameObject.SetActive(true);
             levelHandler.enabled = true;
             gamePanel.Show();
         }
         
         public void HidePanel()
         {
-            cursor.SetActive(false);
+            cursor.SetCursorState(false);
+            cursor.gameObject.SetActive(false);
             levelHandler.enabled = false;
             gamePanel.Hide();
         }

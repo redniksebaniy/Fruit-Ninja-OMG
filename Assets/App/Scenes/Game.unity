@@ -171,7 +171,7 @@ MonoBehaviour:
   scoreView: {fileID: 1764101571}
   highscoreView: {fileID: 1537785706}
   pauseButton: {fileID: 1139189436}
-  cursor: {fileID: 389987553}
+  cursor: {fileID: 389987555}
   levelHandler: {fileID: 1812412206}
   scoreHandler: {fileID: 1683333094}
   transitionCanvasMove: {fileID: 742156949}
@@ -716,7 +716,7 @@ Transform:
   - {fileID: 1678886801}
   - {fileID: 447573663}
   m_Father: {fileID: 590170869}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323036857
 GameObject:
@@ -808,7 +808,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &378375810
 GameObject:
@@ -1240,8 +1240,8 @@ MonoBehaviour:
   pausePanel: {fileID: 1612163187}
   continueButton: {fileID: 388890176}
   menuButton: {fileID: 105092154}
+  cursor: {fileID: 389987555}
   sceneScriptable: {fileID: 11400000, guid: cea758497a6c64b479a30a5540aa6bb9, type: 2}
-  gameInstaller: {fileID: 45449741}
   transitionPanel: {fileID: 742156949}
 --- !u!1 &447573662
 GameObject:
@@ -1404,9 +1404,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1806265890}
   - {fileID: 1256462996}
   - {fileID: 208816051}
-  - {fileID: 1806265890}
   m_Father: {fileID: 378375812}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1577,9 +1577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7620221510016756633, guid: 5d20aa875f6634949b92a4aed99073f6, type: 3}
-  affectRadius: 7.5
-  strengthMultiplier: 3
-  blockProvider: {fileID: 1256462997}
+  pushForcePointProvider: {fileID: 1466307309}
   healthHandler: {fileID: 1898474972}
 --- !u!1 &742156947
 GameObject:
@@ -1894,7 +1892,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1034441787
 GameObject:
@@ -1946,7 +1944,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1034988079
 GameObject:
@@ -2478,7 +2476,7 @@ GameObject:
   - component: {fileID: 1256462996}
   - component: {fileID: 1256462997}
   m_Layer: 0
-  m_Name: Block Spawner
+  m_Name: Block Provider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2497,7 +2495,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 590170869}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1256462997
 MonoBehaviour:
@@ -2517,17 +2515,17 @@ MonoBehaviour:
     spawnWeight: 50
     maxPercentInPack: 1
   - factory: {fileID: 698532821}
-    spawnWeight: 20
-    maxPercentInPack: 0.5
+    spawnWeight: 5
+    maxPercentInPack: 0.25
   - factory: {fileID: 2010748097}
     spawnWeight: 1
-    maxPercentInPack: 0.2
+    maxPercentInPack: 0.25
   - factory: {fileID: 1678886802}
-    spawnWeight: 20
-    maxPercentInPack: 0.2
+    spawnWeight: 5
+    maxPercentInPack: 0.25
   - factory: {fileID: 447573664}
-    spawnWeight: 20
-    maxPercentInPack: 0.2
+    spawnWeight: 5
+    maxPercentInPack: 0.25
 --- !u!1 &1268834369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,8 +2794,54 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &1466307307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1466307308}
+  - component: {fileID: 1466307309}
+  m_Layer: 0
+  m_Name: Push Point Provider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1466307308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466307307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1985637716}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466307309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466307307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41d8c66e7e842f08c9e66d73f325286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockProvider: {fileID: 1256462997}
+  forceScriptable: {fileID: 11400000, guid: 6bd56668db33a844cbebacd5933ea552, type: 2}
 --- !u!1 &1486578426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,8 +3498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4018548265810287821, guid: d4c165bda16f33f4d8df9beda4948322, type: 3}
-  affectRadius: 10
-  strengthMultiplier: 1.5
+  pullForcePointProvider: {fileID: 1927870850}
   blockProvider: {fileID: 1256462997}
 --- !u!1 &1683333092
 GameObject:
@@ -3732,7 +3775,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 590170869}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1806265891
 MonoBehaviour:
@@ -4010,6 +4053,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1927870848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1927870849}
+  - component: {fileID: 1927870850}
+  m_Layer: 0
+  m_Name: Pull Point Provider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1927870849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927870848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1985637716}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1927870850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927870848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41d8c66e7e842f08c9e66d73f325286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockProvider: {fileID: 1256462997}
+  forceScriptable: {fileID: 11400000, guid: 4bb4d3895c659974a8cc2d3601ac4141, type: 2}
 --- !u!1 &1985637715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,6 +4131,8 @@ Transform:
   - {fileID: 1812412205}
   - {fileID: 1683333093}
   - {fileID: 1898474971}
+  - {fileID: 1466307308}
+  - {fileID: 1927870849}
   m_Father: {fileID: 378375812}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4061,6 +4152,8 @@ MonoBehaviour:
   - {fileID: 1812412206}
   - {fileID: 1683333094}
   - {fileID: 1898474972}
+  - {fileID: 1466307309}
+  - {fileID: 1927870850}
 --- !u!1 &2010748095
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade;
 using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
 using UnityEngine;
 using UnityEngine.UI;
+using Cursor = App.Scripts.Input.Cursor.Cursor;
 
 namespace App.Scripts.UI.Installers.Game
 {
@@ -18,10 +19,11 @@ namespace App.Scripts.UI.Installers.Game
 
         [SerializeField] private Button menuButton;
 
+        [Header("On Enable Work")]
+        [SerializeField] private Cursor cursor;
+
         [Header("Button Work Components")] 
         [SerializeField] private SceneLoaderScriptable sceneScriptable;
-
-        [SerializeField] private GamePanelInstaller gameInstaller;
         
         [SerializeField] private AnimatedCanvasMoveView transitionPanel;
 
@@ -33,14 +35,13 @@ namespace App.Scripts.UI.Installers.Game
             
             continueButton.onClick.AddListener(() =>
             {
+                cursor.SetCursorState(false);
+                cursor.gameObject.SetActive(true);
                 HidePanel();
-                gameInstaller.ShowPanel();
             });
             
             menuButton.onClick.AddListener(() =>
             {
-                pausePanel.Interactable = false;
-                
                 transitionPanel.Show(() =>
                 {
                     new SetTimeScaleCommand(1).Execute();

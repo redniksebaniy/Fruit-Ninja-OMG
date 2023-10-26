@@ -19,21 +19,24 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
         public override void Init()
         {
             _currentAlpha = canvasGroup.alpha;
-            canvasGroup.blocksRaycasts = false;
+            canvasGroup.interactable = false;
         }
 
         public override void Show(Action onComplete = null)
         {
             if (canvasGroup == null) return;
-            
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
+
+            canvasGroup.interactable = false;
             canvasGroup.alpha = 0;
             canvasGroup.DOFade(_currentAlpha, animationTime)
                 .SetUpdate(true)
                 .SetEase(showEase)
                 .OnStart(() => canvasGroup.gameObject.SetActive(true))
-                .OnComplete(() => onComplete?.Invoke());
+                .OnComplete(() =>
+                {
+                    canvasGroup.interactable = true;
+                    onComplete?.Invoke();
+                });
         }
 
         public override void Hide(Action onComplete = null)
@@ -41,7 +44,6 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
             if (canvasGroup == null) return;
             
             canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = _currentAlpha;
             canvasGroup.DOFade(0, animationTime)
                 .SetUpdate(true)
@@ -50,6 +52,8 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
                 {
                     canvasGroup.gameObject.SetActive(false);
                     canvasGroup.alpha = _currentAlpha;
+                    
+                    canvasGroup.interactable = true;
                     onComplete?.Invoke();
                 });
         }

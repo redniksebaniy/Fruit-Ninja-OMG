@@ -52,8 +52,6 @@ namespace App.Scripts.UI.Installers.Game
             
             restartButton.onClick.AddListener(() =>
             {
-                loseContent.Interactable = false;
-                
                 loseContent.Hide(() => losePanel.Hide(() =>
                     {
                         levelPoint.Init();
@@ -64,7 +62,7 @@ namespace App.Scripts.UI.Installers.Game
             
             menuButton.onClick.AddListener(() =>
             {
-                loseContent.Interactable = false;
+                loseContent.Interactable = true;
                 
                 transitionCanvasMove.Show(() =>
                 {
@@ -87,8 +85,9 @@ namespace App.Scripts.UI.Installers.Game
             {
                 loseContent.Show();
                 scoreView.SetValue(0);
-                highscoreView.SetValue(scoreHandler.CurrentHighscore);
                 scoreView.SetValueAnimated(scoreHandler.CurrentScore);
+                highscoreView.SetValue(scoreHandler.CurrentHighscore);
+                scoreHandler.SaveHighscore();
             });
         }
     }

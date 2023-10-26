@@ -13,7 +13,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Base
             get => canvasGroup.interactable;
             set => canvasGroup.interactable = value;
         }
-
+        
         public abstract void Show(Action onComplete = null);
         
         public abstract void Hide(Action onComplete = null);
