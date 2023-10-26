@@ -12,10 +12,12 @@ namespace App.Scripts.Game.Blocks.Shared.ParticleProvider
 
         public void PlayParticles()
         {
+            Transform particleTransform;
             foreach (var particle in particles)
             {
-                particle.transform.parent = rootObject.parent;
-                particle.transform.rotation = rootObject.transform.rotation;
+                particleTransform = particle.transform;
+                particleTransform.SetParent(rootObject.parent);
+                particleTransform.rotation = rootObject.transform.rotation;
                 particle.Play();
             }
         }

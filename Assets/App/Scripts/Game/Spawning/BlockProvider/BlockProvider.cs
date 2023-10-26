@@ -57,6 +57,7 @@ namespace App.Scripts.Game.Spawning.BlockProvider
         {
             var newBlock = GetWeightedBlockFactory().Create() ?? defaultBlockFactory.Create();
             SpawnedBlocks.Add(newBlock);
+            newBlock.SetInvulnerability();
             
             newBlock.OnChop += (x) => 
             {
@@ -67,7 +68,23 @@ namespace App.Scripts.Game.Spawning.BlockProvider
             
             return newBlock;
         }
-
+        
+        public Block SpawnBlock(BlockFactory factory)
+        {
+            var newBlock = factory.Create() ?? defaultBlockFactory.Create();
+            SpawnedBlocks.Add(newBlock);
+            newBlock.SetInvulnerability();
+            
+            newBlock.OnChop += (x) => 
+            {
+                if (newBlock.IsDestroyableByChop) SpawnedBlocks.Remove(newBlock);
+            };
+            
+            newBlock.OnMiss += () => SpawnedBlocks.Remove(newBlock);
+            
+            return newBlock;
+        }
+        
         public void SetBlockInPack(int count)
         {
             _deltaBlockInPack = 1f / count;

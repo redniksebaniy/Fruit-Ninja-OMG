@@ -17,15 +17,9 @@ namespace App.Scripts.Game.Blocks.Score
 
             OnChop += (x) =>
             {
-                halvesProvider.CreateHalves(x);
+                halvesProvider.Create(x);
                 particleProvider.PlayParticles();
             }; 
-        }
-        
-        public override void Chop(Vector2 direction)
-        {
-            base.Chop(direction);
-            Destroy(gameObject);
         }
     }
 }
