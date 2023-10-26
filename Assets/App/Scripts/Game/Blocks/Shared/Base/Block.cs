@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Base
@@ -11,13 +12,14 @@ namespace App.Scripts.Game.Blocks.Shared.Base
         
         [SerializeField] private bool isDestroyableByChop = true;
         
+        [SerializeField] [Min(0)] private float invulnerabilityDuration;
+        
         public float Size => size * transform.localScale.z;
         public bool IsPositive => isPositive;
 
         public bool IsDestroyableByChop => isDestroyableByChop;
-        
-        [HideInInspector]
-        public bool isActive = true;
+
+        private bool _isInvulnerable;
         
         public event Action<Vector2> OnChop;
         public event Action OnMiss;
@@ -34,7 +36,7 @@ namespace App.Scripts.Game.Blocks.Shared.Base
 
         public virtual void Chop(Vector2 direction)
         {
-            if (!isActive) return;
+            if (_isInvulnerable) return;
             
             OnChop?.Invoke(direction);
             
@@ -43,6 +45,20 @@ namespace App.Scripts.Game.Blocks.Shared.Base
                 _isChopped = true;
                 Destroy(gameObject);
             }
+        }
+
+        public void SetInvulnerability()
+        {
+            if (_isInvulnerable) return;
+            
+            _isInvulnerable = true;
+            StartCoroutine(WaitForVulnerability());
+        }
+
+        private IEnumerator WaitForVulnerability()
+        {
+            yield return new WaitForSeconds(invulnerabilityDuration);
+            _isInvulnerable = false;
         }
     }
 }

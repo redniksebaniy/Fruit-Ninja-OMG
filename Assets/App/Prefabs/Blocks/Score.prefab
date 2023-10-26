@@ -283,7 +283,7 @@ SpriteRenderer:
   m_SortingLayerID: -697988723
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a964f6679b0ea494db32511f1a1b6999, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4239413387402000852
@@ -309,6 +309,7 @@ MonoBehaviour:
   gravityCoefficient: 9.81
   originalRenderer: {fileID: 4679149280868600346}
   halfRenderer: {fileID: 7874719437642082205}
+  createSprite: 1
   isTopHalf: 0
 --- !u!114 &1774029103164095312
 MonoBehaviour:
@@ -477,8 +478,8 @@ MonoBehaviour:
   gravityCoefficient: 9.81
   size: 1
   isPositive: 1
-  isDestroyable: 1
-  isActive: 1
+  isDestroyableByChop: 1
+  invulnerabilityDuration: 0.2
   halvesProvider: {fileID: 7321473934164605713}
   particleProvider: {fileID: 5055737763975682497}
 --- !u!114 &4951590172320879989
@@ -813,7 +814,7 @@ SpriteRenderer:
   m_SortingLayerID: -697988723
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a964f6679b0ea494db32511f1a1b6999, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -821,7 +822,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &359974175836581347
@@ -839,6 +840,7 @@ MonoBehaviour:
   gravityCoefficient: 9.81
   originalRenderer: {fileID: 4679149280868600346}
   halfRenderer: {fileID: 5846976183828399677}
+  createSprite: 1
   isTopHalf: 1
 --- !u!114 &1138712633263249905
 MonoBehaviour:

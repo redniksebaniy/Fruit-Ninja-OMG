@@ -8,14 +8,15 @@ namespace App.Scripts.Game.Blocks.Shared.BlockHalf
         [SerializeField] private SpriteRenderer originalRenderer;
         
         [SerializeField] private SpriteRenderer halfRenderer;
-        
+
+        public bool createSprite;
         public bool isTopHalf;
 
         public override void Init()
         {
             transform.rotation = originalRenderer.transform.rotation;
             
-            SetSprite();
+            if (createSprite) SetSprite();
         }
 
         private void SetSprite()

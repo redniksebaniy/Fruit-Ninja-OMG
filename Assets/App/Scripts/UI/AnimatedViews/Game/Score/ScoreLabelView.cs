@@ -30,14 +30,8 @@ namespace App.Scripts.UI.AnimatedViews.Game.Score
         {
             _sequence.Append(transform.DOScale(Vector3.one, appearTime).SetEase(Ease.OutBack));
             _sequence.Insert(0, transform.DOMove(transform.position + moveDirection, moveTime));
-            _sequence.Append(transform.DOScale(Vector3.zero, disappearTime).SetEase(Ease.InBack)
-                .OnComplete(() => Destroy(gameObject)));
-        }
-
-        private void OnDestroy()
-        {
-            _sequence.Kill();
-            transform.DOKill();
+            _sequence.Append(transform.DOScale(Vector3.zero, disappearTime).SetEase(Ease.InBack));
+            _sequence.SetLink(gameObject);
         }
     }
 }

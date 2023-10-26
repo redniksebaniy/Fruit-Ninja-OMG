@@ -14,7 +14,7 @@ namespace App.Scripts.Game.Blocks.Shared.BlockHalf.HalvesProvider
         [SerializeField] [Min(0)] private float minStrength;
         [SerializeField] [Min(0)] private float maxStrength;
         
-        public void CreateHalves(Vector2 direction)
+        public void Create(Vector2 direction)
         {
             var angle = Vector2.SignedAngle(Vector2.right, direction);
             var strength = Mathf.Clamp(direction.magnitude, minStrength, maxStrength);
@@ -25,7 +25,7 @@ namespace App.Scripts.Game.Blocks.Shared.BlockHalf.HalvesProvider
             foreach (var half in halves)
             {
                 var offset = Mathf.Lerp(0, angleOffset, Random.value); 
-                half.transform.parent = transform.parent;
+                half.transform.SetParent(transform.parent);
                 half.gameObject.SetActive(true);
                 half.SetForce(angle + offset * (half.isTopHalf ? 1 : -1), strength * strengthMultiplier);
             }

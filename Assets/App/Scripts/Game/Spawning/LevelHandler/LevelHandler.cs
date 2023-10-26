@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Game.Blocks.Shared.Base;
 using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
 using UnityEngine;
 
@@ -12,6 +13,15 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         
         [SerializeField] private FieldProvider.FieldProvider fieldProvider;
         
+        [Header("Default Force Options")]
+        [SerializeField] [Range(-180, 180)] private int minAngle;
+
+        [SerializeField] [Range(-180, 180)] private int maxAngle;
+
+        [SerializeField] [Min(0)] private int minStrength;
+        
+        [SerializeField] [Min(0)] private int maxStrength;
+
         private LevelOptions _currentOptions;
 
         private float _time;
@@ -80,6 +90,14 @@ namespace App.Scripts.Game.Spawning.LevelHandler
             
             newBlock.transform.SetPositionAndRotation(field.GetRandomPosition(), Quaternion.identity);
             newBlock.SetForce(field.GetRandomAngle(), field.GetRandomStrength());
+        }
+
+        public void SetDefaultForce(Block block)
+        {
+            var angle = Mathf.Lerp(minAngle, maxAngle, Random.value);
+            var strength = Mathf.Lerp(minStrength, maxStrength, Random.value);
+            
+            block.SetForce(angle, strength);
         }
         
     }

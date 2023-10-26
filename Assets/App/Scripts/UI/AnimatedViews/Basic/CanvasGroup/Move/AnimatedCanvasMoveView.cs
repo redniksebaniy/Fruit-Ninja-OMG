@@ -42,6 +42,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
             _canvasTransform.position = _closedPos;
             _canvasTransform.DOMove(_openedPos, animationTime)
                 .SetUpdate(true)
+                .SetLink(gameObject)
                 .SetEase(showEase)
                 .OnStart(() => canvasGroup.gameObject.SetActive(true))
                 .OnComplete(() =>
@@ -59,6 +60,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
             _canvasTransform.position = _openedPos;
             _canvasTransform.DOMove(_closedPos, animationTime)
                 .SetUpdate(true)
+                .SetLink(gameObject)
                 .SetEase(hideEase)
                 .OnStart(() => canvasGroup.gameObject.SetActive(true))
                 .OnComplete(() =>
@@ -66,11 +68,6 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
                     canvasGroup.gameObject.SetActive(false);
                     onComplete?.Invoke();
                 });
-        }
-        
-        private void OnDestroy()
-        {
-            canvasGroup.DOKill();
         }
     }
 }

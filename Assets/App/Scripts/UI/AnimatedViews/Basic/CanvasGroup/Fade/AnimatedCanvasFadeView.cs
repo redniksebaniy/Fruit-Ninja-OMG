@@ -30,6 +30,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
             canvasGroup.alpha = 0;
             canvasGroup.DOFade(_currentAlpha, animationTime)
                 .SetUpdate(true)
+                .SetLink(gameObject)
                 .SetEase(showEase)
                 .OnStart(() => canvasGroup.gameObject.SetActive(true))
                 .OnComplete(() =>
@@ -47,6 +48,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
             canvasGroup.alpha = _currentAlpha;
             canvasGroup.DOFade(0, animationTime)
                 .SetUpdate(true)
+                .SetLink(gameObject)
                 .SetEase(hideEase)
                 .OnComplete(() =>
                 {
@@ -56,11 +58,6 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
                     canvasGroup.interactable = true;
                     onComplete?.Invoke();
                 });
-        }
-        
-        private void OnDestroy()
-        {
-            canvasGroup.DOKill();
         }
     }
 }

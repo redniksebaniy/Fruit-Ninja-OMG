@@ -713,6 +713,7 @@ Transform:
   - {fileID: 2110988475}
   - {fileID: 698532820}
   - {fileID: 2010748096}
+  - {fileID: 1946976710}
   - {fileID: 1678886801}
   - {fileID: 447573663}
   m_Father: {fileID: 590170869}
@@ -1273,7 +1274,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 208816051}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &447573664
 MonoBehaviour:
@@ -2240,6 +2241,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 7320516480416331301, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
+      propertyPath: m_characterSpacing
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7320516481306739526, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
       propertyPath: m_Name
       value: Pause
@@ -2274,7 +2279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320516481306739527, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 70
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7320516481306739527, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2310,7 +2315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7320516481306739527, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 65
+      value: 67.5
       objectReference: {fileID: 0}
     - target: {fileID: 7320516481306739527, guid: e98947484b4d8db4f9c7a0ae587db5a6, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2524,6 +2529,9 @@ MonoBehaviour:
     spawnWeight: 5
     maxPercentInPack: 0.25
   - factory: {fileID: 447573664}
+    spawnWeight: 5
+    maxPercentInPack: 0.25
+  - factory: {fileID: 1946976711}
     spawnWeight: 5
     maxPercentInPack: 0.25
 --- !u!1 &1268834369
@@ -3483,7 +3491,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 208816051}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1678886802
 MonoBehaviour:
@@ -3838,6 +3846,10 @@ MonoBehaviour:
   optionsScriptable: {fileID: 11400000, guid: 6564c6425f861ac46b7de0a75f042e79, type: 2}
   blockProvider: {fileID: 1256462997}
   fieldProvider: {fileID: 1806265891}
+  minAngle: 60
+  maxAngle: 120
+  minStrength: 5
+  maxStrength: 7
 --- !u!1 &1898474970
 GameObject:
   m_ObjectHideFlags: 0
@@ -4099,6 +4111,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockProvider: {fileID: 1256462997}
   forceScriptable: {fileID: 11400000, guid: 4bb4d3895c659974a8cc2d3601ac4141, type: 2}
+--- !u!1 &1946976709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946976710}
+  - component: {fileID: 1946976711}
+  m_Layer: 0
+  m_Name: Block Boxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946976710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946976709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 208816051}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1946976711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946976709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d187a1c7dd540269065f6404c0f471d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3192589199660677737, guid: bb8c977ae04b7ee4dadcd3513f038e22, type: 3}
+  levelHandler: {fileID: 1812412206}
+  blockProvider: {fileID: 1256462997}
+  insideFactory: {fileID: 2110988476}
+  blockCount: 4
 --- !u!1 &1985637715
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Push Force Point
   m_EditorClassIdentifier: 
   affectRadius: 7.5
-  strengthMultiplier: 2
+  strengthMultiplier: 8
   forceDuration: 0
   affectOnlyPositive: 0
