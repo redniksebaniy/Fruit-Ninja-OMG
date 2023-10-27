@@ -2,6 +2,7 @@
 using App.Scripts.Game.Blocks.Shared.Base;
 using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Game.Spawning.LevelHandler
 {
@@ -96,9 +97,8 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         {
             var angle = Mathf.Lerp(minAngle, maxAngle, Random.value);
             var strength = Mathf.Lerp(minStrength, maxStrength, Random.value);
-            
+
             block.SetForce(angle, strength);
         }
-        
     }
 }

@@ -68,6 +68,6 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
                     canvasGroup.gameObject.SetActive(false);
                     onComplete?.Invoke();
                 });
-        }
+        } 
     }
 }
