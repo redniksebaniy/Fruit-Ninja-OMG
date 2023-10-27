@@ -21,17 +21,18 @@ namespace App.Scripts.UI.AnimatedViews.Game.Score
         {
             transform.localScale = Vector3.zero;
             
-            _sequence = DOTween.Sequence();
+            _sequence = DOTween.Sequence().SetLink(gameObject);
             InitSequence();
-            _sequence.Play();
         }
 
         private void InitSequence()
         {
             _sequence.Append(transform.DOScale(Vector3.one, appearTime).SetEase(Ease.OutBack));
             _sequence.Insert(0, transform.DOMove(transform.position + moveDirection, moveTime));
-            _sequence.Append(transform.DOScale(Vector3.zero, disappearTime).SetEase(Ease.InBack));
-            _sequence.SetLink(gameObject);
+            _sequence.Append(transform.DOScale(Vector3.zero, disappearTime).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                Destroy(gameObject);
+            }));
         }
     }
 }

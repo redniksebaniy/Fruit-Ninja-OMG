@@ -31,9 +31,10 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
 
         private void UnPress()
         {
-            button.image.DOColor(_unpressedColor, animationTime).SetUpdate(true).SetLink(gameObject);
+            button.image.DOColor(_unpressedColor, animationTime).SetUpdate(true)
+                .SetLink(gameObject, LinkBehaviour.CompleteOnDisable);
             transform.DOScale(Vector3.one, animationTime).SetUpdate(true).SetEase(Ease.OutBounce)
-                .SetLink(gameObject);
+                .SetLink(gameObject, LinkBehaviour.CompleteOnDisable);
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -51,6 +52,6 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
             UnPress();
         }
 
-        private void OnDisable() => UnPress();
+        //private void OnDisable() => UnPress();
     }
 }

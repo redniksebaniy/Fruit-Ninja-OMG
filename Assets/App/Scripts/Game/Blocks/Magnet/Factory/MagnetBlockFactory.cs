@@ -1,6 +1,6 @@
 ﻿using App.Scripts.Game.Blocks.Shared.Base;
 using App.Scripts.Game.Blocks.Shared.Base.Base;
-using App.Scripts.Game.Features.ForcePointProvider;
+using App.Scripts.Game.Features.ForcePointProvider.Base;
 using App.Scripts.Game.Spawning.BlockProvider;
 using UnityEngine;
 

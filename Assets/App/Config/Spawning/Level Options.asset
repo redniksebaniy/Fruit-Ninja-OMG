@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetFrameRate: 60
   level:
-    timeBetweenPackSpawn: 3
+    timeBetweenPackSpawn: 2.5
     minBlockCount: 3
     maxBlockCount: 4
     timeBetweenBlockSpawn: 0.5

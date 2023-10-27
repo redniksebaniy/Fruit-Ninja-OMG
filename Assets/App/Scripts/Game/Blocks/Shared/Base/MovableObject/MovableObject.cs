@@ -29,5 +29,15 @@ namespace App.Scripts.Game.Blocks.Shared.Base.MovableObject
         {
             _currentVelocity = Quaternion.Euler(0, 0, angle) * Vector3.right * strength;
         }
+
+        public void SetForceAngle(float angle)
+        {
+            SetForce(angle, _currentVelocity.magnitude);
+        }
+        
+        public void SetForceStrength(float strength)
+        {
+            _currentVelocity = _currentVelocity.normalized * strength;
+        }
     }
 }

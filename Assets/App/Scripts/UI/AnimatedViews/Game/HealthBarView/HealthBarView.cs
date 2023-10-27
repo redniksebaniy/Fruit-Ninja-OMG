@@ -20,7 +20,7 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView
             _timeForSpawn = time / heartCount;
             for (int i = 0; i < heartCount; i++)
             {
-                AddHeart(_timeForSpawn, i * _timeForSpawn);
+                AddHeart(_timeForSpawn);
             }
         }
 
@@ -29,22 +29,25 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView
             if (_hearts.Count == 0) return;
             
             var heart = _hearts.Pop();
-            if (heart != null) heart.Hide(_timeForSpawn);
+            if (heart != null)
+            {
+                heart.Hide(_timeForSpawn);
+            }
         }
 
-        public void AddHeart(float showTime, float delay = 0)
+        public void AddHeart(float showTime)
         {
-            AddHeart(transform.position + startOffsetPosition, showTime, delay);
+            AddHeart(transform.position + startOffsetPosition, showTime);
         }
 
-        public void AddHeart(Vector3 position, float showTime, float delay = 0)
+        public void AddHeart(Vector3 position, float showTime)
         {
             var heart = Instantiate(prefab, transform);
             heart.transform.position = position;
             _hearts.Push(heart);
             
             Vector3 endPosition = transform.position + heartDelta * (_hearts.Count - 1);
-            heart.Show(endPosition, showTime, delay);
+            heart.Show(endPosition, showTime);
         }
     }
 }

@@ -5,24 +5,22 @@ namespace App.Scripts.UI.AnimatedViews.Game.HealthBarView.HeartView
 {
     public class HeartView : MonoBehaviour
     {
-        public void Show(Vector2 endPosition, float showTime, float delay = 0)
+        public void Show(Vector2 endPosition, float showTime)
         {
-            transform.DOMoveX(endPosition.x, showTime).SetEase(Ease.OutSine).SetDelay(delay)
+            transform.DOMoveX(endPosition.x, showTime)
+                .SetEase(Ease.OutSine)
                 .SetLink(gameObject);
-            transform.DOMoveY(endPosition.y, showTime).SetEase(Ease.InBack).SetDelay(delay)
+            transform.DOMoveY(endPosition.y, showTime)
+                .SetEase(Ease.InBack)
                 .SetLink(gameObject);
         }
 
-        public void Hide(float showTime, float delay = 0)
+        public void Hide(float showTime)
         {
             transform.DOScale(Vector3.zero, showTime)
                 .SetEase(Ease.OutExpo)
                 .SetLink(gameObject)
-                .SetDelay(delay)
-                .OnComplete(() =>
-                {
-                    Destroy(gameObject);
-                });
+                .OnComplete(() => Destroy(gameObject));
         }
     }
 }

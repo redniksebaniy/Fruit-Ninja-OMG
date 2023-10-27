@@ -33,8 +33,8 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Int
         
         public void SetValueAnimated(int value)
         {
-            DOTween.To(GetValue, SetValue,  value, animationTime).SetUpdate(true)
-                .SetLink(gameObject);
+            DOTween.To(GetValue, SetValue, value, animationTime).SetUpdate(true)
+                ;
         }
 
         private int GetValue() => _value;

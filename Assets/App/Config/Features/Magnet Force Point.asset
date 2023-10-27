@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 871cf68189384d6eb702012c10ff0505, type: 3}
-  m_Name: Push Force Point
+  m_Name: Magnet Force Point
   m_EditorClassIdentifier: 
-  affectRadius: 7.5
-  strengthMultiplier: 8
-  forceDuration: 0
-  affectOnlyPositive: 0
+  affectRadius: 5
+  middleAffectRadius: 0.75
+  strengthMultiplier: 15
+  forceDuration: 2
+  affectOnlyPositive: 1

@@ -669,10 +669,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 666557521}
   - {fileID: 591581628}
   - {fileID: 1612163186}
   - {fileID: 1335410015}
+  - {fileID: 666557521}
   - {fileID: 742156948}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1458,7 +1458,7 @@ RectTransform:
   m_Children:
   - {fileID: 1034441788}
   m_Father: {fileID: 202182126}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1511,12 +1511,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 202182126}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -300, y: -300}
+  m_AnchoredPosition: {x: 0, y: -39.99994}
+  m_SizeDelta: {x: -399.99997, y: -380.00003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666557522
 MonoBehaviour:
@@ -1531,6 +1531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adapter: {fileID: 1753102765}
+  appearWidthPercent: 0.6
+  appearHeightPercent: 0.6
   scorePrefab: {fileID: 5434640965164825867, guid: ce12f59645a4dba4a920437254436aa7, type: 3}
   comboPrefab: {fileID: 7327656695957587515, guid: 1bdc96514d760fc4fb59a57001b62d09, type: 3}
 --- !u!1 &698532819
@@ -2470,6 +2472,7 @@ MonoBehaviour:
   - {fileID: 45449741}
   - {fileID: 402576693}
   - {fileID: 1061781268}
+  - {fileID: 666557522}
 --- !u!1 &1256462995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,15 +2528,15 @@ MonoBehaviour:
   - factory: {fileID: 2010748097}
     spawnWeight: 1
     maxPercentInPack: 0.25
+  - factory: {fileID: 1946976711}
+    spawnWeight: 5
+    maxPercentInPack: 0.25
   - factory: {fileID: 1678886802}
     spawnWeight: 5
     maxPercentInPack: 0.25
   - factory: {fileID: 447573664}
-    spawnWeight: 5
-    maxPercentInPack: 0.25
-  - factory: {fileID: 1946976711}
-    spawnWeight: 5
-    maxPercentInPack: 0.25
+    spawnWeight: 50
+    maxPercentInPack: 1
 --- !u!1 &1268834369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,7 +2676,7 @@ RectTransform:
   - {fileID: 1344792407}
   - {fileID: 997957696}
   m_Father: {fileID: 202182126}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2845,7 +2848,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466307307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41d8c66e7e842f08c9e66d73f325286, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a8b752d8f4d4fce9f413f3e83d671a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blockProvider: {fileID: 1256462997}
@@ -3438,7 +3441,7 @@ RectTransform:
   m_Children:
   - {fileID: 323036858}
   m_Father: {fileID: 202182126}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4106,7 +4109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1927870848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41d8c66e7e842f08c9e66d73f325286, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bff2a8035f947f9941dd0dd89c77faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blockProvider: {fileID: 1256462997}
