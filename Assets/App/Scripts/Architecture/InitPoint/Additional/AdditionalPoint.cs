@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Architecture.EntryPoint
+namespace App.Scripts.Architecture.InitPoint.Additional
 {
     public class AdditionalPoint : MonoInitializable.MonoInitializable
     {

@@ -1,6 +1,6 @@
 ﻿using App.Scripts.Game.Blocks.Shared.Base;
 using App.Scripts.Game.Blocks.Shared.Base.Base;
-using App.Scripts.UI.Installers.Game;
+using App.Scripts.UI.Installers.Game.Freeze;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Ice.Factory
@@ -15,7 +15,7 @@ namespace App.Scripts.Game.Blocks.Ice.Factory
             
             newPrefab.OnChop += (x) =>
             {
-                freezePanelInstaller.ShowPanel();
+                freezePanelInstaller.StartEvent();
             };
 
             return newPrefab;

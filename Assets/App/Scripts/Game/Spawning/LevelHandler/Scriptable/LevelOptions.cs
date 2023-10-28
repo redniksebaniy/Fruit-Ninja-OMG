@@ -17,8 +17,12 @@ namespace App.Scripts.Game.Spawning.LevelHandler.Scriptable
         
         [Min(0)] 
         public float timeBetweenBlockSpawn;
+
+        public bool isOnlyDefaultBlock;
         
-        [Header("Increase Difficulty Options")] [Min(0)] 
+        [Header("Increase Difficulty Options")] 
+        
+        [Min(-1)] [Tooltip("Spawn Packs before increasing the difficulty. Set to -1 to cancel this feature.")]
         public int spawnsBeforeIncrease;
         
         [Space(10)] [Range(0, 1)] 

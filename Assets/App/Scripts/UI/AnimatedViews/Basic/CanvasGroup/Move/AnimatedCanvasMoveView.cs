@@ -8,19 +8,13 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
 {
     public class AnimatedCanvasMoveView : CanvasGroupView
     {
+        [Header("Additional Options")]
+        [SerializeField] private Vector2 showDirection;
+        
         [SerializeField] private Canvas parentCanvas;
         
         [SerializeField] private OrthographicCameraAdapter adapter;
         
-        [Header("Animation Options")]
-        [SerializeField] private Vector2 showDirection;
-
-        [SerializeField] [Min(0)] private float animationTime = 0.25f;
-
-        [SerializeField] private Ease showEase = Ease.OutSine;
-
-        [SerializeField] private Ease hideEase = Ease.InSine;
-
         private Transform _canvasTransform;
         
         private Vector2 _openedPos;
@@ -39,10 +33,10 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
             if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
             
             canvasGroup.interactable = false;
-            _canvasTransform.DOMove(_openedPos, animationTime)
+            _canvasTransform.DOMove(_openedPos, scriptable.animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
-                .SetEase(showEase)
+                .SetEase(scriptable.showEase)
                 .OnStart(() => canvasGroup.gameObject.SetActive(true))
                 .OnComplete(() =>
                 {
@@ -56,10 +50,10 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
             if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
             
             canvasGroup.interactable = false;
-            _canvasTransform.DOMove(_closedPos, animationTime)
+            _canvasTransform.DOMove(_closedPos, scriptable.animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
-                .SetEase(hideEase)
+                .SetEase(scriptable.hideEase)
                 .OnStart(() =>
                 {
                     canvasGroup.gameObject.SetActive(true);

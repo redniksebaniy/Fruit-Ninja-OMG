@@ -694,12 +694,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 923399340}
+  scriptable: {fileID: 11400000, guid: aece660a2363c4a4b95aca11c1bb717e, type: 2}
+  showDirection: {x: 0, y: 1}
   parentCanvas: {fileID: 1482035736}
   adapter: {fileID: 2033346658}
-  showDirection: {x: 0, y: 1}
-  animationTime: 0.5
-  showEase: 3
-  hideEase: 2
 --- !u!225 &923399340
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -813,6 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042174539}
   - component: {fileID: 1042174540}
+  - component: {fileID: 1042174541}
   m_Layer: 0
   m_Name: Scene Context
   m_TagString: Untagged
@@ -850,8 +849,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monoInitializables:
+  - {fileID: 1042174541}
   - {fileID: 2033346658}
   - {fileID: 79482464}
+--- !u!114 &1042174541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042174538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8431e048d74658aa6edd918d4dcd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptable: {fileID: 11400000, guid: 2d9d53dc5a5cb9e439a8a5b48ace6a0d, type: 2}
 --- !u!1001 &1310279207
 PrefabInstance:
   m_ObjectHideFlags: 0

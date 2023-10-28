@@ -2,7 +2,7 @@
 
 namespace App.Scripts.Game.Features.ForcePointProvider.Base.Scriptable
 {
-    [CreateAssetMenu(fileName = "Force Point Options", menuName = "Scriptable Object/Force Points Config", order = 0)]
+    [CreateAssetMenu(fileName = "Force Point Options", menuName = "Scriptable Object/Feature/Force Points Config", order = 0)]
     public class ForcePointScriptable : ScriptableObject
     {
         [Min(0)] public float affectRadius;

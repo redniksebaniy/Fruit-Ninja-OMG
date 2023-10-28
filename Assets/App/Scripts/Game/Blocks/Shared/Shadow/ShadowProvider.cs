@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.Game.Blocks.Shared.Shadow.Scriptable;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Shared.Shadow
@@ -9,13 +10,8 @@ namespace App.Scripts.Game.Blocks.Shared.Shadow
         [SerializeField] private SpriteRenderer originalRenderer;
         
         [SerializeField] private SpriteRenderer shadowRenderer;
-        
-        [Header("Shadow Options")]
-        [SerializeField] private Vector3 shadowOffset;
-        
-        [SerializeField] [Min(1)] private float offsetMultiplier;
 
-        [SerializeField] [Range(0, 1)] private float shadowIntensity;
+        [SerializeField] private ShadowOptionsScriptable scriptable;
 
         private Transform _origTransform;
         
@@ -24,7 +20,7 @@ namespace App.Scripts.Game.Blocks.Shared.Shadow
             shadowRenderer.sprite = originalRenderer.sprite;
             
             var shadowColor = Color.black;
-            shadowColor.a = shadowIntensity;
+            shadowColor.a = scriptable.shadowIntensity;
             shadowRenderer.color = shadowColor;
 
             _origTransform = originalRenderer.transform;
@@ -37,10 +33,10 @@ namespace App.Scripts.Game.Blocks.Shared.Shadow
 
         private void UpdateShadow()
         {
-            var currentOffsetMultiplier = 1 + (_origTransform.lossyScale.z - 1) * offsetMultiplier;
-            if (currentOffsetMultiplier < 0) currentOffsetMultiplier = 0;
+            var offsetMultiplier = 1 + (_origTransform.lossyScale.z - 1) * scriptable.offsetMultiplier;
+            if (offsetMultiplier < 0) offsetMultiplier = 0;
             
-            shadowRenderer.transform.position = _origTransform.position + shadowOffset * currentOffsetMultiplier;
+            shadowRenderer.transform.position = _origTransform.position + scriptable.shadowOffset * offsetMultiplier;
         }
     }
 }

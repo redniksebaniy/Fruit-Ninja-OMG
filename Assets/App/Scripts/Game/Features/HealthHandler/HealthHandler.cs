@@ -3,6 +3,7 @@ using App.Scripts.Game.Features.HealthHandler.Scriptable;
 using App.Scripts.Game.Spawning.LevelHandler.Scriptable;
 using App.Scripts.UI.AnimatedViews.Game.HealthBarView;
 using App.Scripts.UI.Installers.Game;
+using App.Scripts.UI.Installers.Game.Lose;
 using UnityEngine;
 
 namespace App.Scripts.Game.Features.HealthHandler
@@ -20,6 +21,9 @@ namespace App.Scripts.Game.Features.HealthHandler
         private HealthOptions _options;
         private int _currentHealthCount;
         
+        [HideInInspector]
+        public bool IsInvulnerable;
+        
         public override void Init()
         {
             _options = scriptable.options;
@@ -29,6 +33,8 @@ namespace App.Scripts.Game.Features.HealthHandler
         
         public void RemoveHeart()
         {
+            if (IsInvulnerable) return;
+            
             healthBarView.RemoveHeart();
             if (--_currentHealthCount == 0)
             {

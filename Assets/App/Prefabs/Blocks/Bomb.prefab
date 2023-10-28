@@ -99,9 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 4679149280868600346}
   shadowRenderer: {fileID: 8572672270544648987}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}
 --- !u!1 &4679149280868600344
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,8 +206,8 @@ MonoBehaviour:
   gravityCoefficient: 9.81
   size: 1
   isPositive: 0
-  isDestroyable: 1
-  isActive: 1
+  isDestroyableByChop: 1
+  invulnerabilityDuration: 0
   particleProvider: {fileID: 7694710600094555637}
 --- !u!114 &-4845577782397553383
 MonoBehaviour:

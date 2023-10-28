@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Architecture.MonoInitializable;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Base.Scriptable;
 using UnityEngine;
 
 namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Base
@@ -8,6 +9,8 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Base
     {
         [SerializeField] protected UnityEngine.CanvasGroup canvasGroup;
 
+        [SerializeField] protected AnimationOptionsScriptable scriptable;
+        
         public bool Interactable
         {
             get => canvasGroup.interactable;
