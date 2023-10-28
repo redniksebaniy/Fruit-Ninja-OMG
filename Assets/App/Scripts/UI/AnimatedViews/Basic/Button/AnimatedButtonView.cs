@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using App.Scripts.UI.AnimatedViews.Basic.Button.Scriptable;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,11 +9,7 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
     {
         [SerializeField] private UnityEngine.UI.Button button;
 
-        [SerializeField] [Min(0)] private float animationTime = 0.1f;
-
-        [SerializeField] private Color pressedColor;
-        
-        [SerializeField] [Range(0, 1)] private float pressedScale = 0.9f;
+        [SerializeField] private ButtonOptionsScriptable scriptable;
 
         private Color _unpressedColor;
 
@@ -23,17 +20,22 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
 
         private void Press()
         {
-            button.image.DOColor(pressedColor, animationTime).SetUpdate(true)
+            button.image.DOColor(scriptable.pressedColor, scriptable.animationTime)
+                .SetUpdate(true)
                 .SetLink(gameObject);
-            transform.DOScale(Vector3.one * pressedScale, animationTime).SetUpdate(true)
+            transform.DOScale(Vector3.one * scriptable.pressedScale, scriptable.animationTime)
+                .SetUpdate(true)
                 .SetLink(gameObject);
         }
 
         private void UnPress()
         {
-            button.image.DOColor(_unpressedColor, animationTime).SetUpdate(true)
+            button.image.DOColor(_unpressedColor, scriptable.animationTime)
+                .SetUpdate(true)
                 .SetLink(gameObject, LinkBehaviour.CompleteOnDisable);
-            transform.DOScale(Vector3.one, animationTime).SetUpdate(true).SetEase(Ease.OutBounce)
+            transform.DOScale(Vector3.one, scriptable.animationTime)
+                .SetUpdate(true)
+                .SetEase(Ease.OutBounce)
                 .SetLink(gameObject, LinkBehaviour.CompleteOnDisable);
         }
 
@@ -51,7 +53,5 @@ namespace App.Scripts.UI.AnimatedViews.Basic.Button
         {
             UnPress();
         }
-
-        //private void OnDisable() => UnPress();
     }
 }

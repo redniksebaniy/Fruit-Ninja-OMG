@@ -33,12 +33,21 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         
         public override void Init()
         {
-            Application.targetFrameRate = optionsScriptable.targetFrameRate;
             _currentOptions = optionsScriptable.level;
             _time = 0;
             _isSpawning = false;
         }
+
+        public void SetLevelOptions(LevelOptions options)
+        {
+            _currentOptions = options;
+        }
         
+        public void ResetLevelOptions()
+        {
+            _currentOptions = optionsScriptable.level;
+        }
+
         public void Update()
         {
             _time += Time.deltaTime;
@@ -87,7 +96,8 @@ namespace App.Scripts.Game.Spawning.LevelHandler
         private void SpawnBlock()
         {
             var field = fieldProvider.GetWeightedField();
-            var newBlock = blockProvider.SpawnWeightedBlock();
+            var newBlock = _currentOptions.isOnlyDefaultBlock ? 
+                blockProvider.SpawnBlock(null) : blockProvider.SpawnWeightedBlock();
             
             newBlock.transform.SetPositionAndRotation(field.GetRandomPosition(), Quaternion.identity);
             newBlock.SetForce(field.GetRandomAngle(), field.GetRandomStrength());
@@ -100,5 +110,6 @@ namespace App.Scripts.Game.Spawning.LevelHandler
 
             block.SetForce(angle, strength);
         }
+        
     }
 }

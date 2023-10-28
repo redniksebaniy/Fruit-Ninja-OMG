@@ -71,7 +71,8 @@ namespace App.Scripts.Game.Spawning.BlockProvider
         
         public Block SpawnBlock(BlockFactory factory)
         {
-            var newBlock = factory.Create() ?? defaultBlockFactory.Create();
+            var newBlock = factory == null ? defaultBlockFactory.Create() : 
+                factory.Create() ?? defaultBlockFactory.Create();
             SpawnedBlocks.Add(newBlock);
             newBlock.SetInvulnerability();
             

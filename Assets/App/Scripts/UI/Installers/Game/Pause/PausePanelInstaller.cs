@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cursor = App.Scripts.Input.Cursor.Cursor;
 
-namespace App.Scripts.UI.Installers.Game
+namespace App.Scripts.UI.Installers.Game.Pause
 {
     public class PausePanelInstaller : MonoInitializable
     {

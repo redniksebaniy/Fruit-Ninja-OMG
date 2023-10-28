@@ -4,13 +4,14 @@ using App.Scripts.Game.Spawning.LevelHandler;
 using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade;
 using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
 using App.Scripts.UI.AnimatedViews.Basic.Int;
+using App.Scripts.UI.Installers.Game.Pause;
 using UnityEngine;
 using UnityEngine.UI;
 using Cursor = App.Scripts.Input.Cursor.Cursor;
 
-namespace App.Scripts.UI.Installers.Game
+namespace App.Scripts.UI.Installers.Game.Level
 {
-    public class GamePanelInstaller : MonoInitializable
+    public class LevelPanelInstaller : MonoInitializable
     {
         [SerializeField] private AnimatedCanvasFadeView gamePanel;
         

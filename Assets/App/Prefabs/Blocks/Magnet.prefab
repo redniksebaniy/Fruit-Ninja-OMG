@@ -99,9 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 5846976183828399677}
   shadowRenderer: {fileID: 3827213923394424373}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}
 --- !u!1 &1923389067267574435
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,9 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 4679149280868600346}
   shadowRenderer: {fileID: 2742287022741033126}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}
 --- !u!1 &4074068103223154680
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,9 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 7874719437642082205}
   shadowRenderer: {fileID: 1569287201855645806}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}
 --- !u!1 &6083406989470536450
 GameObject:
   m_ObjectHideFlags: 0

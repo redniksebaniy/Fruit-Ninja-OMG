@@ -271,6 +271,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1604974796365163053}
-  animationTime: 0.1
-  pressedColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
-  pressedScale: 0.9
+  scriptable: {fileID: 11400000, guid: 0cac470677a27004cb8c66c9dd7bf07e, type: 2}

@@ -74,15 +74,15 @@ SpriteRenderer:
   m_SortingLayerID: -148122035
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 602a956eb3ee89e42937ef319f2a3d54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.8733332, y: 2.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2108040129399941316
@@ -99,9 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 4679149280868600346}
   shadowRenderer: {fileID: 2742287022741033126}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}
 --- !u!1 &4679149280868600344
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,9 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 2593172758413532891}
   shadowRenderer: {fileID: 2590772983119359620}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}
 --- !u!1 &7928106720260326511
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +832,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalRenderer: {fileID: 2340671947839685061}
   shadowRenderer: {fileID: 5028986213160344314}
-  shadowOffset: {x: 0.4, y: -0.2, z: 0}
-  offsetMultiplier: 3
-  shadowIntensity: 0.75
+  scriptable: {fileID: 11400000, guid: 257cb23e3339b9a49968ced206280f87, type: 2}

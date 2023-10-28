@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using App.Scripts.Architecture.EntryPoint;
+using App.Scripts.Architecture.InitPoint.Additional;
 using App.Scripts.Architecture.MonoInitializable;
 using App.Scripts.Commands.LoadScene;
 using App.Scripts.Commands.LoadScene.Scriptable;
@@ -8,10 +8,12 @@ using App.Scripts.Game.Spawning.BlockProvider;
 using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade;
 using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
 using App.Scripts.UI.AnimatedViews.Basic.Int;
+using App.Scripts.UI.Installers.Game.Freeze;
+using App.Scripts.UI.Installers.Game.Level;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.UI.Installers.Game
+namespace App.Scripts.UI.Installers.Game.Lose
 {
     public class LosePanelInstaller : MonoInitializable
     {
@@ -33,7 +35,9 @@ namespace App.Scripts.UI.Installers.Game
 
         [SerializeField] private BlockProvider blockProvider;
 
-        [SerializeField] private GamePanelInstaller gameInstaller;
+        [SerializeField] private LevelPanelInstaller levelInstaller;
+        
+        [SerializeField] private FreezePanelInstaller freezeInstaller;
         
         [Header("Button Work Components")]
         [SerializeField] private SceneLoaderScriptable sceneScriptable;
@@ -55,7 +59,7 @@ namespace App.Scripts.UI.Installers.Game
                 loseContent.Hide(() => losePanel.Hide(() =>
                     {
                         levelPoint.Init();
-                        gameInstaller.ShowPanel();
+                        levelInstaller.ShowPanel();
                     })
                 );
             });
@@ -73,9 +77,12 @@ namespace App.Scripts.UI.Installers.Game
 
         public IEnumerator WaitAndShow()
         {
-            gameInstaller.HidePanel();
+            levelInstaller.HidePanel();
+            freezeInstaller.EndEvent();
+            
             yield return new WaitUntil(() => blockProvider.SpawnedBlocks.Count == 0);
             yield return new WaitForSeconds(1);
+            
             ShowPanel();
         }
 

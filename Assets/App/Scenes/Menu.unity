@@ -382,7 +382,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &255327707
 RectTransform:
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 2024a4bf816d3a749959e1a5647b7d0d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -694,12 +694,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 923399340}
+  scriptable: {fileID: 11400000, guid: b26827d6e82e5e841a3428c0f7b72034, type: 2}
+  showDirection: {x: 0, y: 1}
   parentCanvas: {fileID: 1482035736}
   adapter: {fileID: 2033346658}
-  showDirection: {x: 0, y: 1}
-  animationTime: 0.5
-  showEase: 3
-  hideEase: 2
 --- !u!225 &923399340
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -709,8 +707,8 @@ CanvasGroup:
   m_GameObject: {fileID: 923399335}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1026968948
 GameObject:
@@ -813,6 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042174539}
   - component: {fileID: 1042174540}
+  - component: {fileID: 1042174541}
   m_Layer: 0
   m_Name: Scene Context
   m_TagString: Untagged
@@ -850,8 +849,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monoInitializables:
+  - {fileID: 1042174541}
   - {fileID: 2033346658}
   - {fileID: 79482464}
+--- !u!114 &1042174541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042174538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8431e048d74658aa6edd918d4dcd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptable: {fileID: 11400000, guid: 2d9d53dc5a5cb9e439a8a5b48ace6a0d, type: 2}
 --- !u!1001 &1310279207
 PrefabInstance:
   m_ObjectHideFlags: 0
