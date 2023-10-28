@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14926e376e3c47f394188bfdcc87ddee, type: 3}
-  m_Name: Default Animation Options
+  m_Name: Transition Animation Options
   m_EditorClassIdentifier: 
-  animationTime: 1
-  showEase: 2
-  hideEase: 3
+  animationTime: 0.5
+  showEase: 1
+  hideEase: 1

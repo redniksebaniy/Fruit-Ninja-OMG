@@ -382,7 +382,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &255327707
 RectTransform:
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 2024a4bf816d3a749959e1a5647b7d0d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 923399340}
-  scriptable: {fileID: 11400000, guid: aece660a2363c4a4b95aca11c1bb717e, type: 2}
+  scriptable: {fileID: 11400000, guid: b26827d6e82e5e841a3428c0f7b72034, type: 2}
   showDirection: {x: 0, y: 1}
   parentCanvas: {fileID: 1482035736}
   adapter: {fileID: 2033346658}

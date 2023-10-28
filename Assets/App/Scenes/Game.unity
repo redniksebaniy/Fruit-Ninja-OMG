@@ -2228,7 +2228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 742156952}
-  scriptable: {fileID: 11400000, guid: aece660a2363c4a4b95aca11c1bb717e, type: 2}
+  scriptable: {fileID: 11400000, guid: b26827d6e82e5e841a3428c0f7b72034, type: 2}
   showDirection: {x: 0, y: -1}
   parentCanvas: {fileID: 202182125}
   adapter: {fileID: 1753102765}
