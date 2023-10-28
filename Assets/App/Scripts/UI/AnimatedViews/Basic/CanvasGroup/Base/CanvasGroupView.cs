@@ -1,6 +1,5 @@
 ﻿using System;
 using App.Scripts.Architecture.MonoInitializable;
-using DG.Tweening;
 using UnityEngine;
 
 namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Base

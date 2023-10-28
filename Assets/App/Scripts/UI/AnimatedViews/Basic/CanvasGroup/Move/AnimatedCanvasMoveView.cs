@@ -36,10 +36,9 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
 
         public override void Show(Action onComplete = null)
         {
-            if (canvasGroup == null) return;
+            if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
             
             canvasGroup.interactable = false;
-            _canvasTransform.position = _closedPos;
             _canvasTransform.DOMove(_openedPos, animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
@@ -54,20 +53,25 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move
 
         public override void Hide(Action onComplete = null)
         {
-            if (canvasGroup == null) return;
+            if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
             
             canvasGroup.interactable = false;
-            _canvasTransform.position = _openedPos;
             _canvasTransform.DOMove(_closedPos, animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
                 .SetEase(hideEase)
-                .OnStart(() => canvasGroup.gameObject.SetActive(true))
+                .OnStart(() =>
+                {
+                    canvasGroup.gameObject.SetActive(true);
+                    _canvasTransform.position = _openedPos;
+                })
                 .OnComplete(() =>
                 {
                     canvasGroup.gameObject.SetActive(false);
                     onComplete?.Invoke();
                 });
-        } 
+        }
+
+        private void OnEnable() => _canvasTransform.position = _closedPos;
     }
 }

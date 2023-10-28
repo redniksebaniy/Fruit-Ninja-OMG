@@ -35,6 +35,8 @@ namespace App.Scripts.UI.Installers.Game
 
         [SerializeField] private GamePanelInstaller gameInstaller;
         
+        [SerializeField] private FreezePanelInstaller freezeInstaller;
+        
         [Header("Button Work Components")]
         [SerializeField] private SceneLoaderScriptable sceneScriptable;
         
@@ -74,8 +76,11 @@ namespace App.Scripts.UI.Installers.Game
         public IEnumerator WaitAndShow()
         {
             gameInstaller.HidePanel();
+            freezeInstaller.HidePanel();
+            
             yield return new WaitUntil(() => blockProvider.SpawnedBlocks.Count == 0);
             yield return new WaitForSeconds(1);
+            
             ShowPanel();
         }
 

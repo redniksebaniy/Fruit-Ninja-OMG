@@ -24,10 +24,9 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
 
         public override void Show(Action onComplete = null)
         {
-            if (canvasGroup == null) return;
+            if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
 
             canvasGroup.interactable = false;
-            canvasGroup.alpha = 0;
             canvasGroup.DOFade(_currentAlpha, animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
@@ -42,22 +41,27 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
 
         public override void Hide(Action onComplete = null)
         {
-            if (canvasGroup == null) return;
+            if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
             
             canvasGroup.interactable = false;
-            canvasGroup.alpha = _currentAlpha;
             canvasGroup.DOFade(0, animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
                 .SetEase(hideEase)
+                .OnStart(() =>
+                {
+                    canvasGroup.gameObject.SetActive(true);
+                    canvasGroup.alpha = _currentAlpha;
+                })
                 .OnComplete(() =>
                 {
                     canvasGroup.gameObject.SetActive(false);
-                    canvasGroup.alpha = _currentAlpha;
                     
                     canvasGroup.interactable = true;
                     onComplete?.Invoke();
                 });
         }
+
+        private void OnEnable() => canvasGroup.alpha = 0;
     }
 }
