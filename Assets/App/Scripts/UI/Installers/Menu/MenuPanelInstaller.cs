@@ -4,7 +4,9 @@ using App.Scripts.Commands.Data.Types;
 using App.Scripts.Commands.ExitGame;
 using App.Scripts.Commands.LoadScene;
 using App.Scripts.Commands.LoadScene.Scriptable;
+using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade;
 using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
+using App.Scripts.UI.AnimatedViews.Basic.ImageShader;
 using App.Scripts.UI.AnimatedViews.Basic.Int;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +15,11 @@ namespace App.Scripts.UI.Installers.Menu
 {
     public class MenuPanelInstaller : MonoInitializable
     {
-        [SerializeField] private GameObject menuPanel;
+        [SerializeField] private AnimatedCanvasFadeView menuPanel;
+
+        [Header("Panel Components")] 
+        [SerializeField] private AnimatedImageShaderView shaderView;
         
-        [Header("Panel Components")]
         [SerializeField] private AnimatedIntView highscoreView;
 
         [SerializeField] private Button playButton;
@@ -30,19 +34,22 @@ namespace App.Scripts.UI.Installers.Menu
         
         public override void Init()
         {
-            Application.targetFrameRate = 60;
-            
             highscoreView.Init();
             transitionCanvasMove.Init();
+            shaderView.Init();
             
             playButton.onClick.AddListener(() =>
             {
-                transitionCanvasMove.Show(() => new LoadSceneCommand(sceneScriptable.gameSceneName).Execute());
+                shaderView.DeactivateShaderAnimated();
+                menuPanel.Hide(() => transitionCanvasMove.Show(() => 
+                    new LoadSceneCommand(sceneScriptable.gameSceneName).Execute()));
             });
             
             exitButton.onClick.AddListener(() =>
             {
-                transitionCanvasMove.Show(() => new ExitGameCommand().Execute());
+                shaderView.DeactivateShaderAnimated();
+                menuPanel.Hide(() => transitionCanvasMove.Show(() => 
+                    new ExitGameCommand().Execute()));
             });
 
             var command = new LoadDataCommand<PlayerRecords>("Records.json", "App", "Data");
@@ -51,11 +58,12 @@ namespace App.Scripts.UI.Installers.Menu
             
             ShowPanel();
             transitionCanvasMove.Hide();
+            shaderView.ActivateShaderAnimated();
         }
 
         public void ShowPanel()
         {
-            menuPanel.SetActive(true);
+            menuPanel.Show();
         }
     }
 }

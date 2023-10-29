@@ -15,12 +15,15 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
         {
             if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
 
-            canvasGroup.interactable = false;
             canvasGroup.DOFade(1, scriptable.animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
                 .SetEase(scriptable.showEase)
-                .OnStart(() => canvasGroup.gameObject.SetActive(true))
+                .OnStart(() =>
+                {
+                    canvasGroup.interactable = false;
+                    canvasGroup.gameObject.SetActive(true);
+                })
                 .OnComplete(() =>
                 {
                     canvasGroup.interactable = true;
@@ -32,13 +35,13 @@ namespace App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Fade
         {
             if (DOTween.IsTweening(canvasGroup)) canvasGroup.DOKill();
             
-            canvasGroup.interactable = false;
             canvasGroup.DOFade(0, scriptable.animationTime)
                 .SetUpdate(true)
                 .SetLink(gameObject)
                 .SetEase(scriptable.hideEase)
                 .OnStart(() =>
                 {
+                    canvasGroup.interactable = false;
                     canvasGroup.gameObject.SetActive(true);
                     canvasGroup.alpha = 1;
                 })
