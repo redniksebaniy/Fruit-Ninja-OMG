@@ -1877,8 +1877,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.5
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -3514,7 +3514,7 @@ MonoBehaviour:
     maxPercentInPack: 1
   - factory: {fileID: 698532821}
     spawnWeight: 5
-    maxPercentInPack: 0.25
+    maxPercentInPack: 0.33
   - factory: {fileID: 2010748097}
     spawnWeight: 1
     maxPercentInPack: 0.25
@@ -3522,8 +3522,8 @@ MonoBehaviour:
     spawnWeight: 5
     maxPercentInPack: 0.25
   - factory: {fileID: 792277724}
-    spawnWeight: 50
-    maxPercentInPack: 1
+    spawnWeight: 5
+    maxPercentInPack: 0.25
   - factory: {fileID: 1678886802}
     spawnWeight: 5
     maxPercentInPack: 0.25
@@ -3531,8 +3531,8 @@ MonoBehaviour:
     spawnWeight: 5
     maxPercentInPack: 0.25
   - factory: {fileID: 1870186612}
-    spawnWeight: 50
-    maxPercentInPack: 1
+    spawnWeight: 1
+    maxPercentInPack: 0.25
 --- !u!1 &1268834369
 GameObject:
   m_ObjectHideFlags: 0

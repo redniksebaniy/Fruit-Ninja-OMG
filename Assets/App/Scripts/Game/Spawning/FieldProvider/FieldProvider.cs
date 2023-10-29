@@ -62,7 +62,7 @@ namespace App.Scripts.Game.Spawning.FieldProvider
         {
             Vector3 fieldRight = Quaternion.Euler(0, 0, info.zRotation) * Vector3.right;
             left = info.position + fieldRight * info.length;
-            right = info.position - fieldRight * info.length;
+            right = info.position - fieldRight * info.length + Vector3.forward;
             adapter.GetAdaptedPositionByPercent(ref left);
             adapter.GetAdaptedPositionByPercent(ref right);
         }

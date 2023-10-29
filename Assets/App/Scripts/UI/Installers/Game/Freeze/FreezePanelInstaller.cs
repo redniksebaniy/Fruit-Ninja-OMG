@@ -43,6 +43,7 @@ namespace App.Scripts.UI.Installers.Game.Freeze
 
         public override void EndEvent()
         {
+            CurrentTime = 0;
             TimeScaleCommand.Execute();
             new SetTimeScaleCommand(TimeScaleCommand.TimeScale == 0 ? 0 : 1).Execute();
             

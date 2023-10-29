@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magnet Force Point
   m_EditorClassIdentifier: 
   affectRadius: 5
-  middleAffectRadius: 0.75
+  middleAffectRadius: 1.5
   strengthMultiplier: 15
   forceDuration: 2
   affectOnlyPositive: 1

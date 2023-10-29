@@ -25,7 +25,8 @@ namespace App.Scripts.Game.Blocks.BlockBox.Factory
                 for (int i = 0; i < blockCount; i++)
                 {
                     var block = blockProvider.SpawnBlock(insideFactory);
-                    block.transform.SetPositionAndRotation(newPrefab.transform.position, Quaternion.identity);
+                    block.transform.SetPositionAndRotation(newPrefab.transform.position + 
+                                                           Vector3.forward * Random.value, Quaternion.identity);
                     levelHandler.SetDefaultForce(block);
                 }
             };

@@ -14,7 +14,11 @@ namespace App.Scripts.Game.Features.ForcePointProvider.Magnet
                 float angle = Vector2.SignedAngle(Vector2.right, delta);
                 float strength = delta.magnitude;
 
-                if (strength < forceScriptable.middleAffectRadius) angle += 180;
+                if (strength < forceScriptable.middleAffectRadius)
+                {
+                    angle += 180;
+                    strength *= 2;
+                }
                 
                 strength *= -forceScriptable.strengthMultiplier * Time.deltaTime;
                 affectedBlock.AddForce(angle, strength);
