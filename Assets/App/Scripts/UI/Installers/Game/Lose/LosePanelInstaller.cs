@@ -10,6 +10,7 @@ using App.Scripts.UI.AnimatedViews.Basic.CanvasGroup.Move;
 using App.Scripts.UI.AnimatedViews.Basic.Int;
 using App.Scripts.UI.Installers.Game.Freeze;
 using App.Scripts.UI.Installers.Game.Level;
+using App.Scripts.Utilities.CameraEffectController;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,8 @@ namespace App.Scripts.UI.Installers.Game.Lose
         
         [SerializeField] private FreezePanelInstaller freezeInstaller;
         
+        [SerializeField] private CameraEffectController cameraEffect;
+        
         [Header("Button Work Components")]
         [SerializeField] private SceneLoaderScriptable sceneScriptable;
         
@@ -60,6 +63,7 @@ namespace App.Scripts.UI.Installers.Game.Lose
                     {
                         levelPoint.Init();
                         levelInstaller.ShowPanel();
+                        cameraEffect.enabled = false;
                     })
                 );
             });
@@ -81,6 +85,7 @@ namespace App.Scripts.UI.Installers.Game.Lose
             freezeInstaller.EndEvent();
             
             yield return new WaitUntil(() => blockProvider.SpawnedBlocks.Count == 0);
+            cameraEffect.enabled = true;
             yield return new WaitForSeconds(1);
             
             ShowPanel();

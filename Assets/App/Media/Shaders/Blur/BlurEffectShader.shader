@@ -8,6 +8,7 @@ Shader "Custom/BlurEffectShader"
     }
     SubShader
     {
+        ColorMask RGBA
         Lighting Off 
         Cull Off 
         ZWrite Off 
@@ -50,24 +51,28 @@ Shader "Custom/BlurEffectShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col.rgb = 0;
-
+                const half alpha = col.a;
+                
+                col.rgb *= _Iterations;
+                
                 for (int it = 1; it <= _Iterations; it++)
-                {
-                    col.rgb += tex2D(_MainTex, i.uv);
+                {                    
+                    col.rgb += tex2D(_MainTex, i.uv + half2( _BlurSize * it, 0)).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2(-_BlurSize * it, 0)).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2(0,  _BlurSize * it)).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2(0, -_BlurSize * it)).rgb;
                     
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2( _BlurSize * it, 0)).rgb;
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2(-_BlurSize * it, 0)).rgb;
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2(0,  _BlurSize * it)).rgb;
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2(0, -_BlurSize * it)).rgb;
-                    
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2( _BlurSize,  _BlurSize) * it).rgb;
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2(-_BlurSize,  _BlurSize) * it).rgb;
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2( _BlurSize, -_BlurSize) * it).rgb;
-                    col.rgb += tex2D(_MainTex, i.uv + fixed2(-_BlurSize, -_BlurSize) * it).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2( _BlurSize,  _BlurSize) * it).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2(-_BlurSize,  _BlurSize) * it).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2( _BlurSize, -_BlurSize) * it).rgb;
+                    col.rgb += tex2D(_MainTex, i.uv + half2(-_BlurSize, -_BlurSize) * it).rgb;
                 }
                 
-                return col * 0.125 / _Iterations;
+                col /= 9 * _Iterations;
+
+                col.a = alpha;
+                
+                return col;
             }
             ENDCG
         }
