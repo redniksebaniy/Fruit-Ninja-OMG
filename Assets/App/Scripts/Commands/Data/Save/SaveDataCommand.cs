@@ -1,11 +1,10 @@
 ﻿using System.IO;
 using App.Scripts.Architecture.Command;
-using App.Scripts.Commands.Data.Types.Base;
 using UnityEngine;
 
 namespace App.Scripts.Commands.Data.Save
 {
-    public class SaveDataCommand<T> : ICommand where T : ICustomData
+    public class SaveDataCommand<T> : ICommand where T : new()
     {
         private readonly string _dataFullPath;
         
@@ -14,19 +13,23 @@ namespace App.Scripts.Commands.Data.Save
         public SaveDataCommand(T data, string name, params string[] path)
         {
 #if UNITY_EDITOR
-            _dataFullPath = Path.Combine(Application.dataPath, Path.Combine(path), name);
+            _dataFullPath = Path.GetFullPath(Path.Combine(Application.dataPath, Path.Combine(path), name));
 #else
-            _dataFullPath = Path.Combine(Application.persistentDataPath, name);
+            _dataFullPath = Path.GetFullPath(Path.Combine(Application.persistentDataPath, name));
 #endif
             _data = data;
         }
         
         public void Execute()
         {
-            StreamWriter streamReader = new StreamWriter(_dataFullPath);
+            FileStream fileStream = File.Open(_dataFullPath, FileMode.OpenOrCreate);
+            StreamWriter streamWriter = new(fileStream);
+            
             string json = JsonUtility.ToJson(_data);
-            streamReader.Write(json);
-            streamReader.Close();
+            streamWriter.Write(json);
+            
+            streamWriter.Close();
+            fileStream.Close();
         }
     }
 }
