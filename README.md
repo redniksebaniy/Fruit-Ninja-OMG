@@ -1,38 +1,8 @@
-# Creating Fruit Ninja Clone Progress:
-Stage 1 - ✔️
+# Fruit Ninja
+## About
 
-Stage 2 - ✔️
+First project created during internship. Fruit Ninja is an endless mobile game inspired by the same name game by Halfbrick Studios.
 
-Stage 3 - ❌
-
-Stage 4 - ❌
-
-Stage 5 - ✔️
-
-Stage 6 - ✔️
-
-Stage 7 - ✔️
-
-Stage 8 - ✔️
-
-Stage 9 - ✔️
-
-Stage 10 - ✔️
-
-Stage 11 - ✔️
-
-Stage 12 - ✔️
-
-Stage 13 - ✔️
-
-Stage 14 - ❌
-
-Stage 15 - ✔️
-
-Stage 16 - ✔️
-
-Stage 17 - ✔️
-
-Stage 18 - ❌
-
-:)
+## Used Technologies
+- Saving game data in JSON format
+- Entry Point Pattern
